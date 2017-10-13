@@ -1,0 +1,115 @@
+@font-face {
+  font-family: 'AileronThin';
+  src: url('../fonts/aileron.thin.otf');
+}
+
+@font-face {
+  font-family: 'AileronUltralight';
+  src: url('../fonts/aileron.ultralight.otf');
+}
+
+@font-face {
+  font-family: 'AileronLight';
+  src: url('../fonts/aileron.light.otf');
+}
+
+@font-face {
+  font-family: 'AileronRegular';
+  src: url('../fonts/aileron.regular.otf');
+}
+
+h1.header, h5.white-text {
+  font-family: 'AileronUltralight';
+}
+
+h2.header {
+  font-family: 'AileronUltralight';
+  font-size: 60px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+p {
+  font-family: 'AileronThin';
+  font-size: 17px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+a.chameleon-link {
+  color: black;
+  text-decoration: none;
+}
+
+.avatar {
+  padding: 20px;
+}
+
+.avatar::before {
+  background: #c8cccf;
+  content: '';
+  display: block;
+  height: 1px;
+  position: relative;
+  top: 85px;
+  width: 100%;
+  z-index: 1;
+}
+
+.avatar-pic {
+  background-position: left top;
+  background-repeat: repeat;
+  border-radius: 100%;
+  box-shadow: 0 0 0 1.5em #ffffff;
+  height: 165px;
+  position: relative;
+  z-index: 2;
+  width: 165px;
+}
+
+.flow-text {
+  font-size: 17px;
+  font-weight: normal;
+}
+
+.parallax-container {
+  height: 150px;
+}
+
+.contacts {
+  margin-top: 21px;
+}
+
+.contacts .flow-text {
+  font-size: 15px;
+}
+
+.mobile-img {
+  max-height: 75px;
+}
+
+.page-footer {
+  height: 64px;
+}
+
+/* anime text */
+.ml9 {
+  position: relative;
+  font-weight: 200;
+  font-size: 4em;
+}
+
+.ml9 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-right: 0.05em;
+  padding-bottom: 0.1em;
+  overflow: hidden;
+}
+
+.ml9 .letter {
+  transform-origin: 50% 100%;
+  display: inline-block;
+  line-height: 1em;
+}
