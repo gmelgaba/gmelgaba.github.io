@@ -23,6 +23,7 @@ h1.header, h5.white-text {
 }
 
 h2.header {
+  display: none;
   font-family: 'AileronUltralight';
   font-size: 60px;
   margin-bottom: 5px;
@@ -74,6 +75,10 @@ a.chameleon-link {
 
 .parallax-container {
   height: 150px;
+}
+
+.parallax-container.hide-on-med-and-up {
+  height: 75px;
 }
 
 .contacts {
