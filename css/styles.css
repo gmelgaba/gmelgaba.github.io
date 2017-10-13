@@ -30,6 +30,10 @@ h2.header {
   margin-top: 5px;
 }
 
+h2.header.visible-text {
+  color: #000000;
+}
+
 p {
   font-family: 'AileronThin';
   font-size: 17px;
@@ -38,7 +42,7 @@ p {
 }
 
 a.chameleon-link {
-  color: black;
+  color: #000000;
   text-decoration: none;
 }
 
@@ -99,22 +103,22 @@ a.chameleon-link {
 
 /* anime text */
 .ml9 {
-  position: relative;
   font-weight: 200;
   font-size: 4em;
+  position: relative;
 }
 
 .ml9 .text-wrapper {
-  position: relative;
   display: inline-block;
-  padding-top: 0.2em;
-  padding-right: 0.05em;
   padding-bottom: 0.1em;
+  padding-right: 0.05em;
+  padding-top: 0.2em;
   overflow: hidden;
+  position: relative;
 }
 
 .ml9 .letter {
-  transform-origin: 50% 100%;
   display: inline-block;
   line-height: 1em;
+  transform-origin: 50% 100%;
 }
