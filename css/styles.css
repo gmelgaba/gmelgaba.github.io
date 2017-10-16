@@ -97,7 +97,9 @@ a.chameleon-link {
   max-height: 75px;
 }
 
-.page-footer {
+header,
+footer {
+  background-color: #a92958;
   height: 64px;
 }
 
