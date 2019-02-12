@@ -1,7 +1,5 @@
 $(document).ready(function () {
-
   $('.parallax').parallax();
-
   $('.ml9 .letters-mobile').each(function () {
     $(this).show();
     $(this).html($(this).text().replace(/(\w+|'|,)/g, "<span class='letter'>$&</span>"));
@@ -10,7 +8,6 @@ $(document).ready(function () {
     $(this).show();
     $(this).html($(this).text().replace(/([^\x00-\x80]|\w|'|,)/g, "<span class='letter'>$&</span>"));
   });
-
   anime
     .timeline({
       loop: false
@@ -23,5 +20,4 @@ $(document).ready(function () {
         return 45 * (i + 1)
       }
     });
-
 });
