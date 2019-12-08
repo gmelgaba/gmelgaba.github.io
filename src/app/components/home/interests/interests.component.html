@@ -1,0 +1,21 @@
+<section class="row no-margin">
+  <div class="col s6 no-padding">
+    <div class="about-me-image"></div>
+  </div>
+  <div class="col s6">
+    <app-section-title
+      [title]="'Personal Interests'"
+      [subtitle]="'about'"></app-section-title>
+      <div *ngFor="let interest of interests; let i = index">
+        <div *ngIf="i % 2 === 0" class="row">
+          <div *ngIf="i < interests.length" class="col s6">
+            <app-interest-card [interest]="interests[i]"></app-interest-card>
+          </div>
+          <div *ngIf="i + 1 < interests.length" class="col s6">
+            <app-interest-card [interest]="interests[i+1]"></app-interest-card>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+

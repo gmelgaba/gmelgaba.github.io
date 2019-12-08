@@ -1,0 +1,16 @@
+:host {
+  .row, .col.s6 {
+    height: 100%;
+  }
+  .about-me-image {
+    position: relative;
+    // background: url('~src/assets/images/me_v2.jpeg') scroll center no-repeat;
+    // background: url('~src/assets/images/me_v3.jpg') scroll center no-repeat;
+    background: url('https://i2.wp.com/www.thenerddaily.com/wp-content/uploads/2018/08/Narrative-Video-Games.jpg?fit=1000%2C742&ssl=1') scroll center no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+  }
+}

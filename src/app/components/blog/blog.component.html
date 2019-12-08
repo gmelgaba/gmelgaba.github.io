@@ -1,0 +1,26 @@
+<app-header></app-header>
+<app-section-title
+  [title]="'Blog'"
+  [subtitle]="'blog'"></app-section-title>
+<div class="row">
+  <div class="col s10">
+    <div class="row">
+      <div *ngFor="let article of articles" class="col s4">
+        <app-blog-card [article]="article"></app-blog-card>
+      </div>
+    </div>
+  </div>
+  <div class="col s2">
+    <ul class="cx table-of-contents hide-on-med-and-down pin-top" style="top: 0px;">
+      <li><a class="active">GalleryExpand</a></li>
+      <li><a class="">Options</a></li>
+      <li><a class="">Methods</a></li>
+      <li><a>Masonry</a></li>
+      <li><a>Filtering</a></li>
+      <li><a>Mobile</a></li>
+      <li><a>Components</a></li>
+      <li><a>Navbar</a></li>
+    </ul>
+  </div>
+</div>
+<app-footer></app-footer>
