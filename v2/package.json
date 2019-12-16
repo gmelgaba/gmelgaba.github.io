@@ -4,8 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "build-gh-papge": "ng build --prod --base-href https://gmelgaba.github.io/gmelgaba.github.io/",
+    "build": "ng build --prod --base-href https://gmelgaba.github.io/gmelgaba.github.io/",
     "test": "ng test",
     "lint": "ng lint"
   },
