@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod --base-href https://gmelgaba.github.io/gmelgaba.github.io/",
+    "deploy": "npm run build && cp -a ./dist/gmelgaba-profile-app/. ../github-page/",
     "test": "ng test",
     "lint": "ng lint"
   },
