@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  const today = new Date()
+  $('.experience-years').text(today.getUTCFullYear() - 2012);
   $('.parallax').parallax();
   $('.ml9 .letters-mobile').each(function () {
     $(this).show();
