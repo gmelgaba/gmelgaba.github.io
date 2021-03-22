@@ -1,0 +1,69 @@
+## CUSTOM _pages DIRECTORY
+include: [_pages]
+
+## CORE ATTRIBUTES
+url: "http://gmelgaba.github.io/"
+baseurl: "" # the subpath of your site, e.g. /blog
+title: "Gonzalo Melgar"
+job: "Software Engineer"
+
+## SOCIAL URLs
+email: "gmelgaba@gmail.com"
+twitter: "https://twitter.com/gmelgaba"
+github: "https://github.com/gmelgaba"
+spotify: "https://open.spotify.com/user/0ny35jaa9ga0azi1smsg5h15s?si=WI9AQHRfS0usJCWcv1bENQ"
+stackoverflow: "https://stackoverflow.com/users/12064160/gonzalo?tab=profile"
+linkedin: "https://www.linkedin.com/in/gmelgaba/"
+youtube: "https://www.youtube.com/channel/UChHDiwGkIg1_FKFR0VMIu7A"
+
+## SECTIONS ENABLED
+sections:
+- about: true
+- skills: true
+- companies: false
+- fun_facts: true
+
+## NAVIGATION REDIRECTS
+navigation:
+- text: about
+  url: /
+  icon: ion-person
+  layout: page
+- text: resume
+  url: /resume/
+  icon: ion-android-list
+  layout: page
+- text: blog
+  url: /blog/
+  icon: ion-chatbox-working
+  layout: post
+- text: contact
+  url: /contact/
+  icon: ion-at
+  layout: page
+
+## COMPANIES I WORKED WITH
+companies:
+- name: "Survey Vitals"
+  imageName: survey-vitals
+  url: https://surveyvitals.com/start/
+- name: "MyAlerts"
+  imageName: myalerts
+  url: https://www.myalerts.com/
+- name: "Medaptive Health"
+  imageName: meadptive-health
+  url: https://medaptivehealth.com/
+- name: "Spins"
+  imageName: spins
+  url: https://www.spins.com/
+
+## FUN FACTS
+fun_facts:
+- text: "Music enthusiast"
+  icon: fa-music
+- text: "Videogame addict"
+  icon: fa-gamepad
+- text: "1.000 cups of coffee"
+  icon: fa-coffee
+- text: "10 Countries visited"
+  icon: "fa-flag"

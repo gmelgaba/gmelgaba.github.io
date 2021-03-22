@@ -1,0 +1,67 @@
+@font-face {
+  font-family: 'AileronThin';
+  src: url('../assets/fonts/aileron/aileron.thin.otf');
+}
+
+@font-face {
+  font-family: 'AileronUltralight';
+  src: url('../assets/fonts/aileron/aileron.ultralight.otf');
+}
+
+@font-face {
+  font-family: 'AileronLight';
+  src: url('../assets/fonts/aileron/aileron.light.otf');
+}
+
+@font-face {
+  font-family: 'AileronRegular';
+  src: url('../assets/fonts/aileron/aileron.regular.otf');
+}
+
+@import "colors";
+@import url("https://fonts.googleapis.com/css?family=Exo:400,700");
+
+$bodyFont: "AileronThin";
+
+body {
+  font-family: $bodyFont;
+  .context {
+    z-index: 1;
+    .text-center {
+      text-align: center;
+    }
+  }
+  .gm-card {
+    background-color: white;
+    border-radius: 7px;
+    a:not(.inline-link) {
+      &.selected {
+        color: $primary;
+      }
+      &:hover {
+        color: $primary;
+      }
+      color: $grayDark;
+      display: block;
+      font-size: 10px;
+      font-weight: 500;
+      height: auto;
+      padding-top: 2px;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+  }
+  .smooth-border {
+    &:before {
+      content: '';
+      background: radial-gradient(ellipse at right, #dddddd 0%, rgba(255, 255, 255, 0) 90%);
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      position: absolute;
+      width: 100%;
+    }
+  }
+}

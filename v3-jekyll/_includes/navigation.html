@@ -1,0 +1,14 @@
+<div class="top-menu gm-card">
+  <ul>
+    {% for link in site.navigation %}
+    <li>
+      <a href="{{ link.url }}" class="{% if page.url == link.url %}selected{% endif %} {% unless forloop.last %}smooth-border{% endunless %}">
+        <span class="icon {{ link.icon }}"></span>
+        <span class="link">{{ link.text }}</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+

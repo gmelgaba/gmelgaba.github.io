@@ -1,0 +1,132 @@
+@import "colors";
+
+.gm-card {
+  strong {
+    background: $primary;
+    color: white;
+    font-weight: 200;
+  }
+  .post {
+    text-align: left;
+  }
+  &.content {
+    .title {
+      &:after {
+        background: -webkit-linear-gradient(-45deg, rgba(76, 119, 83, 0.4) 0%, rgba(76, 119, 83, 0.01) 100%);
+        border-radius: 50%;
+        content: '';
+        height: 30px;
+        left: -12px;
+        position: absolute;
+        top: 0;
+        width: 30px;
+      }
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      padding: 0 0 25px 0;
+      position: relative;
+      width: 712px;
+      .first-word {
+        color: $primary;
+      }
+    }
+    /* box-shadow: -10px 0px 10px 1px #aaaaaa; */
+    float: left;
+    height: 610px;
+    margin-left: -10px;
+    padding: 30px 30px 0 40px;
+    overflow: scroll;
+    width: 708px;
+  }
+
+  // PROFILE CARD
+  &.profile {
+    float: left;
+    height: 650px;
+    margin-left: 10px;
+    margin-top: -20px;
+    overflow: hidden;
+    width: 480px;
+    .image {
+      background: url("../images/me.jpg");
+      background-size: contain;
+      background-position: center;
+      border-radius: 7px;
+      height: 400px;
+      overflow: hidden;
+      position: absolute;
+      width: 480px;
+      &::before {
+        content: "";
+        background: #ffffff;
+        bottom: -173px;
+        height: 200px;
+        left: -24px;
+        position: absolute;
+        transform: rotate(12deg);
+        -webkit-transform: rotate(12deg);
+        width: 255px;
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -171px;
+        width: 255px;
+        height: 200px;
+        background: #ffffff;
+        transform: rotate(-12deg);
+        -webkit-transform: rotate(-12deg);
+        left: 248px;
+      }
+    }
+    .title {
+      line-height: 32px;
+      font-size: 34px;
+      margin-top: 430px;
+      text-align: center;
+      z-index: 20;
+    }
+    .subtitle {
+      color: $primary;
+      line-height: 32px;
+      font-size: 16px;
+      text-align: center;
+      z-index: 20;
+    }
+    .social {
+      padding-bottom: 45px;
+      margin-top: 15px;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      a {
+        display: inline-block;
+        font-size: 16px;
+        margin: 0 6px;
+        vertical-align: middle;
+      }
+    }
+    .links {
+      margin-top: -5px;
+      a {
+        border: none;
+        float: left;
+        font-size: 14px;
+        font-weight: 500;
+        height: 70px;
+        line-height: 70px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        width: 100%;
+      }
+    }
+  }
+
+
+  // ABOUT CARD
+  &.about {
+  }
+}

@@ -1,0 +1,58 @@
+<div class="about gm-card content">
+
+  <div class="section">
+    <div class="title smooth-border"><span class="first-word">About</span> Me</div>
+    <div class="row">
+      <div class="col-sm-12">
+        <strong>Hey there! I’m Gonzalo Melgar.</strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <p class="flow-text">I'm a software developer living in Montevideo, Uruguay currently working at <a class="inline-link" href="http://tarmac.io/" target="_blank">tarmac</a>.</p>
+        <p class="flow-text">I did my degree at the University of the Republic, and I have {{ site.time | date: '%Y' | minus: 2012 }}+ years of experience as a developer, learning while I work with great people.</p>
+        <p class="flow-text">I really encourage best practices, and I think that there are always new things to learn. </p>
+      </div>
+      <div class="col-sm-6">
+        <p class="flow-text">I really enjoy playing videogames, the ocassional boardgame, and going to the movies anytime.</p>
+        <p class="flow-text">I'm a Music enthusiast, and I try to make a humble contribution by playing drums. From my personal point of view, I think there's a soundtrack for every moment in life.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="title smooth-border"><span class="first-word">Skills</span></div>
+  </div>
+
+  {% assign company_section = site.sections | where: "companies", "true" | size %}
+  {% if company_section == 1 %}
+  <div class="section">
+    <div class="title smooth-border"><span class="first-word">Companies</span> I worked with over the years</div>
+    <div class="row">
+      {% for company in site.companies %}
+      <a href="{{ company.url }}" target="_blank" class="card-link col-sm-5">
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+          {% assign imageSrc = "/assets/images/companies/" | append: company.imageName | append: ".jpg" | append: relative_url %}
+          <img class="card-img-top" src="{{ imageSrc }}">
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+
+  <div class="section">
+    <div class="title smooth-border"><span class="first-word">Fun</span> Facts</div>
+    <div class="row">
+      {% for fact in site.fun_facts %}
+      <div class="col col-d-3 col-t-3 col-m-6 border-line-v">
+        <div class="fuct-item">
+          <div class="icon"><span class="fa {{ fact.icon }}"></span></div>
+          <div class="text">{{ fact.text }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
