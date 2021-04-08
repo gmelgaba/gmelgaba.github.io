@@ -1,4 +1,5 @@
-@import "colors";
+@import 'variables/colors';
+@import 'variables/fonts';
 
 .gm-card {
   strong {
@@ -12,15 +13,16 @@
   &.content {
     .title {
       &:after {
-        background: -webkit-linear-gradient(-45deg, rgba(76, 119, 83, 0.4) 0%, rgba(76, 119, 83, 0.01) 100%);
+        background: -webkit-linear-gradient(-45deg, $primaryTransparent, $primaryTransparentDark);
         border-radius: 50%;
-        content: '';
+        content: "";
         height: 30px;
         left: -12px;
         position: absolute;
         top: 0;
         width: 30px;
       }
+      font-family: $regularFont;
       font-size: 22px;
       font-weight: bold;
       margin-bottom: 30px;
@@ -81,6 +83,7 @@
       }
     }
     .title {
+      color: $grayDark;
       line-height: 32px;
       font-size: 34px;
       margin-top: 430px;
@@ -89,14 +92,12 @@
     }
     .subtitle {
       color: $primary;
-      line-height: 32px;
       font-size: 16px;
       text-align: center;
       z-index: 20;
     }
     .social {
       padding-bottom: 45px;
-      margin-top: 15px;
       position: relative;
       text-align: center;
       text-decoration: none;
@@ -125,8 +126,58 @@
     }
   }
 
-
   // ABOUT CARD
   &.about {
+    padding-bottom: 50px;
+    .fact-item {
+      text-align: center;
+      .icon {
+        color: $primary;
+        font-size: 32px;
+        height: 60px;
+        margin: 0 auto;
+        text-align: center;
+        width: 60px;
+      }
+    }
+  }
+
+  // BLOG CARD
+  &.blog {
+    .box-item {
+      text-align: center;
+      .image {
+        height: auto;
+        margin-bottom: 5px;
+        position: relative;
+        width: 100%;
+      }
+      .date {
+        background: transparent;
+        border: 1px solid $primary;
+        bottom: auto;
+        color: $primary;
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 400;
+        height: auto;
+        left: 0;
+        line-height: 18px;
+        margin: 0 0 11px 0;
+        padding: 0 5px;
+        position: relative;
+        top: 0;
+        width: auto;
+      }
+      .name {
+        font-size: 17px;
+        font-weight: 500;
+        padding-bottom: 5px;
+        text-transform: none;
+      }
+      .text {
+        color: gray;
+      }
+    }
   }
 }

@@ -1,13 +1,12 @@
-@import url("https://fonts.googleapis.com/css?family=Exo:400,700");
-@font-face { font-family: 'AileronThin'; src: url("../assets/fonts/aileron/aileron.thin.otf"); }
+@font-face { font-family: "AileronThin"; src: url("../fonts/aileron/aileron.thin.otf"); }
 
-@font-face { font-family: 'AileronUltralight'; src: url("../assets/fonts/aileron/aileron.ultralight.otf"); }
+@font-face { font-family: "AileronUltralight"; src: url("../fonts/aileron/aileron.ultralight.otf"); }
 
-@font-face { font-family: 'AileronLight'; src: url("../assets/fonts/aileron/aileron.light.otf"); }
+@font-face { font-family: "AileronLight"; src: url("../fonts/aileron/aileron.light.otf"); }
 
-@font-face { font-family: 'AileronRegular'; src: url("../assets/fonts/aileron/aileron.regular.otf"); }
+@font-face { font-family: "AileronRegular"; src: url("../fonts/aileron/aileron.regular.otf"); }
 
-body { font-family: "AileronThin"; }
+body { font-family: "Raleway"; }
 
 body .context { z-index: 1; }
 
@@ -17,11 +16,19 @@ body .gm-card { background-color: white; border-radius: 7px; }
 
 body .gm-card a:not(.inline-link) { color: #323232; display: block; font-size: 10px; font-weight: 500; height: auto; padding-top: 2px; position: relative; text-align: center; text-decoration: none; text-transform: uppercase; }
 
-body .gm-card a.selected:not(.inline-link) { color: #78cc6d; }
+body .gm-card a.selected:not(.inline-link) { color: #812d39; }
 
-body .gm-card a:not(.inline-link):hover { color: #78cc6d; }
+body .gm-card a:not(.inline-link):hover { color: #812d39; }
+
+body .uppercase { text-transform: uppercase; }
 
 body .smooth-border:before { content: ''; background: radial-gradient(ellipse at right, #dddddd 0%, rgba(255, 255, 255, 0) 90%); bottom: 0; left: 0; height: 1px; position: absolute; width: 100%; }
+
+body .anime-text { color: #812d39; font-size: 4em; font-weight: 200; position: relative; }
+
+body .anime-text .text-wrapper { position: relative; display: inline-block; padding-top: 0.2em; padding-right: 0.05em; padding-bottom: 0.1em; overflow: hidden; }
+
+body .anime-text .letter { transform-origin: 50% 100%; display: inline-block; line-height: 1em; }
 
 * { margin: 0px; padding: 0px; }
 
@@ -29,7 +36,7 @@ body .smooth-border:before { content: ''; background: radial-gradient(ellipse at
 
 .context h1 { text-align: center; color: #fff; font-size: 50px; }
 
-.area { background: #78cc6d; background: -webkit-linear-gradient(to left, #50A2A2, #78cc6e); width: 100%; height: 100vh; }
+.area { background: #812d39; background-image: linear-gradient(#d68a95, #812d39); width: 100%; height: 100vh; }
 
 .circles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; }
 
@@ -62,7 +69,15 @@ body .smooth-border:before { content: ''; background: radial-gradient(ellipse at
     opacity: 0;
     border-radius: 50%; } }
 
-.top-menu { float: left; margin-left: 12%; width: 72px; }
+@font-face { font-family: "AileronThin"; src: url("../fonts/aileron/aileron.thin.otf"); }
+
+@font-face { font-family: "AileronUltralight"; src: url("../fonts/aileron/aileron.ultralight.otf"); }
+
+@font-face { font-family: "AileronLight"; src: url("../fonts/aileron/aileron.light.otf"); }
+
+@font-face { font-family: "AileronRegular"; src: url("../fonts/aileron/aileron.regular.otf"); }
+
+.top-menu { float: left; font-family: "AileronLight"; margin-left: 12%; width: 72px; }
 
 .top-menu ul { min-height: 289px; list-style-type: none; padding-top: 20px; text-align: center; }
 
@@ -76,17 +91,25 @@ body .smooth-border:before { content: ''; background: radial-gradient(ellipse at
 
 .top-menu ul li a span.link { font-size: 11px; left: 0; line-height: 13px; position: relative; top: 0; width: 100%; }
 
-.gm-card strong { background: #78cc6d; color: white; font-weight: 200; }
+@font-face { font-family: "AileronThin"; src: url("../fonts/aileron/aileron.thin.otf"); }
+
+@font-face { font-family: "AileronUltralight"; src: url("../fonts/aileron/aileron.ultralight.otf"); }
+
+@font-face { font-family: "AileronLight"; src: url("../fonts/aileron/aileron.light.otf"); }
+
+@font-face { font-family: "AileronRegular"; src: url("../fonts/aileron/aileron.regular.otf"); }
+
+.gm-card strong { background: #812d39; color: white; font-weight: 200; }
 
 .gm-card .post { text-align: left; }
 
 .gm-card.content { /* box-shadow: -10px 0px 10px 1px #aaaaaa; */ float: left; height: 610px; margin-left: -10px; padding: 30px 30px 0 40px; overflow: scroll; width: 708px; }
 
-.gm-card.content .title { font-size: 22px; font-weight: bold; margin-bottom: 30px; padding: 0 0 25px 0; position: relative; width: 712px; }
+.gm-card.content .title { font-family: "AileronRegular"; font-size: 22px; font-weight: bold; margin-bottom: 30px; padding: 0 0 25px 0; position: relative; width: 712px; }
 
-.gm-card.content .title:after { background: -webkit-linear-gradient(-45deg, rgba(76, 119, 83, 0.4) 0%, rgba(76, 119, 83, 0.01) 100%); border-radius: 50%; content: ''; height: 30px; left: -12px; position: absolute; top: 0; width: 30px; }
+.gm-card.content .title:after { background: -webkit-linear-gradient(-45deg, rgba(129, 45, 57, 0.1), rgba(0, 0, 0, 0.1)); border-radius: 50%; content: ""; height: 30px; left: -12px; position: absolute; top: 0; width: 30px; }
 
-.gm-card.content .title .first-word { color: #78cc6d; }
+.gm-card.content .title .first-word { color: #812d39; }
 
 .gm-card.profile { float: left; height: 650px; margin-left: 10px; margin-top: -20px; overflow: hidden; width: 480px; }
 
@@ -96,16 +119,32 @@ body .smooth-border:before { content: ''; background: radial-gradient(ellipse at
 
 .gm-card.profile .image::after { content: ""; position: absolute; bottom: -171px; width: 255px; height: 200px; background: #ffffff; transform: rotate(-12deg); -webkit-transform: rotate(-12deg); left: 248px; }
 
-.gm-card.profile .title { line-height: 32px; font-size: 34px; margin-top: 430px; text-align: center; z-index: 20; }
+.gm-card.profile .title { color: #323232; line-height: 32px; font-size: 34px; margin-top: 430px; text-align: center; z-index: 20; }
 
-.gm-card.profile .subtitle { color: #78cc6d; line-height: 32px; font-size: 16px; text-align: center; z-index: 20; }
+.gm-card.profile .subtitle { color: #812d39; font-size: 16px; text-align: center; z-index: 20; }
 
-.gm-card.profile .social { padding-bottom: 45px; margin-top: 15px; position: relative; text-align: center; text-decoration: none; }
+.gm-card.profile .social { padding-bottom: 45px; position: relative; text-align: center; text-decoration: none; }
 
 .gm-card.profile .social a { display: inline-block; font-size: 16px; margin: 0 6px; vertical-align: middle; }
 
 .gm-card.profile .links { margin-top: -5px; }
 
 .gm-card.profile .links a { border: none; float: left; font-size: 14px; font-weight: 500; height: 70px; line-height: 70px; position: relative; text-align: center; text-decoration: none; text-transform: uppercase; width: 100%; }
+
+.gm-card.about { padding-bottom: 50px; }
+
+.gm-card.about .fact-item { text-align: center; }
+
+.gm-card.about .fact-item .icon { color: #812d39; font-size: 32px; height: 60px; margin: 0 auto; text-align: center; width: 60px; }
+
+.gm-card.blog .box-item { text-align: center; }
+
+.gm-card.blog .box-item .image { height: auto; margin-bottom: 5px; position: relative; width: 100%; }
+
+.gm-card.blog .box-item .date { background: transparent; border: 1px solid #812d39; bottom: auto; color: #812d39; display: inline-block; font-size: 13px; font-weight: 400; height: auto; left: 0; line-height: 18px; margin: 0 0 11px 0; padding: 0 5px; position: relative; top: 0; width: auto; }
+
+.gm-card.blog .box-item .name { font-size: 17px; font-weight: 500; padding-bottom: 5px; text-transform: none; }
+
+.gm-card.blog .box-item .text { color: gray; }
 
 /*# sourceMappingURL=main.css.map */

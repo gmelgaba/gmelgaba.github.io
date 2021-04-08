@@ -1,0 +1,43 @@
+---
+layout: page
+---
+
+{% assign arrayOdd = site.playlists.size | modulo: 2 %}
+{% for post in site.playlists %}
+{% assign slugTitle = post.title | slugify %}
+{% assign imageSrc = "/assets/images/posts/" | append: slugTitle | append: "-preview.jpg" | append: relative_url %}
+{% assign loopindex = forloop.index0 | modulo: 2 %}
+
+{% if loopindex == 0 or forloop.first %}
+<div class="row">
+{% endif %}
+
+  <!-- blog item-->
+  <div class="col col-d-6 col-t-6 col-m-12">
+    <div class="box-item">
+      <div class="image">
+        <a href="{{ post.url }}">
+          <img class="image" src="{{ imageSrc }}">
+        </a>
+      </div>
+      <div class="desc">
+        <a href="{{ post.url }}">
+          <span class="date">{{ post.date | date: "%B %-d, %Y"}}</span>
+        </a>
+        <a href="{{ post.url }}" class="name">{{ post.title }}</a>
+        <div class="text">
+          <p>{{ post.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% if forloop.last and arrayOdd == 1 %}
+  <div class="col col-d-6 col-t-6 col-m-12"></div>
+{% endif %}
+
+{% if loopindex == 1 or forloop.last %}
+</div>
+{% endif %}
+
+{% endfor %}

@@ -1,13 +1,19 @@
 <div class="profile gm-card">
   <div class="image"></div>
-  <div class="title">{{ site.title }}</div>
-  <div class="subtitle subtitle-typed">{{ site.job }}</div>
+  <div class="anime-text title">
+    <span class="text-wrapper">
+      <span class="letters">{{ site.title }}</span>
+    </span>
+  </div>
+  <div class="anime-text subtitle subtitle-typed">
+    <span class="text-wrapper">
+      <span class="letters">{{ site.job }}</span>
+    </span>
+  </div>
   <div class="social smooth-border">
-    <a target="_blank" href="{{ site.stackoverflow }}"><span class="fa fa-stack-overflow"></span></a>
-    <a target="_blank" href="{{ site.linkedin }}"><span class="fa fa-linkedin"></span></a>
-    <a target="_blank" href="{{ site.github }}"><span class="fa fa-github"></span></a>
-    <a target="_blank" href="{{ site.spotify }}"><span class="fa fa-spotify"></span></a>
-    <a target="_blank" href="{{ site.youtube }}"><span class="fa fa-youtube"></span></a>
+    {% for social in site.socials %}
+      <a target="_blank" href="{{ social.url }}"><span class="fa {{ social.icon }}"></span></a>
+    {% endfor %}
   </div>
   <div class="links">
     <a href="{{ "/assets/files/Gonzalo_Melgar_CV.pdf" | relative_url }}" download>

@@ -12,9 +12,13 @@
 <link rel="stylesheet" href="/assets/css/ionicons.min.css"/>
 <link rel="stylesheet" href="/assets/css/font-awesome.min.css"/>
 <link rel="stylesheet" href="/assets/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
 
 <!-- JS -->
 <script src="/assets/js/easter-egg.js"></script>
+<script src="/assets/js/anime.min.js"></script>
+<script src="/assets/js/jquery-3.2.1.min.js"></script>
+<script src="/assets/js/app.js"></script>
 </head>
 <header></header>
 <body>
@@ -33,6 +37,13 @@
       <a href="/resume/" class=" smooth-border">
         <span class="icon ion-android-list"></span>
         <span class="link">resume</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/playlists/" class=" smooth-border">
+        <span class="icon ion-headphone"></span>
+        <span class="link">playlists</span>
       </a>
     </li>
     
@@ -57,14 +68,28 @@
 
 <div class="profile gm-card">
   <div class="image"></div>
-  <div class="title">Gonzalo Melgar</div>
-  <div class="subtitle subtitle-typed">Software Engineer</div>
+  <div class="anime-text title">
+    <span class="text-wrapper">
+      <span class="letters">Gonzalo Melgar</span>
+    </span>
+  </div>
+  <div class="anime-text subtitle subtitle-typed">
+    <span class="text-wrapper">
+      <span class="letters">Software Engineer</span>
+    </span>
+  </div>
   <div class="social smooth-border">
-    <a target="_blank" href="https://stackoverflow.com/users/12064160/gonzalo?tab=profile"><span class="fa fa-stack-overflow"></span></a>
-    <a target="_blank" href="https://www.linkedin.com/in/gmelgaba/"><span class="fa fa-linkedin"></span></a>
-    <a target="_blank" href="https://github.com/gmelgaba"><span class="fa fa-github"></span></a>
-    <a target="_blank" href="https://open.spotify.com/user/0ny35jaa9ga0azi1smsg5h15s?si=WI9AQHRfS0usJCWcv1bENQ"><span class="fa fa-spotify"></span></a>
-    <a target="_blank" href="https://www.youtube.com/channel/UChHDiwGkIg1_FKFR0VMIu7A"><span class="fa fa-youtube"></span></a>
+    
+      <a target="_blank" href="https://stackoverflow.com/users/12064160/gonzalo?tab=profile"><span class="fa fa-stack-overflow"></span></a>
+    
+      <a target="_blank" href="https://www.linkedin.com/in/gmelgaba/"><span class="fa fa-linkedin"></span></a>
+    
+      <a target="_blank" href="https://github.com/gmelgaba"><span class="fa fa-github"></span></a>
+    
+      <a target="_blank" href="https://open.spotify.com/user/0ny35jaa9ga0azi1smsg5h15s?si=WI9AQHRfS0usJCWcv1bENQ"><span class="fa fa-spotify"></span></a>
+    
+      <a target="_blank" href="https://www.youtube.com/channel/UChHDiwGkIg1_FKFR0VMIu7A"><span class="fa fa-youtube"></span></a>
+    
   </div>
   <div class="links">
     <a href="/assets/files/Gonzalo_Melgar_CV.pdf" download>
@@ -76,37 +101,177 @@
 
   <div class="blog gm-card content">
   <div class="title smooth-border"><span class="first-word">Blog</span></div>
-  <div class="row">
   
-  <a href="/chrome-extensions/update/2019/03/14/github-extensions.html" class="post card-link col-sm-5">
-    <div class="card shadow p-3 mb-5 bg-white rounded">
-      
-      
-      <img class="card-img-top" src="/assets/images/posts/github-chrome-extensions-preview.jpg" alt="Card image cap">
 
-      <div class="card-body">
-        <h5 class="card-title">Github Chrome Extensions</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Gonzalo Melgar</h6>
-        <p class="card-text">A glimpse to chrome extensions and its power</p>
+
+
+
+
+
+<div class="row">
+
+
+  <!-- blog item-->
+  <div class="col col-d-6 col-t-6 col-m-12">
+    <div class="box-item">
+      <div class="image">
+        <a href="/angular/project/structure/2020/04/12/angular-project-structure.html">
+          <img class="image" src="/assets/images/posts/angular-project-structure-preview.jpg">
+        </a>
+      </div>
+      <div class="desc">
+        <a href="/angular/project/structure/2020/04/12/angular-project-structure.html">
+          <span class="date">April 12, 2020</span>
+        </a>
+        <a href="/angular/project/structure/2020/04/12/angular-project-structure.html" class="name">angular project structure</a>
+        <div class="text">
+          <p>One of the many ways you can structure an angular project, components etc</p>
+        </div>
       </div>
     </div>
-  </a>
-  
-  <a href="/2016/05/20/this-post-demonstrates-post-content-styles.html" class="post card-link col-sm-5">
-    <div class="card shadow p-3 mb-5 bg-white rounded">
-      
-      
-      <img class="card-img-top" src="/assets/images/posts/do-the-bartman-preview.jpg" alt="Card image cap">
+  </div>
 
-      <div class="card-body">
-        <h5 class="card-title">Do the Bartman</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Bart Simpson</h6>
-        <p class="card-text">Everybody in the house do the Bartman</p>
+
+
+
+
+
+
+
+
+
+
+
+  <!-- blog item-->
+  <div class="col col-d-6 col-t-6 col-m-12">
+    <div class="box-item">
+      <div class="image">
+        <a href="/terminal/custom/bash/alias/2020/02/04/customize-your-bash-terminal.html">
+          <img class="image" src="/assets/images/posts/customize-your-bash-terminal-preview.jpg">
+        </a>
+      </div>
+      <div class="desc">
+        <a href="/terminal/custom/bash/alias/2020/02/04/customize-your-bash-terminal.html">
+          <span class="date">February 4, 2020</span>
+        </a>
+        <a href="/terminal/custom/bash/alias/2020/02/04/customize-your-bash-terminal.html" class="name">Customize Your Bash Terminal</a>
+        <div class="text">
+          <p>Terminal tips</p>
+        </div>
       </div>
     </div>
-  </a>
-  
+  </div>
+
+
+
+
 </div>
+
+
+
+
+
+
+
+
+<div class="row">
+
+
+  <!-- blog item-->
+  <div class="col col-d-6 col-t-6 col-m-12">
+    <div class="box-item">
+      <div class="image">
+        <a href="/express.js/api/project/structure/2019/07/01/express-API-project-structure.html">
+          <img class="image" src="/assets/images/posts/express-api-project-structure-preview.jpg">
+        </a>
+      </div>
+      <div class="desc">
+        <a href="/express.js/api/project/structure/2019/07/01/express-API-project-structure.html">
+          <span class="date">July 1, 2019</span>
+        </a>
+        <a href="/express.js/api/project/structure/2019/07/01/express-API-project-structure.html" class="name">express API project structure</a>
+        <div class="text">
+          <p>One of the many ways you can structure an express api</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- blog item-->
+  <div class="col col-d-6 col-t-6 col-m-12">
+    <div class="box-item">
+      <div class="image">
+        <a href="/chrome-extensions/update/2019/03/14/github-chrome-extensions.html">
+          <img class="image" src="/assets/images/posts/github-chrome-extensions-preview.jpg">
+        </a>
+      </div>
+      <div class="desc">
+        <a href="/chrome-extensions/update/2019/03/14/github-chrome-extensions.html">
+          <span class="date">March 14, 2019</span>
+        </a>
+        <a href="/chrome-extensions/update/2019/03/14/github-chrome-extensions.html" class="name">Github Chrome Extensions</a>
+        <div class="text">
+          <p>A glimpse to chrome extensions and its power</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="row">
+
+
+  <!-- blog item-->
+  <div class="col col-d-6 col-t-6 col-m-12">
+    <div class="box-item">
+      <div class="image">
+        <a href="/2016/05/20/this-post-demonstrates-post-content-styles.html">
+          <img class="image" src="/assets/images/posts/do-the-bartman-preview.jpg">
+        </a>
+      </div>
+      <div class="desc">
+        <a href="/2016/05/20/this-post-demonstrates-post-content-styles.html">
+          <span class="date">May 20, 2016</span>
+        </a>
+        <a href="/2016/05/20/this-post-demonstrates-post-content-styles.html" class="name">Do the Bartman</a>
+        <div class="text">
+          <p>Everybody in the house do the Bartman</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col col-d-6 col-t-6 col-m-12"></div>
+
+
+
+</div>
+
+
+
 </div>
 
   </div>

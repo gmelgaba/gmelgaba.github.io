@@ -7,23 +7,26 @@ baseurl: "" # the subpath of your site, e.g. /blog
 title: "Gonzalo Melgar"
 job: "Software Engineer"
 
-## SOCIAL URLs
-email: "gmelgaba@gmail.com"
-twitter: "https://twitter.com/gmelgaba"
-github: "https://github.com/gmelgaba"
-spotify: "https://open.spotify.com/user/0ny35jaa9ga0azi1smsg5h15s?si=WI9AQHRfS0usJCWcv1bENQ"
-stackoverflow: "https://stackoverflow.com/users/12064160/gonzalo?tab=profile"
-linkedin: "https://www.linkedin.com/in/gmelgaba/"
-youtube: "https://www.youtube.com/channel/UChHDiwGkIg1_FKFR0VMIu7A"
-
 ## SECTIONS ENABLED
 sections:
 - about: true
-- skills: true
 - companies: false
 - fun_facts: true
 
-## NAVIGATION REDIRECTS
+## [Profile Card] SOCIAL URLs
+socials:
+- url: https://stackoverflow.com/users/12064160/gonzalo?tab=profile
+  icon: fa-stack-overflow
+- url: https://www.linkedin.com/in/gmelgaba/
+  icon: fa-linkedin
+- url: https://github.com/gmelgaba
+  icon: fa-github
+- url: https://open.spotify.com/user/0ny35jaa9ga0azi1smsg5h15s?si=WI9AQHRfS0usJCWcv1bENQ
+  icon: fa-spotify
+- url: https://www.youtube.com/channel/UChHDiwGkIg1_FKFR0VMIu7A
+  icon: fa-youtube
+
+## [About] NAVIGATION REDIRECTS
 navigation:
 - text: about
   url: /
@@ -32,6 +35,10 @@ navigation:
 - text: resume
   url: /resume/
   icon: ion-android-list
+  layout: page
+- text: playlists
+  url: /playlists/
+  icon: ion-headphone
   layout: page
 - text: blog
   url: /blog/
@@ -42,22 +49,12 @@ navigation:
   icon: ion-at
   layout: page
 
-## COMPANIES I WORKED WITH
-companies:
-- name: "Survey Vitals"
-  imageName: survey-vitals
-  url: https://surveyvitals.com/start/
-- name: "MyAlerts"
-  imageName: myalerts
-  url: https://www.myalerts.com/
-- name: "Medaptive Health"
-  imageName: meadptive-health
-  url: https://medaptivehealth.com/
-- name: "Spins"
-  imageName: spins
-  url: https://www.spins.com/
+playlists:
+  - url: "sss"
+  - title: "hola"
+  - description: "hola"
 
-## FUN FACTS
+## [About] FUN FACTS
 fun_facts:
 - text: "Music enthusiast"
   icon: fa-music
@@ -66,4 +63,42 @@ fun_facts:
 - text: "1.000 cups of coffee"
   icon: fa-coffee
 - text: "10 Countries visited"
-  icon: "fa-flag"
+  icon: fa-flag
+
+
+## EXPERIENCE
+resume:
+  experience:
+  - company: "tarmac"
+    imagePath: "experience/tarmac.jpg"
+    url: https://tarmac.io/
+    roles:
+      - name: "Principal Engineer"
+        period: "jun 2018 - actualidad"
+      - name: "Senior Software Developer"
+        period: "ene 2016 – jun 2018"
+      - name: "Semi Senior Software Developer"
+        period: "jun 2014 – dic 2015"
+  - company: "spiria srl"
+    imagePath: "experience/spiria.jpg"
+    url: http://www.spiria.com.uy/
+    roles:
+      - name: "Junior Software Developer"
+        period: "oct 2011 - jun 2014"
+  - company: "VTV Uruguay"
+    imagePath: "experience/vtv.jpg"
+    url: http://www.spiria.com.uy/
+    roles:
+      - name: "Junior Software Developer"
+        period: "mar 2010 - oct 2011"
+
+  ## EDUCATION
+  education:
+  - name: "Universidad de la República"
+    imagePath: "education/fing.jpg"
+    url: https://www.fing.edu.uy/
+    period: "2007 – 2017"
+  - name: "Instituto Tecnológico Superior"
+    imagePath: "education/its.jpg"
+    url: https://www.linkedin.com/school/arias-balparda/about/
+    period: "2004 – 2006"

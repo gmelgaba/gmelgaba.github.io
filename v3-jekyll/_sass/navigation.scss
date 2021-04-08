@@ -1,7 +1,9 @@
-@import "colors";
+@import 'variables/colors';
+@import 'variables/fonts';
 
 .top-menu {
   float: left;
+  font-family: $lightFont;
   margin-left: 12%;
   width: 72px;
   ul {

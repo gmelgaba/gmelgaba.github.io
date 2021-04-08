@@ -1,0 +1,132 @@
+I"�<h1 id="customize-your-bash-terminal">Customize Your Bash Terminal</h1>
+
+<p><a href="https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html">https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html</a></p>
+
+<p>There comes a time when you use the terminal for so long that you need to do something to improve it or even have fun with it.  With this article the idea is to share my personal updates to the command prompt, like aliases, prompt updates, terminal applications, to customize the behavior and the look and feel of the application.</p>
+
+<p>Here are some of the most interesting ways you can customize your Mac’s Terminal.</p>
+
+<h2 id="aliases">Aliases</h2>
+
+<p>A Bash alias is essentially nothing more than a keyboard shortcut. Eventually with time, a developer tires of typing a specific long command or just want to rename it to something more simple.</p>
+
+<p>Here’s a small list of the aliases I have in my terminal prompt:</p>
+
+<p>alias ..=’cd ..’<br />
+alias c=’clear’<br />
+alias ll=’ls -lG’</p>
+
+<p>alias bashreload=’source ~/.bash_profile &amp;&amp; echo “Bash config reloaded”’’</p>
+
+<p>alias editbashprofile=’vim ~/.bash_profile’ # for mac\</p>
+<h1 id="git-shortcuts">git shortcuts</h1>
+
+<p>alias br=’git branch’</p>
+
+<p>alias st=’git status’</p>
+
+<p>alias diff=’git diff’</p>
+
+<p>alias co=’git checkout’</p>
+
+<h2 id="custom-prompt">Custom Prompt</h2>
+
+<p>Bash Prompt Customization</p>
+
+<p>Now if you want to add a little color to make the interface more friendly or just want to have fun for a while, you can define color variables in the bash profile, and then update the prompt with the colors of your choosing. You can also choose the information to display by using the special prompt variable characters. Some examples:</p>
+
+<ul>
+  <li>
+    <p>\u    The username of the current user</p>
+  </li>
+  <li>
+    <p>\h    The hostname, up to the first</p>
+  </li>
+  <li>
+    <p>\w   The current working directory</p>
+  </li>
+  <li>
+    <p>\n    A new line</p>
+  </li>
+</ul>
+
+<p>The Bash prompt configuration is stored in the PS1 variable, so in order to save its contents you’ll need to overwrite its value in a new variable.</p>
+
+<h1 id="color-vars">color vars\</h1>
+<p>NO_COLOR=”[\033[0m]”</p>
+
+<p>LIGHT_WHITE=”[\033[1;37m]”</p>
+
+<p>WHITE=”[\033[0;37m]”</p>
+
+<p>GRAY=”[\033[1;30m]”</p>
+
+<p>BLACK=”[\033[0;30m]”</p>
+
+<p>RED=”[\033[0;31m]”</p>
+
+<p>LIGHT_RED=”[\033[1;31m]”</p>
+
+<p>GREEN=”[\033[0;32m]”</p>
+
+<p>LIGHT_GREEN=”[\033[1;32m]”</p>
+
+<p>YELLOW=”[\033[0;33m]”</p>
+
+<p>LIGHT_YELLOW=”[\033[1;33m]”</p>
+
+<p>BLUE=”[\033[0;34m]”</p>
+
+<p>LIGHT_BLUE=”[\033[1;34m]”</p>
+
+<p>MAGENTA=”[\033[0;35m]”</p>
+
+<p>LIGHT_MAGENTA=”[\033[1;35m]”</p>
+
+<p>CYAN=”[\033[0;36m]”</p>
+
+<p>LIGHT_CYAN=”[\033[1;36m]”</p>
+
+<h1 id="set-a-fancy-prompt-with-the-branch-name-included">set a fancy prompt with the branch name included</h1>
+
+<p>export  PS1=”${LIGHT_RED}\u${LIGHT_WHITE} at ${LIGHT_BLUE}\h${LIGHT_WHITE} in ${LIGHT_YELLOW}\w${NO_COLOR}  \n$ “</p>
+
+<p>Example prompt after these changes:</p>
+
+<p>gonzalomelgar at gonzalos-air-4 in ~/workspace/server<br />
+$</p>
+
+<h2 id="git-branch-display">Git branch display </h2>
+
+<p>Eventually I got tired of having to do a ‘git branch’ when I wanted to check the current branch I’m working on, so I installed the git bash completion bash (src: <a href="https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion">https://github.com/bobthecow/git-flow-completion/wiki/Install-Bash-git-completion</a>). After that you’ll need to add a function that gets the current branch name from the project you’re currently standing on. Here’s what you’ll need to add in the bash_profile in order to do that:</p>
+
+<p>if [ -f ~/.git-completion.bash ]; then</p>
+
+<p>  . ~/.git-completion.bash</p>
+
+<p>fi</p>
+
+<p>git_branch() {</p>
+
+<p>git branch 2&gt; /dev/null | sed -e ‘/^[^<em>]/d’ -e ‘s/</em> (.*)/ (\1)/’<br />
+}</p>
+
+<p>Then in order to get that information directly in the prompt you’ll just need to invoke that function in the PS1 variable definition:</p>
+
+<p>export  PS1=”${LIGHT_RED}\u${LIGHT_WHITE} at ${LIGHT_BLUE}\h${LIGHT_WHITE} in ${LIGHT_YELLOW}\w${LIGHT_GREEN}$(git_branch)${NO_COLOR}  \n$ “</p>
+
+<h2 id="example-prompt-after-these-changes">Example prompt after these changes:</h2>
+
+<p>gonzalomelgar at gonzalos-air-4 in ~/workspace/server  (feature/tests)<br />
+$</p>
+
+<h2 id="terminal-emulation-applications">Terminal emulation applications</h2>
+
+<p>iTerm2</p>
+
+<p>iTerm won by a pretty big landslide, likely because our developers use Macbook Pros at Shopify. iTerm includes features like split panes, hotkey windows, search, and autocomplete. You can also customize the look and feel pretty easily too.</p>
+
+<p>Conclusión</p>
+
+<p>These are only the “greatest hits” of Terminal customization. There is much more you can do to customize your Terminal. Explore the Terminal Preferences menu to find more.</p>
+:ET

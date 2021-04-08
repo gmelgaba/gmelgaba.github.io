@@ -1,10 +1,11 @@
 ---
-layout: post
+layout: page
 title: "Github Chrome Extensions"
 description: "A glimpse to chrome extensions and its power"
 author: "Gonzalo Melgar"
 date: 2019-03-14 12:17:28 -0300
 categories: chrome-extensions update
+active: blog-item
 ---
 
 A little over two years ago, I started experimenting with the chrome extensions and I realized the power and scope they have in the our current daily navigations.

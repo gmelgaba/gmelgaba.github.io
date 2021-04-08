@@ -1,3 +1,20 @@
 <div class="resume gm-card content">
   <div class="title smooth-border"><span class="first-word">Resume</span></div>
+  <div class="row">
+    <div class="col-sm-6">
+      {% for exp in site.resume.experience %}
+        <p>{{ exp.company }}</p>
+        {% for role in exp.roles %}
+          <p>{{ role.name }}</p>
+          <p>({{ role.period }})</p>
+        {% endfor %}
+      {% endfor %}
+    </div>
+    <div class="col-sm-6">
+      {% for edu in site.resume.education %}
+        <p>{{ edu.name }}</p>
+        <p>({{ edu.period }})</p>
+      {% endfor %}
+    </div>
+  </div>
 </div>

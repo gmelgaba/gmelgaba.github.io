@@ -1,4 +1,4 @@
-@import "colors";
+@import 'variables/colors';
 
 * {
   margin: 0px;
@@ -19,7 +19,7 @@
 
 .area {
   background: $primary;
-  background: -webkit-linear-gradient(to left, $primaryDark, $primaryLight);
+  background-image: linear-gradient($primaryLight, $primary);
   width: 100%;
   height: 100vh;
 }

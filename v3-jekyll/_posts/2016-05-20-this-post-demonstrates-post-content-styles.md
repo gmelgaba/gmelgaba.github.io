@@ -1,9 +1,10 @@
 ---
-layout: post
+layout: page
 title: "Do the Bartman"
 description: "Everybody in the house do the Bartman"
 author: "Bart Simpson"
 meta: "Springfield"
+active: blog-item
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit.
