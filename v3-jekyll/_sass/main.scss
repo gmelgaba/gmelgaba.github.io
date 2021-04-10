@@ -45,6 +45,20 @@ body {
       width: 100%;
     }
   }
+  .smooth-border-v {
+    &:before {
+      background: -moz-radial-gradient(top, ellipse cover, rgba(197, 202, 213, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
+      background: -webkit-radial-gradient(top, ellipse cover, rgba(197, 202, 213, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
+      background: radial-gradient(ellipse at top, rgba(197, 202, 213, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
+      content: '';
+      height: 100%;
+      right: 0;
+      position: absolute;
+      top: 0;
+      width: 1px;
+    }
+  }
+
   .anime-text {
     color: $primary;
     font-size: 4em;

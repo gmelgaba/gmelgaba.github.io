@@ -50,9 +50,15 @@ navigation:
   layout: page
 
 playlists:
-  - url: "sss"
-  - title: "hola"
-  - description: "hola"
+  - url: "https://open.spotify.com/playlist/1PMb1FaLWJdLPKV0tz7F85?si=37eb3cd48f904978"
+    title: "perVersions"
+    description: "best rock/metal covers"
+  - url: "https://open.spotify.com/playlist/2jnf3EgFNH2hX6L2ekTxGH"
+    title: "crying eyes"
+    description: "ballads"
+  - url: "https://open.spotify.com/playlist/2GsgarPY9pxzH5QFOBjWs1"
+    title: "musica para que el calvo intolerante compañero de oficina se indigne, Vol I"
+    description: "Bosio's favorite 90s pop songs. The legend says that after the revolution, he used to listen to this playlist each sunset dreaming about world peace."
 
 ## [About] FUN FACTS
 fun_facts:
@@ -70,27 +76,54 @@ fun_facts:
 resume:
   experience:
   - company: "tarmac"
-    imagePath: "experience/tarmac.jpg"
+    imagePath: "/assets/images/experience/tarmac.jpg"
     url: https://tarmac.io/
+    duration: "7 years"
     roles:
-      - name: "Principal Engineer"
-        period: "jun 2018 - actualidad"
-      - name: "Senior Software Developer"
-        period: "ene 2016 – jun 2018"
-      - name: "Semi Senior Software Developer"
-        period: "jun 2014 – dic 2015"
+      - position: "Principal Engineer"
+        period: "jun 2018 - current"
+        duration: ""
+        description: "
+          Node.js
+          - Code audits
+          - Hiring Interviews
+          - Candidates assessment
+          - Onboarding interviews
+          - Internal reviews
+        "
+      - position: "Senior Software Developer"
+        period: "jan 2016 – jun 2018"
+        duration: "2 years and 6 months"
+        description: "
+          - Node.js
+          - express
+          - jest
+          - typescript
+          - Angular 7
+        "
+      - position: "Semi Senior Software Developer"
+        period: "jun 2014 – dec 2015"
+        duration: "1 year and 7 months"
+        description: "
+          Node.js, Angular 2+, GulpJS, Amazon Web Services (EC2, ElasticBeanstalk, S3, Lambdas), Travis CI, Materializecss, Postman, Ruby on Rails, Ionic, Laravel, RiotJS, CucumberJS
+        "
   - company: "spiria srl"
-    imagePath: "experience/spiria.jpg"
+    imagePath: "/assets/images/experience/spiria.jpg"
     url: http://www.spiria.com.uy/
+    duration: "2 years and 9 months"
     roles:
-      - name: "Junior Software Developer"
+      - position: "Junior Software Developer"
         period: "oct 2011 - jun 2014"
+        duration: "2 years and 9 months"
   - company: "VTV Uruguay"
-    imagePath: "experience/vtv.jpg"
+    imagePath: "/assets/images/experience/vtv.jpg"
     url: http://www.spiria.com.uy/
+    duration: "1 year y 8 months"
     roles:
-      - name: "Junior Software Developer"
+      - position: "Junior Software Developer"
         period: "mar 2010 - oct 2011"
+        period: "mar 2010 - oct 2011"
+        duration: "1 year y 8 months"
 
   ## EDUCATION
   education:

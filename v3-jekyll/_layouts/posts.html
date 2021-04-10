@@ -11,9 +11,8 @@ layout: page
 {% if loopindex == 0 or forloop.first %}
 <div class="row">
 {% endif %}
-
   <!-- blog item-->
-  <div class="col col-d-6 col-t-6 col-m-12">
+  <div class="col col-d-6 col-t-6 col-m-12 {% if loopindex == 0 %} smooth-border-v {% endif %}">
     <div class="box-item">
       <div class="image">
         <a href="{{ post.url }}">

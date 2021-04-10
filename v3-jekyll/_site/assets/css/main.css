@@ -24,6 +24,8 @@ body .uppercase { text-transform: uppercase; }
 
 body .smooth-border:before { content: ''; background: radial-gradient(ellipse at right, #dddddd 0%, rgba(255, 255, 255, 0) 90%); bottom: 0; left: 0; height: 1px; position: absolute; width: 100%; }
 
+body .smooth-border-v:before { background: -moz-radial-gradient(top, ellipse cover, rgba(197, 202, 213, 0.7) 0%, rgba(255, 255, 255, 0) 70%); background: -webkit-radial-gradient(top, ellipse cover, rgba(197, 202, 213, 0.7) 0%, rgba(255, 255, 255, 0) 70%); background: radial-gradient(ellipse at top, rgba(197, 202, 213, 0.7) 0%, rgba(255, 255, 255, 0) 70%); content: ''; height: 100%; right: 0; position: absolute; top: 0; width: 1px; }
+
 body .anime-text { color: #812d39; font-size: 4em; font-weight: 200; position: relative; }
 
 body .anime-text .text-wrapper { position: relative; display: inline-block; padding-top: 0.2em; padding-right: 0.05em; padding-bottom: 0.1em; overflow: hidden; }
@@ -136,6 +138,32 @@ body .anime-text .letter { transform-origin: 50% 100%; display: inline-block; li
 .gm-card.about .fact-item { text-align: center; }
 
 .gm-card.about .fact-item .icon { color: #812d39; font-size: 32px; height: 60px; margin: 0 auto; text-align: center; width: 60px; }
+
+.gm-card.resume .experience .company { height: 60px; margin-bottom: 20px; }
+
+.gm-card.resume .experience .company .image { float: left; width: 20%; }
+
+.gm-card.resume .experience .company .image img { height: auto; width: 50px; }
+
+.gm-card.resume .experience .company .data { float: left; margin-left: 5%; width: 70%; }
+
+.gm-card.resume .experience .company .data .name { font-size: 20px; font-weight: bold; }
+
+.gm-card.resume .experience .company .data .duration { color: gray; font-size: 14px; }
+
+.gm-card.resume .roles { margin-left: 20px; }
+
+.gm-card.resume .roles .role { margin-top: 12px; }
+
+.gm-card.resume .roles .role .node { background-color: var(--warm-gray-40, #cfcfcf); border-radius: 50%; border: 2px solid var(--warm-gray-40, #cfcfcf); display: block; height: 8px; position: relative; width: 8px; }
+
+.gm-card.resume .roles .role .data { margin-bottom: 15px; margin-top: -10px; }
+
+.gm-card.resume .roles .role .data::before { background-color: var(--warm-gray-30, #e9e9e9); content: ""; height: 80%; left: -12px; position: absolute; top: 16px; width: 2px; }
+
+.gm-card.resume .roles .role .data .position { font-size: 14px; font-weight: bold; width: 100%; }
+
+.gm-card.resume .roles .role .data .period { color: gray; font-size: 14px; }
 
 .gm-card.blog .box-item { text-align: center; }
 

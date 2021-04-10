@@ -9,8 +9,10 @@ layout: default
   {% include card-about.html %}
 {% elsif page.active == "resume" %}
   {% include card-resume.html %}
-{% elsif page.active == "blog" or page.active == "playlists" %}
+{% elsif page.active == "blog" %}
   {% include card-blog.html %}
+{% elsif page.active == "playlists" %}
+  {% include card-playlists.html %}
 {% elsif page.active == "blog-item" %}
   {% include card-blog-item.html %}
 {% elsif page.active == "contact" %}
