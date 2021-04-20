@@ -5,7 +5,7 @@ layout: page
 {% assign arrayOdd = site.posts.size | modulo: 2 %}
 {% for post in site.posts %}
 {% assign slugTitle = post.title | slugify %}
-{% assign imageSrc = "/assets/images/posts/" | append: slugTitle | append: "-preview.jpg" | append: relative_url %}
+{% assign imageSrc = "/assets/images/posts/" | append: slugTitle | append: "/0-preview.jpg" | append: relative_url %}
 {% assign loopindex = forloop.index0 | modulo: 2 %}
 
 {% if loopindex == 0 or forloop.first %}

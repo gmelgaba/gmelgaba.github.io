@@ -1,5 +1,5 @@
-@import 'variables/colors';
-@import 'variables/fonts';
+@import "variables/colors";
+@import "variables/fonts";
 
 body {
   font-family: $normalFont;
@@ -36,7 +36,7 @@ body {
   }
   .smooth-border {
     &:before {
-      content: '';
+      content: "";
       background: radial-gradient(ellipse at right, #dddddd 0%, rgba(255, 255, 255, 0) 90%);
       bottom: 0;
       left: 0;
@@ -50,7 +50,7 @@ body {
       background: -moz-radial-gradient(top, ellipse cover, rgba(197, 202, 213, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
       background: -webkit-radial-gradient(top, ellipse cover, rgba(197, 202, 213, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
       background: radial-gradient(ellipse at top, rgba(197, 202, 213, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
-      content: '';
+      content: "";
       height: 100%;
       right: 0;
       position: absolute;
@@ -58,7 +58,6 @@ body {
       width: 1px;
     }
   }
-
   .anime-text {
     color: $primary;
     font-size: 4em;
@@ -78,4 +77,39 @@ body {
       line-height: 1em;
     }
   }
+  blockquote {
+    // font-family: Georgia, serif;
+    font-style: italic;
+    margin: 0.25em 0;
+    padding: 0.35em 40px;
+    line-height: 1.45;
+    position: relative;
+    color: #383838;
+    &:before {
+      display: block;
+      padding-left: 10px;
+      content: "\201C";
+      font-size: 80px;
+      position: absolute;
+      left: -20px;
+      top: -20px;
+      color: $gray;
+    }
+    cite {
+      color: #999999;
+      font-size: 14px;
+      display: block;
+      margin-top: 5px;
+      &:before {
+        content: "\2014 \2009";
+      }
+    }
+  }
+}
+footer {
+  color: white;
+  display: inline-block !important;
+  margin-top: 150px;
+  text-align: center;
+  width: 100%;
 }

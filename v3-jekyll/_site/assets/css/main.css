@@ -22,15 +22,25 @@ body .gm-card a:not(.inline-link):hover { color: #812d39; }
 
 body .uppercase { text-transform: uppercase; }
 
-body .smooth-border:before { content: ''; background: radial-gradient(ellipse at right, #dddddd 0%, rgba(255, 255, 255, 0) 90%); bottom: 0; left: 0; height: 1px; position: absolute; width: 100%; }
+body .smooth-border:before { content: ""; background: radial-gradient(ellipse at right, #dddddd 0%, rgba(255, 255, 255, 0) 90%); bottom: 0; left: 0; height: 1px; position: absolute; width: 100%; }
 
-body .smooth-border-v:before { background: -moz-radial-gradient(top, ellipse cover, rgba(197, 202, 213, 0.7) 0%, rgba(255, 255, 255, 0) 70%); background: -webkit-radial-gradient(top, ellipse cover, rgba(197, 202, 213, 0.7) 0%, rgba(255, 255, 255, 0) 70%); background: radial-gradient(ellipse at top, rgba(197, 202, 213, 0.7) 0%, rgba(255, 255, 255, 0) 70%); content: ''; height: 100%; right: 0; position: absolute; top: 0; width: 1px; }
+body .smooth-border-v:before { background: -moz-radial-gradient(top, ellipse cover, rgba(197, 202, 213, 0.7) 0%, rgba(255, 255, 255, 0) 70%); background: -webkit-radial-gradient(top, ellipse cover, rgba(197, 202, 213, 0.7) 0%, rgba(255, 255, 255, 0) 70%); background: radial-gradient(ellipse at top, rgba(197, 202, 213, 0.7) 0%, rgba(255, 255, 255, 0) 70%); content: ""; height: 100%; right: 0; position: absolute; top: 0; width: 1px; }
 
 body .anime-text { color: #812d39; font-size: 4em; font-weight: 200; position: relative; }
 
 body .anime-text .text-wrapper { position: relative; display: inline-block; padding-top: 0.2em; padding-right: 0.05em; padding-bottom: 0.1em; overflow: hidden; }
 
 body .anime-text .letter { transform-origin: 50% 100%; display: inline-block; line-height: 1em; }
+
+body blockquote { font-style: italic; margin: 0.25em 0; padding: 0.35em 40px; line-height: 1.45; position: relative; color: #383838; }
+
+body blockquote:before { display: block; padding-left: 10px; content: "\201C"; font-size: 80px; position: absolute; left: -20px; top: -20px; color: gray; }
+
+body blockquote cite { color: #999999; font-size: 14px; display: block; margin-top: 5px; }
+
+body blockquote cite:before { content: "\2014 \2009"; }
+
+footer { color: white; display: inline-block !important; margin-top: 150px; text-align: center; width: 100%; }
 
 * { margin: 0px; padding: 0px; }
 
@@ -79,9 +89,9 @@ body .anime-text .letter { transform-origin: 50% 100%; display: inline-block; li
 
 @font-face { font-family: "AileronRegular"; src: url("../fonts/aileron/aileron.regular.otf"); }
 
-.top-menu { float: left; font-family: "AileronLight"; margin-left: 12%; width: 72px; }
+.top-menu { float: left; font-family: "Raleway"; margin-left: 12%; width: 72px; }
 
-.top-menu ul { min-height: 289px; list-style-type: none; padding-top: 20px; text-align: center; }
+.top-menu ul { min-height: 150px; list-style-type: none; padding-top: 20px; text-align: center; }
 
 .top-menu ul li { height: 69px; text-align: center; }
 
@@ -105,9 +115,9 @@ body .anime-text .letter { transform-origin: 50% 100%; display: inline-block; li
 
 .gm-card .post { text-align: left; }
 
-.gm-card.content { /* box-shadow: -10px 0px 10px 1px #aaaaaa; */ float: left; height: 610px; margin-left: -10px; padding: 30px 30px 0 40px; overflow: scroll; width: 708px; }
+.gm-card.content { /* box-shadow: -10px 0px 10px 1px #aaaaaa; */ float: left; font-family: "Raleway"; height: 610px; margin-left: -10px; padding: 30px 30px 0 40px; overflow-x: hidden; overflow-y: scroll; width: 708px; }
 
-.gm-card.content .title { font-family: "AileronRegular"; font-size: 22px; font-weight: bold; margin-bottom: 30px; padding: 0 0 25px 0; position: relative; width: 712px; }
+.gm-card.content .title { font-family: "Raleway"; font-size: 22px; font-weight: bold; margin-bottom: 30px; padding: 0 0 25px 0; position: relative; width: 712px; }
 
 .gm-card.content .title:after { background: -webkit-linear-gradient(-45deg, rgba(129, 45, 57, 0.1), rgba(0, 0, 0, 0.1)); border-radius: 50%; content: ""; height: 30px; left: -12px; position: absolute; top: 0; width: 30px; }
 
@@ -139,17 +149,25 @@ body .anime-text .letter { transform-origin: 50% 100%; display: inline-block; li
 
 .gm-card.about .fact-item .icon { color: #812d39; font-size: 32px; height: 60px; margin: 0 auto; text-align: center; width: 60px; }
 
-.gm-card.resume .experience .company { height: 60px; margin-bottom: 20px; }
+.gm-card.resume .experience .company, .gm-card.resume .experience .institution, .gm-card.resume .education .company, .gm-card.resume .education .institution { display: flow-root; min-height: 60px; margin-bottom: 20px; }
 
-.gm-card.resume .experience .company .image { float: left; width: 20%; }
+.gm-card.resume .experience .company .image, .gm-card.resume .experience .institution .image, .gm-card.resume .education .company .image, .gm-card.resume .education .institution .image { float: left; width: 30px; }
 
-.gm-card.resume .experience .company .image img { height: auto; width: 50px; }
+.gm-card.resume .experience .company .image img, .gm-card.resume .experience .institution .image img, .gm-card.resume .education .company .image img, .gm-card.resume .education .institution .image img { height: auto; width: 50px; }
 
-.gm-card.resume .experience .company .data { float: left; margin-left: 5%; width: 70%; }
+.gm-card.resume .experience .company .data, .gm-card.resume .experience .institution .data, .gm-card.resume .education .company .data, .gm-card.resume .education .institution .data { float: left; margin-left: 5%; width: 70%; }
 
-.gm-card.resume .experience .company .data .name { font-size: 20px; font-weight: bold; }
+.gm-card.resume .experience .company .data .name, .gm-card.resume .experience .institution .data .name, .gm-card.resume .education .company .data .name, .gm-card.resume .education .institution .data .name { font-size: 20px; font-weight: bold; }
 
-.gm-card.resume .experience .company .data .duration { color: gray; font-size: 14px; }
+.gm-card.resume .experience .company .data .position, .gm-card.resume .experience .institution .data .position, .gm-card.resume .education .company .data .position, .gm-card.resume .education .institution .data .position { color: #812d39; font-size: 15px; }
+
+.gm-card.resume .experience .company .data .duration, .gm-card.resume .experience .institution .data .duration, .gm-card.resume .education .company .data .duration, .gm-card.resume .education .institution .data .duration { font-size: 14px; background: transparent; border: 1px solid gray; border-radius: 3px; bottom: auto; color: gray; display: inline-block; font-size: 13px; font-weight: 400; height: auto; left: 0; line-height: 18px; margin: 0 0 11px 0; padding: 0 5px; position: relative; top: 0; width: auto; }
+
+.gm-card.resume .experience .company .data .description, .gm-card.resume .experience .institution .data .description, .gm-card.resume .education .company .data .description, .gm-card.resume .education .institution .data .description { font-size: 14px; }
+
+.gm-card.resume .experience .company .data .description ul, .gm-card.resume .experience .institution .data .description ul, .gm-card.resume .education .company .data .description ul, .gm-card.resume .education .institution .data .description ul { margin-left: 16px; }
+
+.gm-card.resume .experience .company .data .description ul.left-list, .gm-card.resume .experience .institution .data .description ul.left-list, .gm-card.resume .education .company .data .description ul.left-list, .gm-card.resume .education .institution .data .description ul.left-list { float: left; width: 270px; }
 
 .gm-card.resume .roles { margin-left: 20px; }
 
@@ -159,11 +177,19 @@ body .anime-text .letter { transform-origin: 50% 100%; display: inline-block; li
 
 .gm-card.resume .roles .role .data { margin-bottom: 15px; margin-top: -10px; }
 
-.gm-card.resume .roles .role .data::before { background-color: var(--warm-gray-30, #e9e9e9); content: ""; height: 80%; left: -12px; position: absolute; top: 16px; width: 2px; }
+.gm-card.resume .roles .role .data::before { background-color: var(--warm-gray-30, #e9e9e9); content: ""; height: 92%; left: -5px; position: absolute; top: 16px; width: 2px; }
 
-.gm-card.resume .roles .role .data .position { font-size: 14px; font-weight: bold; width: 100%; }
+.gm-card.resume .roles .role .data .type { color: #812d39; font-size: 12px; }
 
-.gm-card.resume .roles .role .data .period { color: gray; font-size: 14px; }
+.gm-card.resume .roles .role .data .position { font-size: 15px; font-weight: bold; width: 100%; }
+
+.gm-card.resume .roles .role .data .period { color: gray; display: block; font-size: 14px; padding-bottom: 2px; }
+
+.gm-card.resume .roles .role .data .description { font-size: 14px; }
+
+.gm-card.resume .roles .role .data .description ul { margin-left: 16px; }
+
+.gm-card.resume .roles .role .data .description ul.left-list { float: left; width: 270px; }
 
 .gm-card.blog .box-item { text-align: center; }
 
@@ -174,5 +200,11 @@ body .anime-text .letter { transform-origin: 50% 100%; display: inline-block; li
 .gm-card.blog .box-item .name { font-size: 17px; font-weight: 500; padding-bottom: 5px; text-transform: none; }
 
 .gm-card.blog .box-item .text { color: gray; }
+
+.gm-card.blog-item h1 { color: black; font-size: 40px; text-align: left; }
+
+.gm-card.blog-item p img { width: 100%; }
+
+.gm-card.blog-item p strong { color: #812d39; font-weight: bold; background-color: white; }
 
 /*# sourceMappingURL=main.css.map */

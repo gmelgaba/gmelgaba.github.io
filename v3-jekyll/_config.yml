@@ -33,30 +33,33 @@ navigation:
   icon: ion-person
   layout: page
 - text: resume
-  url: /resume/
+  url: /experience/
   icon: ion-android-list
   layout: page
+# - text: blog
+#   url: /blog/
+#   icon: ion-chatbox-working
+#   layout: post
 - text: playlists
   url: /playlists/
   icon: ion-headphone
   layout: page
-- text: blog
-  url: /blog/
-  icon: ion-chatbox-working
-  layout: post
-- text: contact
-  url: /contact/
-  icon: ion-at
-  layout: page
 
 playlists:
   - url: "https://open.spotify.com/playlist/1PMb1FaLWJdLPKV0tz7F85?si=37eb3cd48f904978"
+    imagePath: "/assets/images/playlists/perversions.jpg"
     title: "perVersions"
     description: "best rock/metal covers"
+  - url: "https://open.spotify.com/user/0ny35jaa9ga0azi1smsg5h15s/playlist/0b44wqCVZbmrTP5HNwt5Pm?si=8ca45a4aae234805"
+    imagePath: "/assets/images/playlists/anime.jpg"
+    title: "anime"
+    description: "anime opening/ending songs"
   - url: "https://open.spotify.com/playlist/2jnf3EgFNH2hX6L2ekTxGH"
+    imagePath: "/assets/images/playlists/crying-eyes.jpg"
     title: "crying eyes"
     description: "ballads"
   - url: "https://open.spotify.com/playlist/2GsgarPY9pxzH5QFOBjWs1"
+    imagePath: "/assets/images/playlists/calvo.jpg"
     title: "musica para que el calvo intolerante compañero de oficina se indigne, Vol I"
     description: "Bosio's favorite 90s pop songs. The legend says that after the revolution, he used to listen to this playlist each sunset dreaming about world peace."
 
@@ -81,57 +84,110 @@ resume:
     duration: "7 years"
     roles:
       - position: "Principal Engineer"
+        type: "Fulltime"
         period: "jun 2018 - current"
         duration: ""
-        description: "
-          Node.js
-          - Code audits
-          - Hiring Interviews
-          - Candidates assessment
-          - Onboarding interviews
-          - Internal reviews
-        "
+        description: |
+          The role involved being an official reference of a specific technology, Node.js in my case.
+          Some of the responsibilities I had were
+          <ul>
+            <li>Code audits</li>
+            <li>Hiring Interviews</li>
+            <li>Candidates assessment</li>
+            <li>Onboarding meetings with new recruits</li>
+            <li>Occasional Sales appearances</li>
+            <li>Internal reviews</li>
+          </ul>
+
       - position: "Senior Software Developer"
+        type: "Fulltime"
         period: "jan 2016 – jun 2018"
         duration: "2 years and 6 months"
-        description: "
-          - Node.js
-          - express
-          - jest
-          - typescript
-          - Angular 7
-        "
+        description: |
+          Worked across different clients and was lucky enough to play with different technologies in the meantime, such as:
+          <ul class="left-list">
+            <li>express.js</li>
+            <li>typescript</li>
+            <li>node.js</li>
+            <li>aws (s3, lambda, cloudwatch, glue)</li>
+          </ul>
+          <ul class="right-list">
+            <li>angular 7+</li>
+            <li>Ruby</li>
+            <li>insomnia</li>
+          </ul>
+
       - position: "Semi Senior Software Developer"
+        type: "Part-time"
         period: "jun 2014 – dec 2015"
         duration: "1 year and 7 months"
-        description: "
-          Node.js, Angular 2+, GulpJS, Amazon Web Services (EC2, ElasticBeanstalk, S3, Lambdas), Travis CI, Materializecss, Postman, Ruby on Rails, Ionic, Laravel, RiotJS, CucumberJS
-        "
+        description: |
+          Worked across different clients and was lucky enough to play with different technologies in the meantime, such as:
+          <ul class="left-list">
+            <li>node.js</li>
+            <li>angular 1.x</li>
+            <li>gulpjs</li>
+            <li>aws (ec2, elasticbeanstalk, s3, lambda)</li>
+          </ul>
+          <ul class="right-list">
+            <li>Ruby on Rails</li>
+            <li>Ionic</li>
+            <li>Laravel</li>
+            <li>RiotJS, CucumberJS</li>
+          </ul>
+
   - company: "spiria srl"
     imagePath: "/assets/images/experience/spiria.jpg"
     url: http://www.spiria.com.uy/
     duration: "2 years and 9 months"
     roles:
       - position: "Junior Software Developer"
+        type: "Part-time"
         period: "oct 2011 - jun 2014"
         duration: "2 years and 9 months"
-  - company: "VTV Uruguay"
+        description: |
+          Collaborated in a team-focused environment providing creation, and support in different applications, mostly web and mobile hybrids. Some of the techs I used:<br>
+          <ul class="left-list">
+            <li>html, js, css</li>
+            <li>php</li>
+            <li>native android</li>
+            <li>slim</li>
+          </ul>
+          <ul class="right-list">
+            <li>native android</li>
+            <li>phonegap</li>
+            <li>titanium app celerator</li>
+            <li>webapps</li>
+          </ul>
+
+  - company: "vtv Uruguay"
     imagePath: "/assets/images/experience/vtv.jpg"
     url: http://www.spiria.com.uy/
     duration: "1 year y 8 months"
     roles:
-      - position: "Junior Software Developer"
+      - position: "Graphics Operator"
+        type: "Fulltime"
         period: "mar 2010 - oct 2011"
-        period: "mar 2010 - oct 2011"
-        duration: "1 year y 8 months"
+        duration: "1 year and 8 months"
+        description: |
+          Responsible for producing suitable accurate graphic captions across a variety fo live productions and different national events.
+          <ul>
+            <li>Software: Photoshop CS10, CG5 multichannel.</li>
+            <li>Daily Broadcasts: News Broadcast VTV Noticias Morning Edition, Dia a Dia, News Boardcast VTV Noticias Noon Edition, Sin limite.</li>
+            <li>Weekly broadcasts/events: Rumbo a la Cancha, Mid-term elections, South American U-20 Championship, Uruguayan Championship, American Cup 2011, Basketball, among others.</li>
+          </ul>
 
   ## EDUCATION
   education:
   - name: "Universidad de la República"
-    imagePath: "education/fing.jpg"
+    imagePath: "/assets/images/education/fing.jpg"
     url: https://www.fing.edu.uy/
     period: "2007 – 2017"
+    title: "Software Engineer"
+    description: "The Computer Engineer career aims at a broad and coherent coverage in the planning, development, maintenance and application of computerized systems, which together with the acquired experience, will be projected in a competent professional."
   - name: "Instituto Tecnológico Superior"
-    imagePath: "education/its.jpg"
+    imagePath: "/assets/images/education/its.jpg"
     url: https://www.linkedin.com/school/arias-balparda/about/
     period: "2004 – 2006"
+    title: "Computer Technician"
+    description: "The superior technological institute of the CETP - UTU specialized mainly in Computer Science. In it, courses are taught ranging from EMT Technological Middle Education (Level II), Tertiary Technical Course in Networks and Software to the career of Computer Technologist, in agreement with the University of the Republic."

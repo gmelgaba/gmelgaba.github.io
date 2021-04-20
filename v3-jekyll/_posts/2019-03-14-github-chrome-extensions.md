@@ -8,8 +8,54 @@ categories: chrome-extensions update
 active: blog-item
 ---
 
-A little over two years ago, I started experimenting with the chrome extensions and I realized the power and scope they have in the our current daily navigations.
-The idea of this post is to go a little bit around the basic concepts around it, trying to understand the internal communication of the components as well as accessing
+# Github Chrome Extensions
+
+The more and more you navigate through the internet, the more features you think you need to make your life a little bit easier. Here's where chrome extensions came to make our life a little bit easier ;)
+
+A while ago I started playing a little bit with the chrome extensions and realized that they are too powerful!! So be aware of what you build, because you know.. "with great power comes great responsibility" ;)
+
+In this post I'm gonna go through the basics, trying to explain the internal communication of the components as well as accessing DOM content, and play a little bit with it.
+
+
+
+### Architecture
+
+The chrome extensions core is based on different components that interact with each other and with the browser.
+
+![image]({{ site.baseurl }}/assets/images/posts/github-chrome-extensions/1-arquitecture.jpg){: .galleryThumb}
+
+
+**manifest.json**
+
+This file describes the content of the extension. Without this file, you have no extension. Defines rules for content scripts injections, as well as the assets, styles, and other things that the extension will have access to.
+
+
+**background.js**
+
+This is the heart and soul of your extension. All the “hard” business logic and native browser interaction should go in here as much as possible. The background script does NOT have access to the DOM and pages itself, but it can access through content scripts. It can also interact with the popup page.
+
+
+**Content Scripts**
+
+Content scripts can be injected into the tabs in the browser and access the DOM in the context of a browser session. This is where you can add new DOM elements, add extra listeners etc. Note: content scripts are optional
+
+**popup page**
+
+That little app icon you see when clicking/activating an extension can show a small dialogo or page in your browser.
+
+![Tux, the Linux mascot](https://i.stack.imgur.com/4kX7v.png)
+
+
+Can be built with any framework like React or Angular, or just plain HTML depending on your needs.
+
+
+**UI Elements**
+
+A dedicated page for customising settings of your extension. This page should persist any settings to the store, to be fetched again by other parts of your plugin.
+
+### Boilerplate
+
+I've created several chrome extensions and after the second one, I realized that I wanted to save some basic setup time while doing it, so I created a chrome-extension-boilerplate code that will have all the necessary things to start working on your new chrome extension! Try it out! :)
 
 
 `YEAR-MONTH-DAY-title.MARKUP`
@@ -25,9 +71,3 @@ end
 print_hi('Tom')
 #=> prints 'Hi, Tom' to STDOUT.
 {% endhighlight %}
-
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/

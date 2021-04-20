@@ -1,5 +1,5 @@
 ---
-layout: playlists
+layout: page
 permalink: /playlists/
 active: playlists
 ---
