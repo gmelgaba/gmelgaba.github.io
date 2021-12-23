@@ -36,10 +36,10 @@ navigation:
   url: /experience/
   icon: ion-android-list
   layout: page
-# - text: blog
-#   url: /blog/
-#   icon: ion-chatbox-working
-#   layout: post
+- text: blog
+  url: /blog/
+  icon: ion-chatbox-working
+  layout: post
 - text: playlists
   url: /playlists/
   icon: ion-headphone
@@ -58,6 +58,18 @@ playlists:
     imagePath: "/assets/images/playlists/crying-eyes.jpg"
     title: "crying eyes"
     description: "ballads"
+  - url: "https://open.spotify.com/playlist/4Y8FZQA3yqZaXhAE44FfJw?si=b713e46a91894aa9"
+    imagePath: "/assets/images/playlists/roadtrip.jpg"
+    title: "roadtrip"
+    description: "songs to listen while taking a roadtrip"
+  - url: "https://open.spotify.com/playlist/7pNGWvGYEZB47iNsMF0G86?si=b9030434e65645d7"
+    imagePath: "/assets/images/playlists/last-of-us.jpg"
+    title: "last of us"
+    description: "last of us OST songs mostly acoustic"
+  - url: "https://open.spotify.com/playlist/2PFryBXfj6ZqJeXwVGnnJO?si=a74abc4f16224787"
+    imagePath: "/assets/images/playlists/rocketman.jpg"
+    title: "rocketman"
+    description: "Elton John's rocketman movie ost originals"
   - url: "https://open.spotify.com/playlist/2GsgarPY9pxzH5QFOBjWs1"
     imagePath: "/assets/images/playlists/calvo.jpg"
     title: "musica para que el calvo intolerante compañero de oficina se indigne, Vol I"
@@ -69,10 +81,10 @@ fun_facts:
   icon: fa-music
 - text: "Videogame addict"
   icon: fa-gamepad
-- text: "1.000 cups of coffee"
-  icon: fa-coffee
-- text: "10 Countries visited"
-  icon: fa-flag
+- text: "Trashball pro player"
+  icon: fa-trash
+- text: "Amazon shopaholic"
+  icon: fa-credit-card
 
 
 ## EXPERIENCE
@@ -83,10 +95,26 @@ resume:
     url: https://tarmac.io/
     duration: "7 years"
     roles:
+      - position: "Team Leader"
+        type: "Fulltime"
+        period: "sept 2020 - current"
+        duration: ""
+        description: |
+          Leading multiple teams of developers across different products trying to create an open communication culture.
+
+          Some of the responsibilities I had were
+          <ul>
+            <li>Set clear team goals</li>
+            <li>Client communication</li>
+            <li>Oversee day-to-day operation</li>
+            <li>Facilitating team needs in order to get alligned with the current objective</li>
+            <li>1:1 meetings with all team members</li>
+          </ul>
+
       - position: "Principal Engineer"
         type: "Fulltime"
-        period: "jun 2018 - current"
-        duration: ""
+        period: "jun 2018 - sept 2020"
+        duration: "2 years and 4 months"
         description: |
           The role involved being an official reference of a specific technology, Node.js in my case.
           Some of the responsibilities I had were

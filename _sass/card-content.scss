@@ -304,6 +304,43 @@
       font-size: 40px;
       text-align: left;
     }
+    .blog-detail {
+      margin-top: -10px;
+      margin-bottom: 30px;
+      span {
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+      .date {
+        font-weight: 500;
+      }
+      .cat-links {
+        &::before {
+          content: '';
+          content: "\02022";
+          font-family: serif;
+          padding: 0 6px 0 6px;
+        }
+        color: $primary;
+      }
+      .byline {
+        &::before {
+          content: '';
+          content: "\02022";
+          font-family: serif;
+          padding: 0 6px 0 6px;
+        }
+        .author {
+          color: $primary;
+        }
+      }
+    }
+    img {
+      &:not(.cover) {
+        border: solid 1px $primary;
+        padding: 10px;
+      }
+    }
     p {
       img {
         width: 100%;
