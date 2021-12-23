@@ -36,10 +36,10 @@ navigation:
   url: /experience/
   icon: ion-android-list
   layout: page
-- text: blog
-  url: /blog/
-  icon: ion-chatbox-working
-  layout: post
+# - text: blog
+#   url: /blog/
+#   icon: ion-chatbox-working
+#   layout: post
 - text: playlists
   url: /playlists/
   icon: ion-headphone
