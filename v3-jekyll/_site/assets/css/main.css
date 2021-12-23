@@ -203,6 +203,22 @@ footer { color: white; display: inline-block !important; margin-top: 150px; text
 
 .gm-card.blog-item h1 { color: black; font-size: 40px; text-align: left; }
 
+.gm-card.blog-item .blog-detail { margin-top: -10px; margin-bottom: 30px; }
+
+.gm-card.blog-item .blog-detail span { font-size: 12px; text-transform: uppercase; }
+
+.gm-card.blog-item .blog-detail .date { font-weight: 500; }
+
+.gm-card.blog-item .blog-detail .cat-links { color: #812d39; }
+
+.gm-card.blog-item .blog-detail .cat-links::before { content: ''; content: "\02022"; font-family: serif; padding: 0 6px 0 6px; }
+
+.gm-card.blog-item .blog-detail .byline::before { content: ''; content: "\02022"; font-family: serif; padding: 0 6px 0 6px; }
+
+.gm-card.blog-item .blog-detail .byline .author { color: #812d39; }
+
+.gm-card.blog-item img:not(.cover) { border: solid 1px #812d39; padding: 10px; }
+
 .gm-card.blog-item p img { width: 100%; }
 
 .gm-card.blog-item p strong { color: #812d39; font-weight: bold; background-color: white; }
