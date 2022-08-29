@@ -115,7 +115,7 @@ footer { color: white; display: inline-block !important; margin-top: 150px; text
 
 .gm-card .post { text-align: left; }
 
-.gm-card.content { /* box-shadow: -10px 0px 10px 1px #aaaaaa; */ float: left; font-family: "Raleway"; height: 610px; margin-left: -10px; padding: 30px 30px 0 40px; overflow-x: hidden; overflow-y: scroll; width: 708px; }
+.gm-card.content { float: left; font-family: "Raleway"; height: 610px; margin-left: -10px; padding: 30px 30px 100px 40px; overflow-x: hidden; overflow-y: scroll; width: 708px; }
 
 .gm-card.content .title { font-family: "Raleway"; font-size: 22px; font-weight: bold; margin-bottom: 30px; padding: 0 0 25px 0; position: relative; width: 712px; }
 
@@ -222,5 +222,15 @@ footer { color: white; display: inline-block !important; margin-top: 150px; text
 .gm-card.blog-item p img { width: 100%; }
 
 .gm-card.blog-item p strong { color: #812d39; font-weight: bold; background-color: white; }
+
+.gm-card.dev-tool .box-item { text-align: center; }
+
+.gm-card.dev-tool .box-item .image { height: auto; margin-left: 12%; position: relative; width: 70%; }
+
+.gm-card.dev-tool .box-item .desc .name { font-size: 17px; font-weight: 500; padding-bottom: 5px; text-transform: none; }
+
+.gm-card.dev-tool .box-item .desc .text { color: gray; font-size: 13px; text-align: justify; }
+
+@media (max-width: 600px) { .gm-card.content { background-color: red; display: flex; justify-content: space-between; width: 100%; } }
 
 /*# sourceMappingURL=main.css.map */
