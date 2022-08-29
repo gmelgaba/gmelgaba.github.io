@@ -10,8 +10,31 @@ job: "Software Engineer"
 ## SECTIONS ENABLED
 sections:
 - about: true
-- companies: false
+- companies: true
 - fun_facts: true
+
+## NAVIGATION REDIRECTS
+navigation:
+- text: about
+  url: /
+  icon: ion-person
+  layout: page
+- text: resume
+  url: /experience/
+  icon: ion-android-list
+  layout: page
+- text: tools
+  url: /tools/
+  icon: ion-hammer
+  layout: page
+# - text: blog
+#   url: /blog/
+#   icon: ion-chatbox-working
+#   layout: post
+- text: playlists
+  url: /playlists/
+  icon: ion-headphone
+  layout: page
 
 ## [Profile Card] SOCIAL URLs
 socials:
@@ -26,55 +49,6 @@ socials:
 - url: https://www.youtube.com/channel/UChHDiwGkIg1_FKFR0VMIu7A
   icon: fa-youtube
 
-## [About] NAVIGATION REDIRECTS
-navigation:
-- text: about
-  url: /
-  icon: ion-person
-  layout: page
-- text: resume
-  url: /experience/
-  icon: ion-android-list
-  layout: page
-# - text: blog
-#   url: /blog/
-#   icon: ion-chatbox-working
-#   layout: post
-- text: playlists
-  url: /playlists/
-  icon: ion-headphone
-  layout: page
-
-playlists:
-  - url: "https://open.spotify.com/playlist/1PMb1FaLWJdLPKV0tz7F85?si=37eb3cd48f904978"
-    imagePath: "/assets/images/playlists/perversions.jpg"
-    title: "perVersions"
-    description: "best rock/metal covers"
-  - url: "https://open.spotify.com/user/0ny35jaa9ga0azi1smsg5h15s/playlist/0b44wqCVZbmrTP5HNwt5Pm?si=8ca45a4aae234805"
-    imagePath: "/assets/images/playlists/anime.jpg"
-    title: "anime"
-    description: "anime opening/ending songs"
-  - url: "https://open.spotify.com/playlist/2jnf3EgFNH2hX6L2ekTxGH"
-    imagePath: "/assets/images/playlists/crying-eyes.jpg"
-    title: "crying eyes"
-    description: "ballads"
-  - url: "https://open.spotify.com/playlist/4Y8FZQA3yqZaXhAE44FfJw?si=b713e46a91894aa9"
-    imagePath: "/assets/images/playlists/roadtrip.jpg"
-    title: "roadtrip"
-    description: "songs to listen while taking a roadtrip"
-  - url: "https://open.spotify.com/playlist/7pNGWvGYEZB47iNsMF0G86?si=b9030434e65645d7"
-    imagePath: "/assets/images/playlists/last-of-us.jpg"
-    title: "last of us"
-    description: "last of us OST songs mostly acoustic"
-  - url: "https://open.spotify.com/playlist/2PFryBXfj6ZqJeXwVGnnJO?si=a74abc4f16224787"
-    imagePath: "/assets/images/playlists/rocketman.jpg"
-    title: "rocketman"
-    description: "Elton John's rocketman movie ost originals"
-  - url: "https://open.spotify.com/playlist/2GsgarPY9pxzH5QFOBjWs1"
-    imagePath: "/assets/images/playlists/calvo.jpg"
-    title: "musica para que el calvo intolerante compañero de oficina se indigne, Vol I"
-    description: "Bosio's favorite 90s pop songs. The legend says that after the revolution, he used to listen to this playlist each sunset dreaming about world peace."
-
 ## [About] FUN FACTS
 fun_facts:
 - text: "Music enthusiast"
@@ -86,14 +60,13 @@ fun_facts:
 - text: "Amazon shopaholic"
   icon: fa-credit-card
 
-
-## EXPERIENCE
+## [Resume] EXPERIENCE
 resume:
   experience:
   - company: "tarmac"
     imagePath: "/assets/images/experience/tarmac.jpg"
     url: https://tarmac.io/
-    duration: "7 years"
+    duration: "8 years"
     roles:
       - position: "Team Leader"
         type: "Fulltime"
@@ -108,7 +81,8 @@ resume:
             <li>Client communication</li>
             <li>Oversee day-to-day operation</li>
             <li>Facilitating team needs in order to get alligned with the current objective</li>
-            <li>1:1 meetings with all team members</li>
+            <li>Annual review and monthly performance meetings with all team members</li>
+            <li>Running interviews with potential company candidates</li>
           </ul>
 
       - position: "Principal Engineer"
@@ -219,3 +193,59 @@ resume:
     period: "2004 – 2006"
     title: "Computer Technician"
     description: "The superior technological institute of the CETP - UTU specialized mainly in Computer Science. In it, courses are taught ranging from EMT Technological Middle Education (Level II), Tertiary Technical Course in Networks and Software to the career of Computer Technologist, in agreement with the University of the Republic."
+
+## [Playlists]
+playlists:
+  - url: "https://open.spotify.com/playlist/1PMb1FaLWJdLPKV0tz7F85?si=37eb3cd48f904978"
+    imagePath: "/assets/images/playlists/perversions.jpg"
+    title: "perVersions"
+    description: "best rock/metal covers"
+  - url: "https://open.spotify.com/user/0ny35jaa9ga0azi1smsg5h15s/playlist/0b44wqCVZbmrTP5HNwt5Pm?si=8ca45a4aae234805"
+    imagePath: "/assets/images/playlists/anime.jpg"
+    title: "anime"
+    description: "anime opening/ending songs"
+  - url: "https://open.spotify.com/playlist/2PFryBXfj6ZqJeXwVGnnJO?si=a74abc4f16224787"
+    imagePath: "/assets/images/playlists/rocketman.jpg"
+    title: "rocketman"
+    description: "Elton John's rocketman movie ost originals"
+  - url: "https://open.spotify.com/playlist/4Y8FZQA3yqZaXhAE44FfJw?si=b713e46a91894aa9"
+    imagePath: "/assets/images/playlists/roadtrip.jpg"
+    title: "roadtrip"
+    description: "songs to listen while taking a roadtrip"
+  - url: "https://open.spotify.com/playlist/7pNGWvGYEZB47iNsMF0G86?si=b9030434e65645d7"
+    imagePath: "/assets/images/playlists/last-of-us.jpg"
+    title: "last of us"
+    description: "last of us OST songs mostly acoustic"
+  - url: "https://open.spotify.com/playlist/2jnf3EgFNH2hX6L2ekTxGH"
+    imagePath: "/assets/images/playlists/crying-eyes.jpg"
+    title: "crying eyes"
+    description: "ballads"
+  # - url: "https://open.spotify.com/playlist/2GsgarPY9pxzH5QFOBjWs1"
+  #   imagePath: "/assets/images/playlists/calvo.jpg"
+  #   title: "musica para que el calvo intolerante compañero de oficina se indigne, Vol I"
+  #   description: "Bosio's favorite 90s pop songs. The legend says that after the revolution, he used to listen to this playlist each sunset dreaming about world peace."
+
+
+## [Tools] DEV TOOLS
+tools:
+  - url: "https://code.visualstudio.com/"
+    imagePath: "/assets/images/tools/vscode.png"
+    title: "VS Code"
+    description: "I've been jumping a lot between editors and for me, VS Code is the best choist out there. It's a great editor with a great community and tons of usefull extensions to add."
+  - url: "https://www.warp.dev/"
+    imagePath: "/assets/images/tools/warp.png"
+    title: "warp"
+    description: "This is by far the best terminal option out there. Warp is a fully native, GPU-accelerated, Rust-based terminal, it's currently in development and onnly has support for Mac, you should try it if able."
+  - url: "https://www.gitkraken.com/"
+    imagePath: "/assets/images/tools/gitkraken.png"
+    title: "GitKraken"
+    description: "Powerful graphical interface for Git as an alternative to the command line. If you're tired of typing the same commands over and over, this is the best option to take."
+  - url: "https://dbeaver.io/"
+    imagePath: "/assets/images/tools/dbeaver.png"
+    title: "DBeaver"
+    description: "Free, open source, graphical database management tool for database developers and administrators. Easy to use and super helpful in times of need."
+  - url: "https://insomnia.rest/"
+    imagePath: "/assets/images/tools/insomnia.png"
+    title: "Insomnia"
+    description: "Free Cross-Platform Desktop Framework for testing RESTful applications. For graphql api's in particular this one takes the first place."
+

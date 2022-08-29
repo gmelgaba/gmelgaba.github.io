@@ -1,35 +1,36 @@
 <div class="blog gm-card content">
-  <div class="title smooth-border"><span class="first-word">Playlists</span></div>
+  <div class="title smooth-border"><span class="first-word">P</span>laylists</div>
   <p>Here are some public spotify playlsit I created! Hope you enojoy some of those.</p>
-  {% assign arrayOdd = site.playlists.size | modulo: 2 %}
+  <br>
+  {% assign arrayOdd = site.playlists.size | modulo: 3 %}
   {% for post in site.playlists %}
-  {% assign loopindex = forloop.index0 | modulo: 2 %}
+  {% assign loopindex = forloop.index0 | modulo: 3 %}
 
   {% if loopindex == 0 or forloop.first %}
   <div class="row">
   {% endif %}
     <!-- blog item-->
-    <div class="col col-d-6 col-t-6 col-m-12 {% if loopindex == 0 %} smooth-border-v {% endif %}">
+    <div class="col col-4 col-d-4 col-t-4 col-m-12 {% if loopindex == 0 or loopindex == 1 %} smooth-border-v {% endif %}">
       <div class="box-item">
         <div class="image">
-          <a target="_blank" href="{{ post.url }}">
+          <a target="_blank" href="{{ post.url }}">
             <img class="image" src="{{ post.imagePath }}">
           </a>
         </div>
         <div class="desc">
-          <a target="_blank" href="{{ post.url }}" class="name">{{ post.title }}</a>
+          <a target="_blank" href="{{ post.url }}" class="name">{{ post.title }}</a>
           <div class="text">
-            <p>{{ post.description }}</p>
+            <p>{{ post.description }}</p>
           </div>
         </div>
       </div>
     </div>
 
   {% if forloop.last and arrayOdd == 1 %}
-    <div class="col col-d-6 col-t-6 col-m-12"></div>
+    <div class="col col-d-4 col-t-4 col-m-12"></div>
   {% endif %}
 
-  {% if loopindex == 1 or forloop.last %}
+  {% if loopindex == 2 or forloop.last %}
   </div>
   {% endif %}
 

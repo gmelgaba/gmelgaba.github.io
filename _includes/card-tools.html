@@ -1,0 +1,38 @@
+<div class="dev-tool gm-card content">
+  <div class="title smooth-border"><span class="first-word">Developer</span> Tools</div>
+  <p>Over the years I've been trying different dev tools in order to make my life easier/prettier while working. Here is a list of the Developer tools I like the most.</p>
+  <br>
+  {% assign arrayOdd = site.tools.size | modulo: 3 %}
+  {% for tool in site.tools %}
+  {% assign loopindex = forloop.index0 | modulo: 3 %}
+
+  {% if loopindex == 0 or forloop.first %}
+  <div class="row">
+  {% endif %}
+    <!-- tool item-->
+    <div class="col col-4 col-d-4 col-t-4 col-m-12 {% if loopindex == 0 or loopindex == 1 %} smooth-border-v {% endif %}">
+      <div class="box-item">
+        <div class="image">
+          <a target="_blank" href="{{ tool.url }}">
+            <img class="image" src="{{ tool.imagePath }}">
+          </a>
+        </div>
+        <div class="desc">
+          <a class="name" target="_blank" href="{{ tool.url }}" >{{ tool.title }}</a>
+          <div class="text">
+            <p>{{ tool.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  {% if forloop.last and arrayOdd == 1 %}
+    <div class="col col-4 col-d-4 col-t-4 col-m-12"></div>
+  {% endif %}
+
+  {% if loopindex == 2 or forloop.last %}
+  </div>
+  {% endif %}
+
+  {% endfor %}
+</div>
