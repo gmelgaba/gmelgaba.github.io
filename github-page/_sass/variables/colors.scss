@@ -1,0 +1,14 @@
+$primary: #812d39;
+// $primary: #355070;
+// $primary: #B56576;
+// $primary: #0856c1;
+// $primary: #78cc6d;
+$primaryDark: darken($primary, 35%);
+$primaryLight: lighten($primary, 35%);
+
+$primaryTransparent: rgba(129, 45, 57, 0.1); // rgba(113, 23, 27, 0,1); // rgba(8, 86, 193, 0.1); // #78cc6d
+$primaryTransparentDark: darken($primaryTransparent, 35%);
+$primaryTransparentLight: lighten($primaryTransparent, 35%);
+
+$gray: gray;
+$grayDark: #323232;
