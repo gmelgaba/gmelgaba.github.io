@@ -33,61 +33,19 @@
         color: $primary;
       }
     }
-    float: left;
-    font-family: $normalFont;
-    height: 610px;
-    margin-left: -10px;
-    padding: 30px 30px 100px 40px;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    width: 708px;
   }
 
   // PROFILE CARD
   &.profile {
     float: left;
-    height: 650px;
     margin-left: 10px;
     margin-top: -20px;
     overflow: hidden;
     width: 480px;
-    .image {
-      background: url("../images/me.jpg");
-      background-size: contain;
-      background-position: center;
-      border-radius: 7px;
-      height: 400px;
-      overflow: hidden;
-      position: absolute;
-      width: 480px;
-      &::before {
-        content: "";
-        background: #ffffff;
-        bottom: -173px;
-        height: 200px;
-        left: -24px;
-        position: absolute;
-        transform: rotate(12deg);
-        -webkit-transform: rotate(12deg);
-        width: 255px;
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: -171px;
-        width: 255px;
-        height: 200px;
-        background: #ffffff;
-        transform: rotate(-12deg);
-        -webkit-transform: rotate(-12deg);
-        left: 248px;
-      }
-    }
     .title {
       color: $grayDark;
       line-height: 32px;
       font-size: 34px;
-      margin-top: 430px;
       text-align: center;
       z-index: 20;
     }
@@ -98,7 +56,6 @@
       z-index: 20;
     }
     .social {
-      padding-bottom: 45px;
       position: relative;
       text-align: center;
       text-decoration: none;
@@ -258,7 +215,7 @@
   }
 
   // BLOG CARD
-  &.blog {
+  &.blog, &.playlist {
     .box-item {
       text-align: center;
       .image {
@@ -353,7 +310,7 @@
   }
 
   // DEV TOOL CARD ITEM
-  &.dev-tool {
+  &.tools {
     .box-item {
       text-align: center;
       .image {
@@ -371,11 +328,137 @@
         }
         .text {
           color: gray;
-          font-size: 13px;
-          text-align: justify;
         }
       }
     }
   }
 }
 
+// mobile
+@media only screen and (max-width: 600px) {
+  .gm-card {
+    &.content {
+      float: left;
+      font-family: $normalFont;
+      margin-left: 8%;
+      padding: 30px 30px 30px 40px;
+      overflow-x: hidden;
+      width: 84%;
+    }
+    &.profile {
+      float: left;
+      border-top-left-radius: 7px;
+      border-top-right-radius: 7px;
+      margin-left: 8%;
+      overflow: hidden;
+      width: 84%;
+      .image {
+        background: url("../images/me.jpg");
+        background-color: #F1F2EF;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        border-radius: 7px;
+        height: 328px;
+        overflow: hidden;
+        position: absolute;
+        width: 84%;
+      }
+      .title {
+        margin-top: 340px;
+      }
+      .social {
+        padding-bottom: 25px;
+      }
+    }
+    &.resume {
+      .experience, .education {
+        .image {
+          margin-right: 20px;
+          margin-top: 5px;
+        }
+      }
+    }
+    &.tools {
+      .desc .text {
+        font-size: 10px;
+      }
+    }
+    &.playlist {
+      border-bottom-left-radius: 7px;
+      border-bottom-right-radius: 7px;
+      padding-bottom: 50px;
+      .box-item .text {
+        display: none;
+      }
+    }
+  }
+}
+
+// desktop
+@media only screen and (min-width: 600px) {
+  .gm-card {
+    border-radius: 7px;
+    &.content {
+      float: left;
+      font-family: $normalFont;
+      height: 610px;
+      margin-left: -10px;
+      padding: 30px 30px 100px 40px;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      width: 708px;
+    }
+    &.profile {
+      float: left;
+      height: 650px;
+      margin-left: 10px;
+      margin-top: -20px;
+      overflow: hidden;
+      width: 480px;
+      .image {
+        background: url("../images/me.jpg");
+        background-size: contain;
+        background-position: center;
+        border-radius: 7px;
+        height: 400px;
+        overflow: hidden;
+        position: absolute;
+        width: 480px;
+        &::before {
+          content: "";
+          background: #ffffff;
+          bottom: -173px;
+          height: 200px;
+          left: -24px;
+          position: absolute;
+          transform: rotate(12deg);
+          -webkit-transform: rotate(12deg);
+          width: 255px;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -171px;
+          width: 255px;
+          height: 200px;
+          background: #ffffff;
+          transform: rotate(-12deg);
+          -webkit-transform: rotate(-12deg);
+          left: 248px;
+        }
+      }
+      .title {
+        margin-top: 430px;
+      }
+      .social {
+        padding-bottom: 45px;
+      }
+    }
+    &.tools {
+      .desc .text {
+        font-size: 13px;
+      }
+    }
+  }
+}

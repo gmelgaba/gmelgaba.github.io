@@ -6,13 +6,15 @@
 
 @font-face { font-family: "AileronRegular"; src: url("../fonts/aileron/aileron.regular.otf"); }
 
+body, html { height: 100%; }
+
 body { font-family: "Raleway"; }
 
 body .context { z-index: 1; }
 
 body .context .text-center { text-align: center; }
 
-body .gm-card { background-color: white; border-radius: 7px; }
+body .gm-card { background-color: white; }
 
 body .gm-card a:not(.inline-link) { color: #323232; display: block; font-size: 10px; font-weight: 500; height: auto; padding-top: 2px; position: relative; text-align: center; text-decoration: none; text-transform: uppercase; }
 
@@ -42,13 +44,17 @@ body blockquote cite:before { content: "\2014 \2009"; }
 
 footer { color: white; display: inline-block !important; margin-top: 150px; text-align: center; width: 100%; }
 
+@media only screen and (max-width: 600px) { body .mobile { display: block; } body .desktop { display: none; } }
+
+@media only screen and (min-width: 601px) { body .mobile { display: none; } body .desktop { display: block; } }
+
 * { margin: 0px; padding: 0px; }
 
 .context { width: 100%; position: absolute; top: 12vh; }
 
 .context h1 { text-align: center; color: #fff; font-size: 50px; }
 
-.area { background: #812d39; background-image: linear-gradient(#d68a95, #812d39); width: 100%; height: 100vh; }
+.area { background: #812d39; background-image: linear-gradient(#d68a95, #812d39); width: 100%; }
 
 .circles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; }
 
@@ -80,6 +86,10 @@ footer { color: white; display: inline-block !important; margin-top: 150px; text
   100% { transform: translateY(-1000px) rotate(720deg);
     opacity: 0;
     border-radius: 50%; } }
+
+@media only screen and (max-width: 600px) { .area { height: 100%; position: fixed; } }
+
+@media only screen and (min-width: 600px) { .area { height: 100vh; } }
 
 @font-face { font-family: "AileronThin"; src: url("../fonts/aileron/aileron.thin.otf"); }
 
@@ -115,27 +125,19 @@ footer { color: white; display: inline-block !important; margin-top: 150px; text
 
 .gm-card .post { text-align: left; }
 
-.gm-card.content { float: left; font-family: "Raleway"; height: 610px; margin-left: -10px; padding: 30px 30px 100px 40px; overflow-x: hidden; overflow-y: scroll; width: 708px; }
-
 .gm-card.content .title { font-family: "Raleway"; font-size: 22px; font-weight: bold; margin-bottom: 30px; padding: 0 0 25px 0; position: relative; width: 712px; }
 
 .gm-card.content .title:after { background: -webkit-linear-gradient(-45deg, rgba(129, 45, 57, 0.1), rgba(0, 0, 0, 0.1)); border-radius: 50%; content: ""; height: 30px; left: -12px; position: absolute; top: 0; width: 30px; }
 
 .gm-card.content .title .first-word { color: #812d39; }
 
-.gm-card.profile { float: left; height: 650px; margin-left: 10px; margin-top: -20px; overflow: hidden; width: 480px; }
+.gm-card.profile { float: left; margin-left: 10px; margin-top: -20px; overflow: hidden; width: 480px; }
 
-.gm-card.profile .image { background: url("../images/me.jpg"); background-size: contain; background-position: center; border-radius: 7px; height: 400px; overflow: hidden; position: absolute; width: 480px; }
-
-.gm-card.profile .image::before { content: ""; background: #ffffff; bottom: -173px; height: 200px; left: -24px; position: absolute; transform: rotate(12deg); -webkit-transform: rotate(12deg); width: 255px; }
-
-.gm-card.profile .image::after { content: ""; position: absolute; bottom: -171px; width: 255px; height: 200px; background: #ffffff; transform: rotate(-12deg); -webkit-transform: rotate(-12deg); left: 248px; }
-
-.gm-card.profile .title { color: #323232; line-height: 32px; font-size: 34px; margin-top: 430px; text-align: center; z-index: 20; }
+.gm-card.profile .title { color: #323232; line-height: 32px; font-size: 34px; text-align: center; z-index: 20; }
 
 .gm-card.profile .subtitle { color: #812d39; font-size: 16px; text-align: center; z-index: 20; }
 
-.gm-card.profile .social { padding-bottom: 45px; position: relative; text-align: center; text-decoration: none; }
+.gm-card.profile .social { position: relative; text-align: center; text-decoration: none; }
 
 .gm-card.profile .social a { display: inline-block; font-size: 16px; margin: 0 6px; vertical-align: middle; }
 
@@ -191,15 +193,15 @@ footer { color: white; display: inline-block !important; margin-top: 150px; text
 
 .gm-card.resume .roles .role .data .description ul.left-list { float: left; width: 270px; }
 
-.gm-card.blog .box-item { text-align: center; }
+.gm-card.blog .box-item, .gm-card.playlist .box-item { text-align: center; }
 
-.gm-card.blog .box-item .image { height: auto; margin-bottom: 5px; position: relative; width: 100%; }
+.gm-card.blog .box-item .image, .gm-card.playlist .box-item .image { height: auto; margin-bottom: 5px; position: relative; width: 100%; }
 
-.gm-card.blog .box-item .date { background: transparent; border: 1px solid #812d39; bottom: auto; color: #812d39; display: inline-block; font-size: 13px; font-weight: 400; height: auto; left: 0; line-height: 18px; margin: 0 0 11px 0; padding: 0 5px; position: relative; top: 0; width: auto; }
+.gm-card.blog .box-item .date, .gm-card.playlist .box-item .date { background: transparent; border: 1px solid #812d39; bottom: auto; color: #812d39; display: inline-block; font-size: 13px; font-weight: 400; height: auto; left: 0; line-height: 18px; margin: 0 0 11px 0; padding: 0 5px; position: relative; top: 0; width: auto; }
 
-.gm-card.blog .box-item .name { font-size: 17px; font-weight: 500; padding-bottom: 5px; text-transform: none; }
+.gm-card.blog .box-item .name, .gm-card.playlist .box-item .name { font-size: 17px; font-weight: 500; padding-bottom: 5px; text-transform: none; }
 
-.gm-card.blog .box-item .text { color: gray; }
+.gm-card.blog .box-item .text, .gm-card.playlist .box-item .text { color: gray; }
 
 .gm-card.blog-item h1 { color: black; font-size: 40px; text-align: left; }
 
@@ -223,14 +225,16 @@ footer { color: white; display: inline-block !important; margin-top: 150px; text
 
 .gm-card.blog-item p strong { color: #812d39; font-weight: bold; background-color: white; }
 
-.gm-card.dev-tool .box-item { text-align: center; }
+.gm-card.tools .box-item { text-align: center; }
 
-.gm-card.dev-tool .box-item .image { height: auto; margin-left: 12%; position: relative; width: 70%; }
+.gm-card.tools .box-item .image { height: auto; margin-left: 12%; position: relative; width: 70%; }
 
-.gm-card.dev-tool .box-item .desc .name { font-size: 17px; font-weight: 500; padding-bottom: 5px; text-transform: none; }
+.gm-card.tools .box-item .desc .name { font-size: 17px; font-weight: 500; padding-bottom: 5px; text-transform: none; }
 
-.gm-card.dev-tool .box-item .desc .text { color: gray; font-size: 13px; text-align: justify; }
+.gm-card.tools .box-item .desc .text { color: gray; }
 
-@media (max-width: 600px) { .gm-card.content { background-color: red; display: flex; justify-content: space-between; width: 100%; } }
+@media only screen and (max-width: 600px) { .gm-card.content { float: left; font-family: "Raleway"; margin-left: 8%; padding: 30px 30px 30px 40px; overflow-x: hidden; width: 84%; } .gm-card.profile { float: left; border-top-left-radius: 7px; border-top-right-radius: 7px; margin-left: 8%; overflow: hidden; width: 84%; } .gm-card.profile .image { background: url("../images/me.jpg"); background-color: #F1F2EF; background-position: center; background-repeat: no-repeat; background-size: contain; border-radius: 7px; height: 328px; overflow: hidden; position: absolute; width: 84%; } .gm-card.profile .title { margin-top: 340px; } .gm-card.profile .social { padding-bottom: 25px; } .gm-card.resume .experience .image, .gm-card.resume .education .image { margin-right: 20px; margin-top: 5px; } .gm-card.tools .desc .text { font-size: 10px; } .gm-card.playlist { border-bottom-left-radius: 7px; border-bottom-right-radius: 7px; padding-bottom: 50px; } .gm-card.playlist .box-item .text { display: none; } }
+
+@media only screen and (min-width: 600px) { .gm-card { border-radius: 7px; } .gm-card.content { float: left; font-family: "Raleway"; height: 610px; margin-left: -10px; padding: 30px 30px 100px 40px; overflow-x: hidden; overflow-y: scroll; width: 708px; } .gm-card.profile { float: left; height: 650px; margin-left: 10px; margin-top: -20px; overflow: hidden; width: 480px; } .gm-card.profile .image { background: url("../images/me.jpg"); background-size: contain; background-position: center; border-radius: 7px; height: 400px; overflow: hidden; position: absolute; width: 480px; } .gm-card.profile .image::before { content: ""; background: #ffffff; bottom: -173px; height: 200px; left: -24px; position: absolute; transform: rotate(12deg); -webkit-transform: rotate(12deg); width: 255px; } .gm-card.profile .image::after { content: ""; position: absolute; bottom: -171px; width: 255px; height: 200px; background: #ffffff; transform: rotate(-12deg); -webkit-transform: rotate(-12deg); left: 248px; } .gm-card.profile .title { margin-top: 430px; } .gm-card.profile .social { padding-bottom: 45px; } .gm-card.tools .desc .text { font-size: 13px; } }
 
 /*# sourceMappingURL=main.css.map */

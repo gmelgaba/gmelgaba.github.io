@@ -1,6 +1,10 @@
 @import "variables/colors";
 @import "variables/fonts";
 
+body, html {
+  height: 100%;
+}
+
 body {
   font-family: $normalFont;
   .context {
@@ -11,7 +15,6 @@ body {
   }
   .gm-card {
     background-color: white;
-    border-radius: 7px;
     a:not(.inline-link) {
       &.selected {
         color: $primary;
@@ -113,3 +116,28 @@ footer {
   text-align: center;
   width: 100%;
 }
+
+// mobile
+@media only screen and (max-width: 600px) {
+  body {
+    .mobile {
+      display: block;
+    }
+    .desktop {
+      display: none;
+    }
+  }
+}
+
+// desktop
+@media only screen and (min-width: 601px) {
+  body {
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+  }
+}
+

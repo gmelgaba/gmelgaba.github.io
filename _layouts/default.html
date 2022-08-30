@@ -6,7 +6,12 @@
 {% include header.html %}
 <body>
   <div class="context">
-    {{ content }}
+    <div class="mobile">
+      {% include mobile.html %}
+    </div>
+    <div class="desktop">
+      {{ content }}
+    </div>
     {% include footer.html %}
   </div>
   <div class="area">
