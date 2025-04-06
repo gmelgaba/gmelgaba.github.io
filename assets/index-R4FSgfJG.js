@@ -159,8 +159,8 @@ Please change the parent <Route path="${E}"> to <Route path="${E==="/"?"*":`${E}
   transition: opacity 0.25s ease, transform 0.25s ease;
   border-radius: 12px;
   ${ie.mobile} {
-    margin-top: 4vh;
-    height: 90vh;
+    margin-top: 0;
+    height: 80vh;
   }
 `,dp=X.button`
   position: fixed;
