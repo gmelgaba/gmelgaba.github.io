@@ -57,8 +57,8 @@ const Dialog = styled.div<{ open: boolean }>`
   transition: opacity 0.25s ease, transform 0.25s ease;
   border-radius: 12px;
   ${resolutions.mobile} {
-    margin-top: 4vh;
-    height: 90vh;
+    margin-top: 0;
+    height: 80vh;
   }
 `;
 
