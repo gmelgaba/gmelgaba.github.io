@@ -131,7 +131,7 @@ const Description = styled.div`
 const educationContent = [
   {
     name: "Universidad de la República",
-    imagePath: "/public/images/education/fing.jpg",
+    imagePath: "/images/education/fing.jpg",
     url: "https://www.fing.edu.uy/",
     period: "2007 - 2017",
     title: "Software Engineer",
@@ -140,7 +140,7 @@ const educationContent = [
   },
   {
     name: "Instituto Tecnológico Superior",
-    imagePath: "/public/images/education/its.jpg",
+    imagePath: "/images/education/its.jpg",
     url: "https://www.linkedin.com/school/arias-balparda/about/",
     period: "2004 - 2006",
     title: "Computer Technician",

@@ -163,7 +163,7 @@ const Description = styled.div`
 const experienceContent = [
   {
     company: "tarmac",
-    imagePath: "/public/images/experience/tarmac.jpg",
+    imagePath: "/images/experience/tarmac.jpg",
     url: "https://tarmac.io/",
     duration: `${yearsFromDate(2020)} years`,
     position: "Team Leader",
@@ -174,7 +174,7 @@ const experienceContent = [
   },
   {
     company: "tarmac",
-    imagePath: "/public/images/experience/tarmac.jpg",
+    imagePath: "/images/experience/tarmac.jpg",
     url: "https://tarmac.io/",
     duration: "2 years and 4 months",
     position: "Principal Engineer",
@@ -185,7 +185,7 @@ const experienceContent = [
   },
   {
     company: "tarmac",
-    imagePath: "/public/images/experience/tarmac.jpg",
+    imagePath: "/images/experience/tarmac.jpg",
     url: "https://tarmac.io/",
     duration: "2 years and 6 months",
     position: "Senior Software Developer",
@@ -196,7 +196,7 @@ const experienceContent = [
   },
   {
     company: "tarmac",
-    imagePath: "/public/images/experience/tarmac.jpg",
+    imagePath: "/images/experience/tarmac.jpg",
     url: "https://tarmac.io/",
     duration: "1 year and 7 months",
     position: "Semi Senior Software Developer",
@@ -207,7 +207,7 @@ const experienceContent = [
   },
   {
     company: "Spiria SRL",
-    imagePath: "/public/images/experience/spiria.jpg",
+    imagePath: "/images/experience/spiria.jpg",
     url: "http://www.spiria.com.uy/",
     duration: "2 years and 9 months",
     position: "Junior Software Developer",
@@ -218,7 +218,7 @@ const experienceContent = [
   },
   {
     company: "VTV Uruguay",
-    imagePath: "/public/images/experience/vtv.jpg",
+    imagePath: "/images/experience/vtv.jpg",
     url: "http://www.spiria.com.uy/",
     duration: "1 year and 8 months",
     position: "Graphics Operator",

@@ -31,8 +31,8 @@ const AboutMeContent = styled.div`
 `;
 
 const AboutMeImage = styled.img`
-  width: 300px;
-  height: 300px;
+  width: 180px;
+  height: 180px;
   border-radius: 10%;
   object-fit: cover;
   ${resolutions.mobile} {
@@ -42,8 +42,7 @@ const AboutMeImage = styled.img`
 
 const AboutMeText = styled.div`
   flex: 1;
-  width: 60%;
-  text-align: center;
+  width: 80%;
   ${resolutions.mobile} {
     width: 100%;
     text-align: center;

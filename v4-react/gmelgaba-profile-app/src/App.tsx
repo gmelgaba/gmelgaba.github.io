@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import GlobalStyle from "./styles/global";
 import Header from "./components/Header";
 import Interests from "./sections/Interests";
+import NotFound from "./pages/404";
 import Presentation from "./sections/Presentation";
 import React from "react";
 import { ThemeProviderWrapper } from "./context/ThemeContext";
@@ -67,12 +68,14 @@ const Home: React.FC = () => (
 const App: React.FC = () => {
   return (
     <ThemeProviderWrapper>
-      <Router>
+      <Router basename={import.meta.env.BASE_URL}>
         <GlobalStyle />
         <Container>
           <Routes>
             <Route path="/boardgame-app" element={<BoardGameApp />} />
             <Route path="/" element={<Home />} />
+            {/* Catch-all 404 route */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <BackToTop />
           <EasterEgg />
