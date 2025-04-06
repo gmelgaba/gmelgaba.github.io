@@ -1,4 +1,3 @@
-import ThemeToggleButton from "./ThemeToggleButton";
 import { resolutions } from "../utils/devices";
 import styled from "styled-components";
 import { useState } from "react";
