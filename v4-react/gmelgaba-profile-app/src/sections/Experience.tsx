@@ -1,8 +1,10 @@
+import { FaChevronDown } from "react-icons/fa";
+import { resolutions } from "../utils/devices";
 import styled from "styled-components";
 import { useState } from "react";
 import { yearsFromDate } from "../utils/years";
 
-const ResumeContainer = styled.div`
+const MainContainer = styled.div`
   margin: 0 auto;
   padding: 20px;
   display: block;
@@ -11,7 +13,7 @@ const ResumeContainer = styled.div`
 
   p.section-subtitle {
     font-size: 1.1rem;
-    width: 800px;
+    max-width: 800px;
     margin: 0 auto;
     margin-bottom: 40px;
     text-align: center;
@@ -19,9 +21,11 @@ const ResumeContainer = styled.div`
 `;
 
 const ExperienceContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 40px;
+  ${resolutions.tabletAndGreater} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
+  }
 `;
 
 const Column = styled.div`
@@ -29,7 +33,9 @@ const Column = styled.div`
 `;
 
 const Section = styled.div`
-  margin-bottom: 40px;
+  ${resolutions.tabletAndGreater} {
+    margin-bottom: 40px;
+  }
 `;
 
 const Card = styled.div`
@@ -43,6 +49,18 @@ const Card = styled.div`
   &:hover {
     transform: scale(1.05);
     z-index: 10;
+  }
+`;
+
+const ExpandIcon = styled.div<{ open: boolean }>`
+  transition: transform 0.3s ease;
+  transform: rotate(${(props) => (props.open ? "180deg" : "0deg")});
+  color: ${({ theme }) => theme.primaryColor};
+  font-size: 20px;
+  margin-left: auto;
+
+  ${resolutions.mobile} {
+    margin-top: 10px;
   }
 `;
 
@@ -79,6 +97,13 @@ const Period = styled.span`
     color: ${({ theme }) => theme.textGray};
     text-transform: none;
     font-weight: 500;
+    ${resolutions.mobile} {
+      display: block;
+      font-weight: 300;
+      &.dot {
+        display: none;
+      }
+    }
   }
 `;
 
@@ -87,6 +112,10 @@ const Title = styled.h3`
   font-weight: bold;
   text-transform: uppercase;
   margin: 5px 0;
+
+  ${resolutions.mobile} {
+    font-size: 20px;
+  }
 `;
 
 const CompanyName = styled.div`
@@ -103,6 +132,14 @@ const Roles = styled.div`
   overflow: hidden;
   max-height: 0;
   transition: max-height 0.5s ease-in-out;
+
+  ${resolutions.mobile} {
+    padding-left: 0;
+  }
+
+  ${resolutions.tabletAndGreater} {
+    padding-left: 77px;
+  }
 `;
 
 const Description = styled.div`
@@ -111,7 +148,6 @@ const Description = styled.div`
   color: ${({ theme }) => theme.text};
 
   ul {
-    margin-left: 16px;
     list-style: disc;
     margin-left: -26px;
     &.left-list {
@@ -167,7 +203,7 @@ const experienceContent = [
     type: "Part-time",
     period: "Jun 2014 - Dec 2015",
     description:
-      "Worked across different clients and was lucky enough to play with different technologies in the meantime, such as:\n<ul class='left-list'>\n  <li>node.js</li>\n  <li>angular 1.x</li>\n  <li>gulpjs</li>\n  <li>aws (ec2, elasticbeanstalk, s3, lambda)</li>\n</ul>\n<ul class='right-list'>\n  <li>Ruby on Rails</li>\n  <li>Ionic</li>\n  <li>Laravel</li>\n  <li>RiotJS, CucumberJS</li>\n</ul></div>",
+      "Worked across different clients and was lucky enough to play with different technologies in the meantime, such as:\n<ul class='left-list'>\n  <li>node.js</li>\n  <li>angular 1.x</li>\n  <li>gulpjs</li>\n  <li>aws (ec2, cloudfront, s3, lambda)</li>\n</ul>\n<ul class='right-list'>\n  <li>Ruby on Rails</li>\n  <li>Ionic</li>\n  <li>Laravel</li>\n  <li>RiotJS, CucumberJS</li>\n</ul></div>",
   },
   {
     company: "Spiria SRL",
@@ -201,7 +237,7 @@ const Resume: React.FC = () => {
   };
 
   return (
-    <ResumeContainer>
+    <MainContainer>
       <h2 className="section-title">My Experience</h2>
       <p className="section-subtitle">
         Throughout my career, I've taken on different roles that have shaped my
@@ -223,16 +259,19 @@ const Resume: React.FC = () => {
                   </Image>
                   <Data>
                     <Period>
-                      {company.period} <span>· {company.duration}</span>
+                      {company.period} <span className="dot">·</span>{" "}
+                      <span>{company.duration}</span>
                     </Period>
                     <Title>{company.position}</Title>
                     <CompanyName>@ {company.company}</CompanyName>
                   </Data>
+                  <ExpandIcon open={!!openCards[company.position]}>
+                    <FaChevronDown />
+                  </ExpandIcon>
                 </Header>
                 <Roles
                   style={{
                     maxHeight: openCards[company.position] ? "1100px" : "0",
-                    paddingLeft: "77px",
                   }}
                 >
                   <div>
@@ -246,7 +285,7 @@ const Resume: React.FC = () => {
           </Column>
         ))}
       </ExperienceContainer>
-    </ResumeContainer>
+    </MainContainer>
   );
 };
 

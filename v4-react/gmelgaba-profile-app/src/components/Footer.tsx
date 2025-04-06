@@ -1,7 +1,9 @@
+import { resolutions } from "../utils/devices";
 import socialLinks from "../utils/socials";
 import styled from "styled-components";
 
 const FooterWrapper = styled.footer`
+  background-color: ${({ theme }) => theme.sectionEven};
   padding: 40px 20px 20px;
   display: flex;
   flex-direction: column;
@@ -9,22 +11,30 @@ const FooterWrapper = styled.footer`
 `;
 
 const ContactRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+  ${resolutions.mobile} {
+    text-align: center;
+    display: grid;
+    margin: 0 auto;
+    row-gap: 24px;
+  }
+
+  ${resolutions.tabletAndGreater} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 `;
 
-const InfoSection = styled.section`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-
+const InfoSection = styled.div`
   .mail {
     font-size: 1rem;
     font-weight: normal;
     background-color: ${({ theme }) => theme.sectionEven};
     color: ${({ theme }) => theme.textGray};
+    ${resolutions.mobile} {
+      text-align: center;
+    }
   }
 `;
 
@@ -33,12 +43,20 @@ const SocialsSection = styled.section`
   gap: 15px;
 
   a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid ${({ theme }) => theme.primaryColor};
     color: ${({ theme }) => theme.primaryColor};
     font-size: 1.2rem;
     transition: all 0.3s ease;
 
     &:hover {
-      color: ${({ theme }) => theme.text};
+      background-color: ${({ theme }) => theme.primaryColor};
+      color: ${({ theme }) => theme.textLight};
     }
   }
 `;

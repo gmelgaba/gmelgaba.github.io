@@ -1,19 +1,35 @@
 import Button from "../components/Button";
+import { resolutions } from "../utils/devices";
 import socialLinks from "../utils/socials";
 import styled from "styled-components";
 
 const PresentationContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   margin: 0 auto;
   padding: 40px;
   padding-bottom: 0;
+
+  ${resolutions.mobile} {
+    grid-template-columns: 1fr;
+  }
+  ${resolutions.tabletAndGreater} {
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    justify-content: space-between;
+  }
 `;
 
 const PresentationText = styled.div`
   flex: 1;
-  max-width: 50%;
+  margin-bottom: 40px;
+
+  ${resolutions.mobile} {
+    max-width: 50%;
+  }
+  ${resolutions.tabletAndGreater} {
+    max-width: 100%;
+  }
 
   p {
     font-size: 24px;
@@ -26,9 +42,16 @@ const PresentationText = styled.div`
 `;
 
 const PresentationName = styled.h2`
-  font-size: 80px;
   margin: 0;
-  line-height: 80px;
+
+  ${resolutions.mobile} {
+    font-size: 50px;
+    line-height: 50px;
+  }
+  ${resolutions.tabletAndGreater} {
+    font-size: 80px;
+    line-height: 80px;
+  }
 `;
 
 const PresentationSubtitle = styled.label`
@@ -48,8 +71,6 @@ const SocialLinks = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
     border: 1px solid ${({ theme }) => theme.primaryColor};
     border-radius: 50%;
     background: transparent;
@@ -61,13 +82,43 @@ const SocialLinks = styled.div`
       background: ${({ theme }) => theme.primaryColor};
       color: ${({ theme }) => theme.textLight};
     }
+
+    ${resolutions.mobile} {
+      width: 100px;
+      height: 40px;
+    }
+    ${resolutions.tabletAndGreater} {
+      width: 40px;
+      height: 40px;
+    }
+  }
+`;
+
+const ProfileImageMobile = styled.img`
+  ${resolutions.mobile} {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    margin-top: 24px;
+    margin-left: -20px;
+    border-radius: 40px;
+    width: 100%;
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  }
+  ${resolutions.tabletAndGreater} {
+    display: none;
   }
 `;
 
 const ProfileImage = styled.img`
-  width: 90%;
-  max-width: 600px;
-  max-height: 800px;
+  ${resolutions.mobile} {
+    display: none;
+  }
+  ${resolutions.tabletAndGreater} {
+    max-width: 600px;
+    max-height: 600px;
+  }
   height: auto;
   object-fit: contain;
 `;
@@ -76,9 +127,10 @@ const presentationContent = {
   greeting: "Hello,",
   name: "I'm Gonzalo Melgar",
   title: "Software Engineer / Team Leader",
-  buttonText: "Download CV",
+  buttonText: "Download CV   ",
   socialLinks: socialLinks,
   imagePath: "/images/me-transparent.png",
+  imagePathSquare: "/images/me-transparent-square.png",
 };
 
 const Presentation: React.FC = () => {
@@ -89,6 +141,10 @@ const Presentation: React.FC = () => {
           {presentationContent.greeting}
         </PresentationSubtitle>
         <PresentationName>{presentationContent.name}</PresentationName>
+        <ProfileImageMobile
+          src={presentationContent.imagePathSquare}
+          alt="Gonzalo Melgar"
+        />
         <PresentationSubtitle>{presentationContent.title}</PresentationSubtitle>
         <SocialLinks>
           {presentationContent.socialLinks.map((link) => (

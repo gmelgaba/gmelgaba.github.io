@@ -1,3 +1,4 @@
+import { resolutions } from "../utils/devices";
 import styled from "styled-components";
 
 const ToolsContainer = styled.div`
@@ -15,11 +16,19 @@ const ToolsSubtitle = styled.p`
 `;
 
 const ToolList = styled.div`
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  padding: 10px 20px;
-  perspective: 1000px;
+  ${resolutions.mobile} {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+  }
+  ${resolutions.tabletAndGreater} {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 20px;
+    perspective: 1000px;
+    display: grid;
+  }
 `;
 
 const ToolCard = styled.div`
@@ -28,12 +37,16 @@ const ToolCard = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 24px;
-  border-radius: 8px;
+  border-radius: 15px;
   background-color: ${({ theme }) => theme.sectionEven};
   transition: transform 0.3s ease-in-out;
   min-width: 180px;
   text-align: center;
   will-change: transform;
+  ${resolutions.mobile} {
+    width: 70%;
+    margin: 0 auto;
+  }
 
   &:hover {
     transform: scale(1.05);
@@ -42,7 +55,10 @@ const ToolCard = styled.div`
 `;
 
 const ToolImage = styled.img`
-  width: 50px;
+  ${resolutions.mobile} {
+    width: 100px;
+  }
+  width: 80px;
   height: auto;
 `;
 
@@ -51,12 +67,17 @@ const ToolName = styled.h3`
   font-weight: bold;
   margin-bottom: 8px;
   margin-top: 16px;
+  color: ${({ theme }) => theme.primaryColor};
 `;
 
 const ToolDescription = styled.p`
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 12px;
   font-weight: normal;
+
+  ${resolutions.mobile} {
+    font-size: 15px;
+  }
 `;
 
 const toolsContent = [

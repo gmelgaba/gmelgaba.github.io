@@ -1,3 +1,4 @@
+import { resolutions } from "../utils/devices";
 import styled from "styled-components";
 
 const InterestsContainer = styled.div`
@@ -25,9 +26,12 @@ const InterestCard = styled.div`
   border-radius: 8px;
   background-color: ${({ theme }) => theme.sectionEven};
   transition: transform 0.3s ease-in-out;
-  max-width: 180px;
   text-align: center;
   will-change: transform;
+
+  ${resolutions.tabletAndGreater} {
+    max-width: 180px;
+  }
 
   &:hover {
     transform: scale(1.05);
@@ -36,23 +40,45 @@ const InterestCard = styled.div`
 `;
 
 const InterestImage = styled.img`
-  width: 120px;
-  height: 120px;
   object-fit: cover;
   border-radius: 10%;
   margin-bottom: 10px;
+
+  ${resolutions.mobile} {
+    height: 130px;
+    width: 130px;
+  }
+
+  ${resolutions.tabletAndGreater} {
+    height: 120px;
+    width: 120px;
+  }
 `;
 
 const InterestName = styled.h3`
-  font-size: 1rem;
   font-weight: bold;
-  margin-bottom: 5px;
+  color: ${({ theme }) => theme.primaryColor};
+
+  ${resolutions.mobile} {
+    font-size: 22px;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  ${resolutions.tabletAndGreater} {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
 `;
 
 const InterestDescription = styled.p`
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 12px;
   font-weight: normal;
+
+  ${resolutions.mobile} {
+    font-size: 15px;
+  }
 `;
 
 const interestsContent = [
@@ -60,7 +86,7 @@ const interestsContent = [
     text: "Amateur crafter",
     imageUrl: "/images/interests/craft.jpg",
     description:
-      "I love DIY projects and woodworking. It's a relaxing and satisfying creative outlet. I even share some of my builds on YouTube — feel free to check it out!",
+      "I love DIY projects and woodworking. It's a relaxing and satisfying creative outlet. I even share some of my builds on YouTube! feel free to check it out!",
   },
   {
     text: "Lifelong gamer",
@@ -73,9 +99,10 @@ const interestsContent = [
     imageUrl: "/images/interests/boardgames.jpg",
     description:
       "I have a growing collection of 40+ board games. Whether it's strategy, co-op, or party games, I love getting people around the table.",
+    link: "/boardgame-app",
   },
   {
-    text: "Funko Pop Collector",
+    text: "Funko Pop collector",
     imageUrl: "/images/interests/funkos.jpg",
     description:
       "With over 30 Funko Pops on my shelf, collecting these little guys has become a fun hobby. They're a mix of nostalgia and style.",
@@ -88,6 +115,12 @@ const interestsContent = [
   },
 ];
 
+const handleOnClick = (link: string | undefined) => {
+  if (link) {
+    window.location.href = link;
+  }
+};
+
 const Interests: React.FC = () => {
   return (
     <InterestsContainer>
@@ -96,7 +129,9 @@ const Interests: React.FC = () => {
         {interestsContent.map((interest) => (
           <InterestCard key={interest.text}>
             <InterestImage src={interest.imageUrl} alt={interest.text} />
-            <InterestName>{interest.text}</InterestName>
+            <InterestName onClick={() => handleOnClick(interest.link)}>
+              {interest.text}
+            </InterestName>
             <InterestDescription>{interest.description}</InterestDescription>
           </InterestCard>
         ))}

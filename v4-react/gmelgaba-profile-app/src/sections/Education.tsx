@@ -1,3 +1,5 @@
+import { FaChevronDown } from "react-icons/fa";
+import { resolutions } from "../utils/devices";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -10,7 +12,7 @@ const EducationContainer = styled.div`
 
   p.section-subtitle {
     font-size: 1.1rem;
-    width: 800px;
+    max-width: 800px;
     margin: 0 auto;
     margin-bottom: 40px;
     text-align: center;
@@ -19,8 +21,13 @@ const EducationContainer = styled.div`
 
 const EducationElements = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 40px;
+  ${resolutions.mobile} {
+    grid-template-columns: 1fr;
+  }
+  ${resolutions.tabletAndGreater} {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
+  }
 `;
 
 const Section = styled.div`
@@ -38,6 +45,18 @@ const Card = styled.div`
   &:hover {
     transform: scale(1.05);
     z-index: 10;
+  }
+`;
+
+const ExpandIcon = styled.div<{ open: boolean }>`
+  transition: transform 0.3s ease;
+  transform: rotate(${(props) => (props.open ? "180deg" : "0deg")});
+  color: ${({ theme }) => theme.primaryColor};
+  font-size: 20px;
+  margin-left: auto;
+
+  ${resolutions.mobile} {
+    margin-top: 10px;
   }
 `;
 
@@ -160,6 +179,9 @@ const Education: React.FC = () => {
                   <Title>{edu.title}</Title>
                   <Name>{edu.name}</Name>
                 </Data>
+                <ExpandIcon open={!!openCards[edu.name]}>
+                  <FaChevronDown />
+                </ExpandIcon>
               </Header>
               <Roles
                 style={{ maxHeight: openCards[edu.name] ? "1100px" : "0" }}

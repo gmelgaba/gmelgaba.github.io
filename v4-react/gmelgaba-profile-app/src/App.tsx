@@ -5,13 +5,13 @@ import BackToTop from "./components/BackToTop";
 import BoardGameApp from "./pages/boardgames";
 import EasterEgg from "./components/EasterEgg";
 import Education from "./sections/Education";
+import Experience from "./sections/Experience";
 import Footer from "./components/Footer";
 import GlobalStyle from "./styles/global";
 import Header from "./components/Header";
 import Interests from "./sections/Interests";
 import Presentation from "./sections/Presentation";
 import React from "react";
-import Resume from "./sections/Experience";
 import { ThemeProviderWrapper } from "./context/ThemeContext";
 import Tools from "./sections/Tools";
 import styled from "styled-components";
@@ -43,14 +43,17 @@ const Home: React.FC = () => (
     <Section id="about-me">
       <AboutMe />
     </Section>
-    <Section id="interests">
-      <Interests />
-    </Section>
-    <Section id="resume">
-      <Resume />
-    </Section>
     <Section id="education">
       <Education />
+    </Section>
+    <Section id="experience">
+      <Experience />
+    </Section>
+    {/* <Section id="skills">
+      <Skills />
+    </Section> */}
+    <Section id="interests">
+      <Interests />
     </Section>
     <Section id="tools">
       <Tools />

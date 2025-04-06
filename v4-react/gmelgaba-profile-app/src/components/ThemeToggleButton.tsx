@@ -1,3 +1,4 @@
+import { resolutions } from "../utils/devices";
 import styled from "styled-components";
 import { useTheme } from "../context/ThemeContext";
 
@@ -12,6 +13,12 @@ const ToggleButton = styled.button`
   transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
   position: absolute;
   right: 20px;
+  ${resolutions.mobile} {
+    right: 48px;
+    padding: 5px;
+    height: 40px;
+    width: 90px;
+  }
 
   &:hover {
     background-color: ${({ theme }) => theme.primaryColor};
