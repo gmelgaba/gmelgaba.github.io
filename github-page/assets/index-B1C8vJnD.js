@@ -235,7 +235,7 @@ Please change the parent <Route path="${E}"> to <Route path="${E==="/"?"*":`${E}
     }
   }
   ${ie.mobile} {
-    max-height: 90vh;
+    max-height: 78vh;
     padding: 0 20px;
   }
 

@@ -141,7 +141,7 @@ const Right = styled.div`
     }
   }
   ${resolutions.mobile} {
-    max-height: 90vh;
+    max-height: 78vh;
     padding: 0 20px;
   }
 
