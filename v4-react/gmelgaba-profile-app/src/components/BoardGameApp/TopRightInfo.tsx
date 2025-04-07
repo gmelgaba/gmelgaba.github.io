@@ -19,10 +19,14 @@ const Info = styled.div`
   }
 `;
 
-export const TopRightInfo = () => (
+interface Props {
+  username: string;
+}
+
+export const TopRightInfo: React.FC<Props> = ({ username }) => (
   <Info>
     <p>
-      <strong>User:</strong> gmelgaba
+      <strong>User:</strong> {username}
     </p>
     <img
       src="/images/bgg-logo.jpg"

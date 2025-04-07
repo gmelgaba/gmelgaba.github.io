@@ -14,10 +14,9 @@ import axios from "axios";
 import { fadeIn } from "../../styles/global";
 import { resolutions } from "../../utils/devices";
 import styled from "styled-components";
+import { useSearchParams } from "react-router-dom";
 import { xml2js } from "xml-js";
 
-const COLLECTION_URL =
-  "https://www.boardgamegeek.com/xmlapi/collection/gmelgaba?own=1";
 const GAME_DETAILS_URL = (id: string) =>
   `https://corsproxy.io/?https://boardgamegeek.com/xmlapi/boardgame/${id}`;
 
@@ -72,6 +71,10 @@ const Subtitle = styled.p`
 `;
 
 const BoardGameApp: React.FC = () => {
+  // inside BoardGameApp component
+  const [searchParams] = useSearchParams();
+  const username = searchParams.get("username") || "gmelgaba";
+  const collectionUrl = `https://www.boardgamegeek.com/xmlapi/collection/${username}?own=1`;
   const [games, setGames] = useState<Game[]>([]);
   const [loadingDetails, setLoadingDetails] = useState(false);
   const gameDetailsCache = useRef<Record<string, BggXmlGameDetails>>({});
@@ -208,7 +211,7 @@ const BoardGameApp: React.FC = () => {
   useEffect(() => {
     const fetchBoardGames = async () => {
       try {
-        const response = await axios.get(COLLECTION_URL, {
+        const response = await axios.get(collectionUrl, {
           headers: { Accept: "application/xml" },
         });
         const json = xml2js(response.data, {
@@ -273,7 +276,7 @@ const BoardGameApp: React.FC = () => {
   return (
     <BoardgameAppContainer>
       <HeaderSection>
-        <TopRightInfo />
+        <TopRightInfo username={username} />
         <Title>🎲 Fit2Play</Title>
         <Subtitle>
           Find the perfect board game for your group size, fast and easy.
