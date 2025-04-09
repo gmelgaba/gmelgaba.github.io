@@ -1,24 +1,19 @@
-import {
-  BggXmlGameDetails,
-  BggXmlGameResponse,
-} from "../../interfaces/ExtendedGameDetails";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { BggXmlCollection } from "../../interfaces/BggGame";
 import { Game } from "../../interfaces/Game";
 import { GameCard } from "./GameCard";
 import { GameModal } from "./GameModal";
+import ShareButton from "./ShareButton";
 import { SortControls } from "./SortControls";
-import { TopRightInfo } from "./TopRightInfo";
-import axios from "axios";
+import Spinner from "../Spinner";
+import { UserInfo } from "./UserInfo";
 import { fadeIn } from "../../styles/global";
 import { resolutions } from "../../utils/devices";
 import styled from "styled-components";
+import { useBoardGameData } from "../../hooks/useBoardGameData";
+import { useBoardGameFilters } from "../../hooks/useBoardGameFilters";
+import { useKeyboardNavigation } from "../../hooks/useKeyboardNavigation";
 import { useSearchParams } from "react-router-dom";
-import { xml2js } from "xml-js";
-
-const GAME_DETAILS_URL = (id: string) =>
-  `https://corsproxy.io/?https://boardgamegeek.com/xmlapi/boardgame/${id}`;
 
 const BoardgameAppContainer = styled.div`
   padding: 20px;
@@ -27,24 +22,6 @@ const BoardgameAppContainer = styled.div`
   min-height: 100vh;
 `;
 
-const AnimatedGridWrapper = styled.div`
-  animation: ${fadeIn} 0.4s ease;
-`;
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
-`;
-
-const Typography = styled.p<{ color?: string }>`
-  color: ${(props) => props.color || props.theme.text};
-
-  &.not-found {
-    color: ${({ theme }) => theme.textGray};
-    text-align: center;
-  }
-`;
 const HeaderSection = styled.div`
   text-align: center;
   margin-bottom: 40px;
@@ -58,6 +35,7 @@ const Title = styled.h2`
   font-size: 36px;
   color: ${({ theme }) => theme.primaryColor};
   margin-bottom: 8px;
+  margin-top: 10px;
   ${resolutions.mobile} {
     margin-top: 0;
   }
@@ -70,213 +48,118 @@ const Subtitle = styled.p`
   color: ${({ theme }) => theme.textGray};
 `;
 
-const BoardGameApp: React.FC = () => {
-  // inside BoardGameApp component
-  const [searchParams] = useSearchParams();
-  const username = searchParams.get("username") || "gmelgaba";
-  const collectionUrl = `https://www.boardgamegeek.com/xmlapi/collection/${username}?own=1`;
-  const [games, setGames] = useState<Game[]>([]);
-  const [loadingDetails, setLoadingDetails] = useState(false);
-  const gameDetailsCache = useRef<Record<string, BggXmlGameDetails>>({});
-  const [filteredGames, setFilteredGames] = useState<Game[]>([]);
-  const [playerCount, setPlayerCount] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
-  const [selectedGame, setSelectedGame] = useState<Game | null>(null);
-  const [gameDetails, setGameDetails] = useState<BggXmlGameDetails | undefined>(
-    undefined
-  );
-  const [sortOption, setSortOption] = useState<string>("name");
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
-  const [filterApplied, setFilterApplied] = useState("");
+const Typography = styled.p<{ color?: string }>`
+  color: ${(props) => props.color || props.theme.text};
 
-  const sortGames = useMemo(() => {
-    return (gamesToSort: Game[], option: string, direction: string) => {
-      return [...gamesToSort].sort((a, b) => {
-        let compareValue = 0;
+  &.not-found {
+    color: ${({ theme }) => theme.textGray};
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: ${({ theme }) => theme.text};
 
-        if (option === "name") compareValue = a.name.localeCompare(b.name);
-        if (option === "minPlayers") compareValue = a.minPlayers - b.minPlayers;
-        if (option === "maxPlayers") compareValue = a.maxPlayers - b.maxPlayers;
-        if (option === "rating") {
-          const aRating = isNaN(parseFloat(a.rating))
-            ? 0
-            : parseFloat(a.rating);
-          const bRating = isNaN(parseFloat(b.rating))
-            ? 0
-            : parseFloat(b.rating);
-          compareValue = bRating - aRating;
-        }
-
-        return direction === "asc" ? compareValue : -compareValue;
-      });
-    };
-  }, []);
-
-  const filterGames = () => {
-    setFilterApplied(playerCount);
-
-    if (!playerCount) {
-      setFilteredGames(sortGames(games, sortOption, sortDirection));
-    } else {
-      const count = parseInt(playerCount, 10);
-      const filtered = games.filter(
-        (game) => count >= game.minPlayers && count <= game.maxPlayers
-      );
-      setFilteredGames(sortGames(filtered, sortOption, sortDirection));
+    ${resolutions.mobile} {
+      font-size: 24px;
     }
-  };
+  }
+`;
 
-  const toggleSortDirection = () => {
-    const newDirection = sortDirection === "asc" ? "desc" : "asc";
-    setSortDirection(newDirection);
-    setFilteredGames(sortGames(filteredGames, sortOption, newDirection));
-  };
+const SearchResults = styled.div`
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  ${resolutions.mobile} {
+    grid-template-columns: 1fr;
+  }
+`;
+const SearchDetails = styled.div`
+  text-align: right;
+  ${resolutions.mobile} {
+    text-align: left;
+  }
+`;
+
+const AnimatedGridWrapper = styled.div`
+  animation: ${fadeIn} 0.4s ease;
+  margin-top: 20px;
+`;
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+`;
+
+const BoardGameApp: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const [selectedGame, setSelectedGame] = useState<Game | null>(null);
+
+  const [username, setUsername] = useState<string | null>(null);
+  const [playerCount, setPlayerCount] = useState("");
+  const [durationFilter, setDurationFilter] = useState("");
+  const [sortOption, setSortOption] = useState("name");
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
+
+  useEffect(() => {
+    const usernameParam = searchParams.get("username");
+    const players = searchParams.get("players");
+    const duration = searchParams.get("duration");
+    const sorting = searchParams.get("sorting");
+
+    if (usernameParam) {
+      setUsername(usernameParam);
+    } else {
+      setUsername("gmelgaba");
+    }
+
+    if (usernameParam) setUsername(usernameParam);
+    if (players) setPlayerCount(players);
+    if (duration) setDurationFilter(duration);
+
+    if (sorting) {
+      const match = sorting.match(
+        /(name|minPlayers|maxPlayers|rating)(asc|desc)/i
+      );
+      if (match) {
+        setSortOption(match[1]);
+        setSortDirection(match[2].toLowerCase() as "asc" | "desc");
+      }
+    }
+  }, [searchParams]);
+
+  const {
+    games,
+    error,
+    loadingGames,
+    loadingDetails,
+    detailsReady,
+    gameDetailsCache,
+  } = useBoardGameData(username ?? "");
+
+  const { filteredGames, playerCountApplied } = useBoardGameFilters(
+    games,
+    gameDetailsCache,
+    sortOption,
+    sortDirection,
+    playerCount,
+    durationFilter,
+    detailsReady
+  );
+
+  useKeyboardNavigation(selectedGame, setSelectedGame, filteredGames);
 
   const handleSortChange = (option: string) => {
     setSortOption(option);
-    setFilteredGames(sortGames(filteredGames, option, sortDirection));
   };
-
-  const navigateToGame = useCallback(
-    (direction: "next" | "prev") => {
-      if (!selectedGame || filteredGames.length === 0) return;
-
-      const currentIndex = filteredGames.findIndex(
-        (g) => g.id === selectedGame.id
-      );
-      if (currentIndex === -1) return;
-
-      const delta = direction === "next" ? 1 : -1;
-      const newIndex =
-        (currentIndex + delta + filteredGames.length) % filteredGames.length;
-      setSelectedGame(filteredGames[newIndex]);
-    },
-    [selectedGame, filteredGames]
-  );
-
-  const fetchGameDetails = async (gameId: string) => {
-    if (gameDetailsCache.current[gameId]) {
-      setGameDetails(gameDetailsCache.current[gameId]);
-      return;
-    }
-
-    try {
-      setLoadingDetails(true);
-      const response = await axios.get(GAME_DETAILS_URL(gameId), {
-        headers: { Accept: "application/xml" },
-      });
-      const json = xml2js(response.data, {
-        compact: true,
-      }) as BggXmlGameResponse;
-      const details = json.boardgames.boardgame;
-      gameDetailsCache.current[gameId] = details;
-      setGameDetails(details);
-    } catch (error) {
-      console.error("Failed to fetch game details:", error);
-      setGameDetails(undefined);
-    } finally {
-      setLoadingDetails(false);
-    }
-  };
-
-  // Prefetch all detailed info in parallel
-  const fetchAllGameDetails = async () => {
-    await Promise.allSettled(
-      filteredGames.map(async (game) => {
-        const id = game.id;
-        if (!gameDetailsCache.current[id]) {
-          try {
-            const response = await axios.get(GAME_DETAILS_URL(id), {
-              headers: { Accept: "application/xml" },
-            });
-            const json = xml2js(response.data, {
-              compact: true,
-            }) as BggXmlGameResponse;
-            const details = json.boardgames.boardgame;
-            gameDetailsCache.current[id] = details;
-          } catch (error) {
-            console.error(`Error prefetching game ${id}:`, error);
-          }
-        }
-      })
-    );
-  };
-
-  useEffect(() => {
-    if (selectedGame) {
-      fetchGameDetails(selectedGame?.id);
-    }
-  }, [selectedGame]);
-
-  useEffect(() => {
-    const fetchBoardGames = async () => {
-      try {
-        const response = await axios.get(collectionUrl, {
-          headers: { Accept: "application/xml" },
-        });
-        const json = xml2js(response.data, {
-          compact: true,
-        }) as BggXmlCollection;
-        const items = json.items?.item || [];
-
-        const formattedGames = (Array.isArray(items) ? items : [items]).map(
-          (game) => ({
-            id: game._attributes?.objectid,
-            name: game.name?._text ?? "Unknown Game",
-            image:
-              game.image?._text ??
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7KOdTJozEijfI8EIMywZoVREYn4ff9J04Wg&s",
-            minPlayers: parseInt(
-              game.stats?._attributes?.minplayers ?? "1",
-              10
-            ),
-            maxPlayers: parseInt(
-              game.stats?._attributes?.maxplayers ?? "10",
-              10
-            ),
-            rating:
-              game.stats?.rating?.average?._attributes?.value !== undefined
-                ? parseFloat(
-                    game.stats.rating.average._attributes.value
-                  ).toFixed(2)
-                : "No rating",
-          })
-        );
-
-        setGames(formattedGames);
-        setFilteredGames(formattedGames);
-        fetchAllGameDetails();
-      } catch (err) {
-        console.log(err);
-        setError("Failed to fetch data. Make sure your username is correct.");
-      }
-    };
-
-    fetchBoardGames();
-  }, []);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") {
-        navigateToGame("next");
-      } else if (e.key === "ArrowLeft") {
-        navigateToGame("prev");
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [navigateToGame]);
 
   const handleCardClick = (game: Game) => {
     setSelectedGame(game);
-    fetchGameDetails(game.id);
   };
 
   return (
     <BoardgameAppContainer>
       <HeaderSection>
-        <TopRightInfo username={username} />
+        <UserInfo username={username ?? ""} />
         <Title>🎲 Fit2Play</Title>
         <Subtitle>
           Find the perfect board game for your group size, fast and easy.
@@ -286,28 +169,37 @@ const BoardGameApp: React.FC = () => {
       <SortControls
         playerCount={playerCount}
         onPlayerCountChange={setPlayerCount}
-        onFilter={filterGames}
         sortOption={sortOption}
         sortDirection={sortDirection}
         onSortChange={handleSortChange}
-        onToggleDirection={toggleSortDirection}
+        onSortDirectionChange={(dir) => setSortDirection(dir)}
+        durationFilter={durationFilter}
+        onDurationFilterChange={setDurationFilter}
       />
 
-      {error && <Typography color="red">{error}</Typography>}
-
-      {filteredGames.length === 0 && (
-        <Typography className="not-found">
-          No games found for that player count.
-        </Typography>
-      )}
-
-      {filteredGames.length !== 0 && (
+      {loadingGames ? (
+        <Spinner />
+      ) : filteredGames.length === 0 || error ? (
+        <Typography className="not-found">No games found.</Typography>
+      ) : (
         <AnimatedGridWrapper
-          key={`${filteredGames.length}-${sortOption}-${sortDirection}`}
+          key={`${playerCount}-${durationFilter}-${sortOption}-${sortDirection}`}
         >
           <Typography>
-            {filteredGames.length} games{" "}
-            {filterApplied && `found for ${filterApplied} players`}
+            <SearchResults>
+              <ShareButton
+                username={username ?? ""}
+                playerCount={playerCount}
+                durationFilter={durationFilter}
+                sortOption={sortOption}
+                sortDirection={sortDirection}
+              />
+              <SearchDetails>
+                {filteredGames.length} games{" "}
+                {playerCountApplied &&
+                  `found for ${playerCountApplied} players`}
+              </SearchDetails>
+            </SearchResults>
           </Typography>
           <Grid>
             {filteredGames.map((game) => (
@@ -324,11 +216,24 @@ const BoardGameApp: React.FC = () => {
       {selectedGame && (
         <GameModal
           game={selectedGame}
-          details={gameDetails}
+          details={gameDetailsCache.current[selectedGame.id]}
           loading={loadingDetails}
           onClose={() => setSelectedGame(null)}
-          onNext={() => navigateToGame("next")}
-          onPrev={() => navigateToGame("prev")}
+          onNext={() => {
+            const currentIndex = filteredGames.findIndex(
+              (g) => g.id === selectedGame.id
+            );
+            const nextIndex = (currentIndex + 1) % filteredGames.length;
+            setSelectedGame(filteredGames[nextIndex]);
+          }}
+          onPrev={() => {
+            const currentIndex = filteredGames.findIndex(
+              (g) => g.id === selectedGame.id
+            );
+            const prevIndex =
+              (currentIndex - 1 + filteredGames.length) % filteredGames.length;
+            setSelectedGame(filteredGames[prevIndex]);
+          }}
         />
       )}
     </BoardgameAppContainer>

@@ -136,19 +136,17 @@ const Header: React.FC = () => {
     { label: "Education", href: "/#education" },
     { label: "Experience", href: "/#experience" },
     { label: "Interests", href: "/#interests" },
-    { label: "Dev Tools", href: "/#tools" },
-    // { label: "Boardgames App", href: "/boardgame-app" },
+    { label: "Tools", href: "/#tools" },
   ];
 
   return (
     <>
+      <NavIcon onClick={() => setShowNav(!showNav)}>
+        <div />
+        <div />
+        <div />
+      </NavIcon>
       <HeaderContainer>
-        <NavIcon onClick={() => setShowNav(!showNav)}>
-          <div />
-          <div />
-          <div />
-        </NavIcon>
-
         <Nav>
           {navLinks.map((link) => (
             <NavLink key={link.href} href={link.href}>

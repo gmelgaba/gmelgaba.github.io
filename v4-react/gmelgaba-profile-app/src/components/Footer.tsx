@@ -107,7 +107,7 @@ const Footer: React.FC = () => {
 
       <Separator />
 
-      <MadeBy>© {currentYear} · Gonzalo Melgar · Built in react </MadeBy>
+      <MadeBy>© {currentYear} · Gonzalo Melgar · ✨ Crafted with React </MadeBy>
     </FooterWrapper>
   );
 };
