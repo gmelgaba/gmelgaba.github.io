@@ -142,7 +142,7 @@ Please change the parent <Route path="${E}"> to <Route path="${E==="/"?"*":`${E}
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 1000;
+  z-index: 2000;
 `,P2=Q.div`
   position: fixed;
   top: 50%;
@@ -152,7 +152,7 @@ Please change the parent <Route path="${E}"> to <Route path="${E==="/"?"*":`${E}
   background-color: white;
   padding: 50px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  z-index: 2000;
   max-width: 1300px;
   width: 75vw;
   overflow: hidden;

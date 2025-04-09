@@ -38,7 +38,7 @@ const Overlay = styled.div<{ open: boolean }>`
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 1000;
+  z-index: 2000;
 `;
 
 const Dialog = styled.div<{ open: boolean }>`
@@ -50,7 +50,7 @@ const Dialog = styled.div<{ open: boolean }>`
   background-color: white;
   padding: 50px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  z-index: 2000;
   max-width: 1300px;
   width: 75vw;
   overflow: hidden;
