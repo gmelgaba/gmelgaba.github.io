@@ -165,7 +165,7 @@ Please change the parent <Route path="${E}"> to <Route path="${E==="/"?"*":`${E}
 `,pp=Q.button`
   position: fixed;
   top: 50%;
-  z-index: 1001;
+  z-index: 2001;
   ${({position:a})=>a}: 10px;
   transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.8);
@@ -286,7 +286,7 @@ Please change the parent <Route path="${E}"> to <Route path="${E==="/"?"*":`${E}
   font-size: 22px;
   color: #888;
   cursor: pointer;
-  z-index: 1002;
+  z-index: 2002;
   transition: color 0.2s ease;
 
   &:hover {
