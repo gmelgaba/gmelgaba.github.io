@@ -65,7 +65,7 @@ const Dialog = styled.div<{ open: boolean }>`
 const DialogArrow = styled.button<{ position: "left" | "right" }>`
   position: fixed;
   top: 50%;
-  z-index: 1001;
+  z-index: 2001;
   ${({ position }) => position}: 10px;
   transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.8);
@@ -200,7 +200,7 @@ const CloseButton = styled.button`
   font-size: 22px;
   color: #888;
   cursor: pointer;
-  z-index: 1002;
+  z-index: 2002;
   transition: color 0.2s ease;
 
   &:hover {
