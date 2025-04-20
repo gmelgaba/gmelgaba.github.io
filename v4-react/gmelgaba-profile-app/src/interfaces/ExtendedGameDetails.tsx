@@ -18,15 +18,22 @@ export interface BggXmlGameDetails {
   description?: { _text: string };
   age?: { _text: string };
   playingtime?: { _text: string };
-  "poll-summary": {
+
+  "poll-summary"?: {
     _attributes?: { name?: string; title?: string };
     result?: BggXmlGameDetailsPollResult[];
   };
-  boardgamesubdomain: {
+
+  boardgamesubdomain?: {
     _attributes?: { objectid?: string };
     _text?: string;
   };
-  boardgameexpansion: {
+
+  boardgamecategory?:
+    | { _attributes?: { objectid?: string }; _text?: string }
+    | { _attributes?: { objectid?: string }; _text?: string }[]; // for array case
+
+  boardgameexpansion?: {
     _attributes?: { objectid?: string };
     _text?: string;
   }[];

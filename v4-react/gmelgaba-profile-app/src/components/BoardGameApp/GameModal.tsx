@@ -165,6 +165,7 @@ const Right = styled.div`
 
 const InfoSubtitle = styled.strong`
   font-size: 20px;
+  color: ${({ theme }) => theme.primaryColor};
 `;
 
 const Description = styled.p`
@@ -294,18 +295,33 @@ export const GameModal: React.FC<Props> = ({
                 <BasicInfoContainer>
                   <div>
                     <div>
-                      Players: {game.minPlayers} - {game.maxPlayers}
+                      <strong>Players:</strong> {game.minPlayers} -{" "}
+                      {game.maxPlayers}
                     </div>
                     {details?.age && (
-                      <div>Suggested Age: {details.age._text}+</div>
+                      <div>
+                        <strong>Suggested Age:</strong> {details.age._text}+
+                      </div>
                     )}
                     {details?.playingtime && (
                       <div>
-                        Playing Time: {details.playingtime._text} minutes
+                        <strong>Playing Time:</strong>{" "}
+                        {details.playingtime._text} minutes
                       </div>
                     )}
                     {details?.boardgamesubdomain && (
-                      <div>Genre: {details.boardgamesubdomain._text}</div>
+                      <div>
+                        <strong>Genre:</strong>
+                        {(Array.isArray(details?.boardgamecategory)
+                          ? details?.boardgamecategory
+                          : [details?.boardgamecategory]
+                        ).map((cat) => (
+                          <span key={cat?._attributes?.objectid}>
+                            {" - "}
+                            {cat?._text}
+                          </span>
+                        ))}
+                      </div>
                     )}
                   </div>
                   <Rating style={{ color: getRatingColor(game.rating) }}>
@@ -338,7 +354,6 @@ export const GameModal: React.FC<Props> = ({
                     </ul>
                   </>
                 )}
-                <br />
                 {details?.["poll-summary"] && (
                   <>
                     <InfoSubtitle>

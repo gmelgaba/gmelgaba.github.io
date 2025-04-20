@@ -3,17 +3,28 @@ import { useCallback, useEffect, useState } from "react";
 import { BggXmlGameDetails } from "../interfaces/ExtendedGameDetails";
 import { Game } from "../interfaces/Game";
 
-export function useBoardGameFilters(
-  games: Game[],
-  gameDetailsCache: React.MutableRefObject<Record<string, BggXmlGameDetails>>,
-  sortOption: string,
-  sortDirection: "asc" | "desc",
-  playerCount: string,
-  durationFilter: string,
-  ready: boolean
-) {
+export function useBoardGameFilters({
+  games,
+  gameDetailsCache,
+  sortOption,
+  sortDirection,
+  playerCount,
+  durationFilter,
+  gameCategory,
+  ready,
+}: {
+  games: Game[];
+  gameDetailsCache: React.MutableRefObject<Record<string, BggXmlGameDetails>>;
+  sortOption: string;
+  sortDirection: "asc" | "desc";
+  playerCount: string;
+  durationFilter: string;
+  gameCategory: string;
+  ready: boolean;
+}) {
   const [filteredGames, setFilteredGames] = useState<Game[]>([]);
   const [playerCountApplied, setPlayerCountApplied] = useState("");
+  const [availableCategories, setAvailableCategories] = useState<string[]>([]);
 
   const sortGames = useCallback(
     (toSort: Game[]) => {
@@ -40,6 +51,7 @@ export function useBoardGameFilters(
 
     let filtered = [...games];
 
+    // Player Count
     if (playerCount) {
       const count = parseInt(playerCount, 10);
       filtered = filtered.filter(
@@ -47,6 +59,7 @@ export function useBoardGameFilters(
       );
     }
 
+    // Duration
     if (durationFilter) {
       filtered = filtered.filter((game) => {
         const rawDuration =
@@ -57,7 +70,7 @@ export function useBoardGameFilters(
 
         switch (durationFilter) {
           case "very-short":
-            return duration > 0 && duration <= 20;
+            return duration <= 20;
           case "short":
             return duration > 20 && duration <= 30;
           case "medium":
@@ -72,21 +85,57 @@ export function useBoardGameFilters(
       });
     }
 
+    // Build dynamic category list from games AFTER duration/player filters
+    const categoriesSet = new Set<string>();
+    for (const game of filtered) {
+      const categories = gameDetailsCache.current[game.id]?.boardgamecategory;
+      const list = Array.isArray(categories)
+        ? categories
+        : categories
+        ? [categories]
+        : [];
+
+      list.forEach((c) => {
+        if (c._text) categoriesSet.add(c._text);
+      });
+    }
+
+    setAvailableCategories(
+      Array.from(categoriesSet).sort((a, b) => a.localeCompare(b))
+    );
+
+    // Category filter (applied after dynamic set)
+    if (gameCategory) {
+      filtered = filtered.filter((game) => {
+        const categories = gameDetailsCache.current[game.id]?.boardgamecategory;
+
+        const categoryNames = Array.isArray(categories)
+          ? categories.map((c) => c._text?.toLowerCase())
+          : categories?._text
+          ? [categories._text.toLowerCase()]
+          : [];
+
+        return categoryNames.includes(gameCategory.toLowerCase());
+      });
+    }
+
     setFilteredGames(sortGames(filtered));
     setPlayerCountApplied(playerCount);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     games,
     playerCount,
     durationFilter,
+    gameCategory,
     sortOption,
     sortDirection,
     sortGames,
     ready,
+    gameDetailsCache,
   ]);
 
   return {
     filteredGames,
     playerCountApplied,
+    availableCategories,
   };
 }

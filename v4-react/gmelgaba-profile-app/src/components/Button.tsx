@@ -13,8 +13,8 @@ const ButtonComponent = styled.a<ButtonProps>`
   justify-content: center;
 
   padding: 15px 25px;
-  border-radius: 35px;
-  font-size: 20px;
+  border-radius: 16px;
+  font-size: 14px;
   font-family: inherit;
   font-weight: 400;
   text-align: center;
@@ -28,7 +28,6 @@ const ButtonComponent = styled.a<ButtonProps>`
   z-index: 1;
   margin-bottom: 40px;
 
-  /* Remove default <a> focus styles */
   outline: none;
   appearance: none;
 

@@ -24,6 +24,11 @@ const PresentationText = styled.div`
   flex: 1;
   margin-bottom: 40px;
 
+  a {
+    height: 20px;
+    width: 100px;
+  }
+
   ${resolutions.mobile} {
     max-width: 50%;
   }

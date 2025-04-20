@@ -65,6 +65,9 @@ interface Props {
   onSortDirectionChange: (direction: "asc" | "desc") => void;
   durationFilter: string;
   onDurationFilterChange: (value: string) => void;
+  gameCategory: string;
+  onGameCategoryChange: (value: string) => void;
+  availableGameCategories: string[];
 }
 
 const MAX_NUMBER_OF_PLAYERS = 30;
@@ -78,6 +81,9 @@ export const SortControls: React.FC<Props> = ({
   onSortDirectionChange,
   durationFilter,
   onDurationFilterChange,
+  gameCategory,
+  onGameCategoryChange,
+  availableGameCategories,
 }) => (
   <ControlsContainer>
     <FieldGroup>
@@ -105,10 +111,26 @@ export const SortControls: React.FC<Props> = ({
       >
         <option value="">All durations</option>
         <option value="very-short">Less than 20m</option>
-        <option value="short">Less than 30m</option>
+        <option value="short">20m to 30m</option>
         <option value="medium">30m to 45m</option>
         <option value="long">45m to 1h</option>
         <option value="very-long">More than 1h</option>
+      </SelectInput>
+    </FieldGroup>
+
+    <FieldGroup>
+      <Label htmlFor="type-select">Category</Label>
+      <SelectInput
+        id="game-type-select"
+        value={gameCategory}
+        onChange={(e) => onGameCategoryChange(e.target.value)}
+      >
+        <option value="">All categories</option>
+        {availableGameCategories.map((type) => (
+          <option key={type} value={type}>
+            {type}
+          </option>
+        ))}
       </SelectInput>
     </FieldGroup>
 
@@ -120,9 +142,8 @@ export const SortControls: React.FC<Props> = ({
           value={`${sortOption}${sortDirection}`}
           onChange={(e) => {
             const value = e.target.value;
-            const match = value.match(
-              /(name|minPlayers|maxPlayers|rating)(asc|desc)/i
-            );
+            const regex = /(name|minPlayers|maxPlayers|rating)(asc|desc)/i;
+            const match = regex.exec(value);
             if (match) {
               onSortChange(match[1]);
               onSortDirectionChange(match[2] as "asc" | "desc");

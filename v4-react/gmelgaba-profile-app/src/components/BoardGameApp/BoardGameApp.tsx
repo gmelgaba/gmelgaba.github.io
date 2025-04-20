@@ -34,6 +34,7 @@ const HeaderSection = styled.div`
 const Title = styled.h2`
   font-size: 36px;
   color: ${({ theme }) => theme.primaryColor};
+  background-image: ${({ theme }) => theme.gradient};
   margin-bottom: 8px;
   margin-top: 10px;
   ${resolutions.mobile} {
@@ -49,7 +50,7 @@ const Subtitle = styled.p`
 `;
 
 const Typography = styled.p<{ color?: string }>`
-  color: ${(props) => props.color || props.theme.text};
+  color: ${(props) => props.color ?? props.theme.text};
 
   &.not-found {
     color: ${({ theme }) => theme.textGray};
@@ -97,6 +98,7 @@ const BoardGameApp: React.FC = () => {
   const [username, setUsername] = useState<string | null>(null);
   const [playerCount, setPlayerCount] = useState("");
   const [durationFilter, setDurationFilter] = useState("");
+  const [gameCategory, setGameCategory] = useState("");
   const [sortOption, setSortOption] = useState("name");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
@@ -105,6 +107,7 @@ const BoardGameApp: React.FC = () => {
     const players = searchParams.get("players");
     const duration = searchParams.get("duration");
     const sorting = searchParams.get("sorting");
+    const gameCategory = searchParams.get("gameCategory");
 
     if (usernameParam) {
       setUsername(usernameParam);
@@ -115,11 +118,11 @@ const BoardGameApp: React.FC = () => {
     if (usernameParam) setUsername(usernameParam);
     if (players) setPlayerCount(players);
     if (duration) setDurationFilter(duration);
+    if (gameCategory) setGameCategory(gameCategory);
 
     if (sorting) {
-      const match = sorting.match(
-        /(name|minPlayers|maxPlayers|rating)(asc|desc)/i
-      );
+      const regex = /(name|minPlayers|maxPlayers|rating)(asc|desc)/i;
+      const match = regex.exec(sorting);
       if (match) {
         setSortOption(match[1]);
         setSortDirection(match[2].toLowerCase() as "asc" | "desc");
@@ -136,15 +139,17 @@ const BoardGameApp: React.FC = () => {
     gameDetailsCache,
   } = useBoardGameData(username ?? "");
 
-  const { filteredGames, playerCountApplied } = useBoardGameFilters(
-    games,
-    gameDetailsCache,
-    sortOption,
-    sortDirection,
-    playerCount,
-    durationFilter,
-    detailsReady
-  );
+  const { filteredGames, playerCountApplied, availableCategories } =
+    useBoardGameFilters({
+      games,
+      gameDetailsCache,
+      sortOption,
+      sortDirection,
+      playerCount,
+      durationFilter,
+      gameCategory,
+      ready: detailsReady,
+    });
 
   useKeyboardNavigation(selectedGame, setSelectedGame, filteredGames);
 
@@ -160,7 +165,7 @@ const BoardGameApp: React.FC = () => {
     <BoardgameAppContainer>
       <HeaderSection>
         <UserInfo username={username ?? ""} />
-        <Title>🎲 Fit2Play</Title>
+        <Title className="section-title">🎲 Fit2Play</Title>
         <Subtitle>
           Find the perfect board game for your group size, fast and easy.
         </Subtitle>
@@ -175,6 +180,9 @@ const BoardGameApp: React.FC = () => {
         onSortDirectionChange={(dir) => setSortDirection(dir)}
         durationFilter={durationFilter}
         onDurationFilterChange={setDurationFilter}
+        gameCategory={gameCategory}
+        onGameCategoryChange={setGameCategory}
+        availableGameCategories={availableCategories}
       />
 
       {loadingGames ? (
@@ -183,7 +191,7 @@ const BoardGameApp: React.FC = () => {
         <Typography className="not-found">No games found.</Typography>
       ) : (
         <AnimatedGridWrapper
-          key={`${playerCount}-${durationFilter}-${sortOption}-${sortDirection}`}
+          key={`${playerCount}-${durationFilter}-${sortOption}-${sortDirection}-${gameCategory}`}
         >
           <Typography>
             <SearchResults>
@@ -191,11 +199,13 @@ const BoardGameApp: React.FC = () => {
                 username={username ?? ""}
                 playerCount={playerCount}
                 durationFilter={durationFilter}
+                gameCategoryFilter={gameCategory}
                 sortOption={sortOption}
                 sortDirection={sortDirection}
               />
               <SearchDetails>
-                {filteredGames.length} games{" "}
+                {filteredGames.length} game
+                {filteredGames.length > 1 && "s"}{" "}
                 {playerCountApplied &&
                   `found for ${playerCountApplied} players`}
               </SearchDetails>

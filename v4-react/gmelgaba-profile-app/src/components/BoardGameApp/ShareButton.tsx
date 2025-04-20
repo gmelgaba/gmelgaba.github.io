@@ -44,6 +44,7 @@ interface Props {
   username: string;
   playerCount: string;
   durationFilter: string;
+  gameCategoryFilter: string;
   sortOption: string;
   sortDirection: "asc" | "desc";
 }
@@ -52,6 +53,7 @@ const ShareButton: React.FC<Props> = ({
   username,
   playerCount,
   durationFilter,
+  gameCategoryFilter,
   sortOption,
   sortDirection,
 }) => {
@@ -62,6 +64,7 @@ const ShareButton: React.FC<Props> = ({
     if (username) params.set("username", username);
     if (playerCount) params.set("players", playerCount);
     if (durationFilter) params.set("duration", durationFilter);
+    if (gameCategoryFilter) params.set("gameCategory", gameCategoryFilter);
     if (sortOption && sortDirection)
       params.set("sorting", `${sortOption}${sortDirection}`);
     const url = `${window.location.origin}/boardgame-app?${params.toString()}`;

@@ -1,3 +1,4 @@
+import Button from "../components/Button";
 import { resolutions } from "../utils/devices";
 import styled from "styled-components";
 import { yearsOfExperience } from "../utils/years";
@@ -24,53 +25,80 @@ const AboutMeContent = styled.div`
     grid-template-columns: 1fr;
   }
   ${resolutions.tabletAndGreater} {
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr auto;
     column-gap: 64px;
     justify-content: center;
   }
 `;
 
-const AboutMeImage = styled.img`
-  width: 180px;
-  height: 180px;
+const AboutMeLeftImage = styled.img`
+  width: 380px;
+  height: 380px;
   border-radius: 10%;
   object-fit: cover;
   ${resolutions.mobile} {
-    display: none;
+    height: 250px;
+    width: 100%;
+    margin-bottom: 32px;
   }
 `;
 
 const AboutMeText = styled.div`
   flex: 1;
   width: 80%;
+
+  a {
+    display: block;
+    margin-top: 32px;
+    height: 20px;
+    width: 120px;
+  }
+
   ${resolutions.mobile} {
     width: 100%;
     text-align: center;
+
+    a {
+      margin: 0 auto;
+      margin-top: 32px;
+    }
   }
 `;
-
-const aboutContent = {
-  info: [
-    "I'm a software engineer living in Montevideo, Uruguay, currently working at tarmac.",
-    `I have ${yearsOfExperience}+ years of experience in the software business, learning while working with great people.`,
-    "I really encourage best practices, and I think that there are always new things to learn.",
-    "I started learning Google SketchUp and got into DIY woodworking projects. I really enjoy designing and building things with my own hands.",
-  ],
-};
 
 const AboutMe: React.FC = () => {
   return (
     <AboutMeContainer>
       <SectionTitle className="section-title">About Me</SectionTitle>
       <AboutMeContent>
-        <AboutMeImage
-          src="/images/about-me/desk-setup.jpg"
+        <AboutMeLeftImage
+          src="/images/about-me/group-photo.jpg"
           alt="My desk setup with a laptop, keyboard, and board games"
         />
         <AboutMeText>
-          {aboutContent.info.map((text) => (
-            <span key={text}>{text}</span>
-          ))}
+          I'm a software engineer based in Montevideo, Uruguay, with over{" "}
+          {yearsOfExperience + " "}years of experience in the software world.
+          While my journey started in hands-on development, building web and
+          mobile products using technologies like JavaScript, Node.js, and AWS,
+          my focus in recent years has shifted toward leadership.
+          <br />
+          <br />
+          I've led cross-functional teams spread across multiple countries and
+          time zones, helping align goals, support collaboration, and keep
+          communication clear and consistent. I've been involved in people
+          management, internal communication, mentoring, hiring processes, and
+          performance reviews.
+          <br />
+          <br />I like to think my approach is rooted in empathy and
+          transparency, aiming to create an environment where people can grow,
+          collaborate, and feel heard. Outside of work, I enjoy designing and
+          building things with my own hands, both digitally and in the real
+          world.
+          <Button
+            href="mailto:gmelgaba@gmail.com?subject=Let's%20Connect"
+            primary
+          >
+            Contact Me
+          </Button>
         </AboutMeText>
       </AboutMeContent>
     </AboutMeContainer>
