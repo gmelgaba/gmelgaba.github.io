@@ -1,13 +1,16 @@
+import { fadeIn, fadeSlideIn } from "../../styles/global";
 import { useEffect, useState } from "react";
 
+import { AppliedFilters } from "./AppliedFilters";
+import { FaFilter } from "react-icons/fa";
+import { FilterSidebar } from "./FilterSidebar";
 import { Game } from "../../interfaces/Game";
 import { GameCard } from "./GameCard";
 import { GameModal } from "./GameModal";
 import ShareButton from "./ShareButton";
-import { SortControls } from "./SortControls";
+import { SortDropdown } from "./SortDropdown";
 import Spinner from "../Spinner";
 import { UserInfo } from "./UserInfo";
-import { fadeIn } from "../../styles/global";
 import { resolutions } from "../../utils/devices";
 import styled from "styled-components";
 import { useBoardGameData } from "../../hooks/useBoardGameData";
@@ -42,6 +45,18 @@ const Title = styled.h2`
   }
 `;
 
+const Results = styled.p`
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 32px;
+  color: ${({ theme }) => theme.primaryColor};
+  ${resolutions.mobile} {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+`;
+
 const Subtitle = styled.p`
   font-size: 16.5px;
   max-width: 600px;
@@ -65,24 +80,47 @@ const Typography = styled.p<{ color?: string }>`
   }
 `;
 
-const SearchResults = styled.div`
+const Layout = styled.div`
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
 
   ${resolutions.mobile} {
     grid-template-columns: 1fr;
   }
 `;
-const SearchDetails = styled.div`
-  text-align: right;
+
+const Sidebar = styled.div`
+  background-color: ${({ theme }) => theme.sectionEven};
+  padding: 20px;
+  border-radius: 12px;
+
   ${resolutions.mobile} {
-    text-align: left;
+    display: none;
+  }
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+const TopBar = styled.div`
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  ${resolutions.mobile} {
+    flex-direction: column;
+    align-items: flex-start;
   }
 `;
 
 const AnimatedGridWrapper = styled.div`
-  animation: ${fadeIn} 0.4s ease;
-  margin-top: 20px;
+  animation: ${fadeIn} 0.8s ease;
 `;
 
 const Grid = styled.div`
@@ -91,14 +129,82 @@ const Grid = styled.div`
   gap: 20px;
 `;
 
+const ModalOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+`;
+
+const ModalContent = styled.div`
+  position: fixed;
+  top: 3dvh;
+  left: 0;
+  right: 0;
+  background: ${({ theme }) => theme.sectionOdd};
+  border-radius: 20px;
+  padding: 24px;
+  z-index: 2001;
+  max-height: 85dvh;
+  overflow-y: auto;
+  width: 80%;
+  margin: 0 auto;
+  animation: ${fadeSlideIn} 0.3s ease;
+`;
+
+const FiltersButton = styled.button`
+  background-color: ${({ theme }) => theme.primaryColor};
+  color: ${({ theme }) => theme.textLight};
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+
+  svg {
+    margin-left: 8px;
+  }
+`;
+
+const MobileTopActions = styled.div`
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  ${resolutions.mobile} {
+    display: flex;
+  }
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: #888;
+  cursor: pointer;
+  z-index: 2002;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #000;
+  }
+`;
+
 const BoardGameApp: React.FC = () => {
   const [searchParams] = useSearchParams();
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const isMobile = window.innerWidth <= 768;
 
   const [username, setUsername] = useState<string | null>(null);
   const [playerCount, setPlayerCount] = useState("");
   const [durationFilter, setDurationFilter] = useState("");
-  const [gameCategory, setGameCategory] = useState("");
+  const [gameCategory, setGameCategory] = useState<string[]>([]);
   const [sortOption, setSortOption] = useState("name");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
@@ -107,7 +213,7 @@ const BoardGameApp: React.FC = () => {
     const players = searchParams.get("players");
     const duration = searchParams.get("duration");
     const sorting = searchParams.get("sorting");
-    const gameCategory = searchParams.get("gameCategory");
+    const categoryParam = searchParams.get("gameCategory");
 
     if (usernameParam) {
       setUsername(usernameParam);
@@ -118,7 +224,9 @@ const BoardGameApp: React.FC = () => {
     if (usernameParam) setUsername(usernameParam);
     if (players) setPlayerCount(players);
     if (duration) setDurationFilter(duration);
-    if (gameCategory) setGameCategory(gameCategory);
+    if (categoryParam) {
+      setGameCategory(categoryParam.split(","));
+    }
 
     if (sorting) {
       const regex = /(name|minPlayers|maxPlayers|rating)(asc|desc)/i;
@@ -139,27 +247,18 @@ const BoardGameApp: React.FC = () => {
     gameDetailsCache,
   } = useBoardGameData(username ?? "");
 
-  const { filteredGames, playerCountApplied, availableCategories } =
-    useBoardGameFilters({
-      games,
-      gameDetailsCache,
-      sortOption,
-      sortDirection,
-      playerCount,
-      durationFilter,
-      gameCategory,
-      ready: detailsReady,
-    });
+  const { filteredGames, availableCategories } = useBoardGameFilters({
+    games,
+    gameDetailsCache,
+    sortOption,
+    sortDirection,
+    playerCount,
+    durationFilter,
+    gameCategory,
+    ready: detailsReady,
+  });
 
   useKeyboardNavigation(selectedGame, setSelectedGame, filteredGames);
-
-  const handleSortChange = (option: string) => {
-    setSortOption(option);
-  };
-
-  const handleCardClick = (game: Game) => {
-    setSelectedGame(game);
-  };
 
   return (
     <BoardgameAppContainer>
@@ -171,30 +270,64 @@ const BoardGameApp: React.FC = () => {
         </Subtitle>
       </HeaderSection>
 
-      <SortControls
-        playerCount={playerCount}
-        onPlayerCountChange={setPlayerCount}
-        sortOption={sortOption}
-        sortDirection={sortDirection}
-        onSortChange={handleSortChange}
-        onSortDirectionChange={(dir) => setSortDirection(dir)}
-        durationFilter={durationFilter}
-        onDurationFilterChange={setDurationFilter}
-        gameCategory={gameCategory}
-        onGameCategoryChange={setGameCategory}
-        availableGameCategories={availableCategories}
-      />
+      <Layout>
+        <Sidebar>
+          <Results>
+            {filteredGames.length} result{filteredGames.length !== 1 ? "s" : ""}
+          </Results>
+          <ShareButton
+            username={username ?? ""}
+            playerCount={playerCount}
+            durationFilter={durationFilter}
+            gameCategoryFilter={gameCategory}
+            sortOption={sortOption}
+            sortDirection={sortDirection}
+          />
+          <FilterSidebar
+            playerCount={playerCount}
+            onPlayerCountChange={setPlayerCount}
+            durationFilter={durationFilter}
+            onDurationFilterChange={setDurationFilter}
+            gameCategory={gameCategory}
+            onGameCategoryChange={setGameCategory}
+            availableGameCategories={availableCategories}
+          />
+        </Sidebar>
 
-      {loadingGames ? (
-        <Spinner />
-      ) : filteredGames.length === 0 || error ? (
-        <Typography className="not-found">No games found.</Typography>
-      ) : (
-        <AnimatedGridWrapper
-          key={`${playerCount}-${durationFilter}-${sortOption}-${sortDirection}-${gameCategory}`}
-        >
-          <Typography>
-            <SearchResults>
+        <Content>
+          {isMobile ? (
+            <>
+              <MobileTopActions>
+                <FiltersButton onClick={() => setMobileFiltersOpen(true)}>
+                  Filters <FaFilter />
+                </FiltersButton>
+                <SortDropdown
+                  sortOption={sortOption}
+                  sortDirection={sortDirection}
+                  onSortChange={setSortOption}
+                  onSortDirectionChange={setSortDirection}
+                />
+              </MobileTopActions>
+              <AppliedFilters
+                playerCount={playerCount}
+                durationFilter={durationFilter}
+                gameCategory={gameCategory}
+                onClearFilter={(type, value) => {
+                  if (type === "players") setPlayerCount("");
+                  else if (type === "duration") setDurationFilter("");
+                  else if (type === "category") {
+                    setGameCategory((prev) => prev.filter((c) => c !== value));
+                  } else if (type === "all") {
+                    setPlayerCount("");
+                    setDurationFilter("");
+                    setGameCategory([]);
+                  }
+                }}
+              />
+              <Results>
+                {filteredGames.length} result
+                {filteredGames.length !== 1 ? "s" : ""}
+              </Results>
               <ShareButton
                 username={username ?? ""}
                 playerCount={playerCount}
@@ -203,25 +336,57 @@ const BoardGameApp: React.FC = () => {
                 sortOption={sortOption}
                 sortDirection={sortDirection}
               />
-              <SearchDetails>
-                {filteredGames.length} game
-                {filteredGames.length > 1 && "s"}{" "}
-                {playerCountApplied &&
-                  `found for ${playerCountApplied} players`}
-              </SearchDetails>
-            </SearchResults>
-          </Typography>
-          <Grid>
-            {filteredGames.map((game) => (
-              <GameCard
-                key={game.id}
-                game={game}
-                onClick={() => handleCardClick(game)}
+            </>
+          ) : (
+            <TopBar>
+              <AppliedFilters
+                playerCount={playerCount}
+                durationFilter={durationFilter}
+                gameCategory={gameCategory}
+                onClearFilter={(type, value) => {
+                  if (type === "players") setPlayerCount("");
+                  else if (type === "duration") setDurationFilter("");
+                  else if (type === "category") {
+                    setGameCategory((prev) => prev.filter((c) => c !== value));
+                  } else if (type === "all") {
+                    setPlayerCount("");
+                    setDurationFilter("");
+                    setGameCategory([]);
+                  }
+                }}
               />
-            ))}
-          </Grid>
-        </AnimatedGridWrapper>
-      )}
+              <SortDropdown
+                sortOption={sortOption}
+                sortDirection={sortDirection}
+                onSortChange={setSortOption}
+                onSortDirectionChange={setSortDirection}
+              />
+            </TopBar>
+          )}
+
+          {loadingGames ? (
+            <Spinner />
+          ) : filteredGames.length === 0 || error ? (
+            <Typography className="not-found">No games found.</Typography>
+          ) : (
+            <AnimatedGridWrapper
+              key={`${playerCount}-${durationFilter}-${sortOption}-${sortDirection}-${gameCategory.join(
+                ","
+              )}`}
+            >
+              <Grid>
+                {filteredGames.map((game) => (
+                  <GameCard
+                    key={game.id}
+                    game={game}
+                    onClick={() => setSelectedGame(game)}
+                  />
+                ))}
+              </Grid>
+            </AnimatedGridWrapper>
+          )}
+        </Content>
+      </Layout>
 
       {selectedGame && (
         <GameModal
@@ -245,6 +410,33 @@ const BoardGameApp: React.FC = () => {
             setSelectedGame(filteredGames[prevIndex]);
           }}
         />
+      )}
+      {isMobile && mobileFiltersOpen && (
+        <>
+          <ModalOverlay onClick={() => setMobileFiltersOpen(false)} />
+          <ModalContent>
+            <CloseButton
+              onClick={() => setMobileFiltersOpen(false)}
+              aria-label="Close modal"
+            >
+              ×
+            </CloseButton>
+            <FilterSidebar
+              playerCount={playerCount}
+              onPlayerCountChange={setPlayerCount}
+              durationFilter={durationFilter}
+              onDurationFilterChange={setDurationFilter}
+              gameCategory={gameCategory}
+              onGameCategoryChange={setGameCategory}
+              availableGameCategories={availableCategories}
+            />
+            <div style={{ marginTop: "16px", textAlign: "center" }}>
+              <FiltersButton onClick={() => setMobileFiltersOpen(false)}>
+                Close
+              </FiltersButton>
+            </div>
+          </ModalContent>
+        </>
       )}
     </BoardgameAppContainer>
   );

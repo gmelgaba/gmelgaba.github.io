@@ -19,7 +19,7 @@ export function useBoardGameFilters({
   sortDirection: "asc" | "desc";
   playerCount: string;
   durationFilter: string;
-  gameCategory: string;
+  gameCategory: string[]; // ← now an array
   ready: boolean;
 }) {
   const [filteredGames, setFilteredGames] = useState<Game[]>([]);
@@ -104,8 +104,8 @@ export function useBoardGameFilters({
       Array.from(categoriesSet).sort((a, b) => a.localeCompare(b))
     );
 
-    // Category filter (applied after dynamic set)
-    if (gameCategory) {
+    // Category filter (multi-select support)
+    if (gameCategory.length > 0) {
       filtered = filtered.filter((game) => {
         const categories = gameDetailsCache.current[game.id]?.boardgamecategory;
 
@@ -115,7 +115,9 @@ export function useBoardGameFilters({
           ? [categories._text.toLowerCase()]
           : [];
 
-        return categoryNames.includes(gameCategory.toLowerCase());
+        return gameCategory.some((selected) =>
+          categoryNames.includes(selected.toLowerCase())
+        );
       });
     }
 

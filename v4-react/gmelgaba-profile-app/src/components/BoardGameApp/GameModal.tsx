@@ -1,8 +1,10 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import styled, { keyframes } from "styled-components";
+import { useEffect, useRef } from "react";
 
 import { BggXmlGameDetails } from "../../interfaces/ExtendedGameDetails";
 import { Game } from "../../interfaces/Game";
+import { fadeSlideIn } from "../../styles/global";
 import { getRatingColor } from "../../utils/boardgames";
 import { resolutions } from "../../utils/devices";
 
@@ -43,9 +45,9 @@ const Overlay = styled.div<{ open: boolean }>`
 
 const Dialog = styled.div<{ open: boolean }>`
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(${(props) => (props.open ? 1 : 0.9)});
+  top: 3dvh;
+  left: 0;
+  right: 0;
   opacity: ${(props) => (props.open ? 1 : 0)};
   background-color: white;
   padding: 50px;
@@ -56,6 +58,8 @@ const Dialog = styled.div<{ open: boolean }>`
   overflow: hidden;
   transition: opacity 0.25s ease, transform 0.25s ease;
   border-radius: 12px;
+  animation: ${fadeSlideIn} 0.3s ease;
+
   ${resolutions.mobile} {
     margin-top: 0;
     height: 80vh;
@@ -81,18 +85,16 @@ const DialogArrow = styled.button<{ position: "left" | "right" }>`
   transition: background 0.2s ease;
 
   svg {
-    position: fixed;
     color: ${({ theme }) => theme.primaryColor};
   }
+
   ${resolutions.mobile} {
-    position: fixed;
-    top: 50vh;
-    border-radius: 25px;
-    width: 50px;
-    height: 50px;
     background-color: ${({ theme }) => theme.primaryColor};
+    width: 50px;
+
     svg {
       color: ${({ theme }) => theme.textLight};
+      position: fixed;
     }
   }
 `;
@@ -140,6 +142,7 @@ const Right = styled.div`
       display: none;
     }
   }
+
   ${resolutions.mobile} {
     max-height: 75vh;
     padding: 0 20px;
@@ -224,6 +227,7 @@ const ModalTitle = styled.h3`
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
+
   ${resolutions.mobile} {
     font-size: 20px;
     margin-top: 10px;
@@ -238,10 +242,11 @@ const Rating = styled.div`
   width: 186px;
   margin-top: -32px;
   line-height: 74px;
+  max-height: 74px;
   text-align: center;
 
   ${resolutions.mobile} {
-    margin-top: 0;
+    margin-top: 16px;
     font-size: 25px;
     margin-right: 20px;
     line-height: 20px;
@@ -254,6 +259,9 @@ const Rating = styled.div`
 const BasicInfoContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  ${resolutions.mobile} {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const GameModal: React.FC<Props> = ({
@@ -263,116 +271,126 @@ export const GameModal: React.FC<Props> = ({
   onClose,
   onNext,
   onPrev,
-}) => (
-  <>
-    <Overlay open={!!game} onClick={onClose} />
-    <DialogArrow position="left" onClick={onPrev}>
-      <FaArrowLeft />
-    </DialogArrow>
-    <DialogArrow position="right" onClick={onNext}>
-      <FaArrowRight />
-    </DialogArrow>
+}) => {
+  const rightPanelRef = useRef<HTMLDivElement>(null);
 
-    <Dialog open={!!game}>
-      <HeaderRow>
-        <ModalTitle>{game.name}</ModalTitle>
-        <CloseButton onClick={onClose} aria-label="Close modal">
-          ×
-        </CloseButton>
-      </HeaderRow>
-      <Content>
-        <Left>
-          <img src={game.image} alt={game.name} />
-        </Left>
-        <Right>
-          <img src={game.image} alt={game.name} />
-          <ExtraInfo>
-            {loading ? (
-              <Loader />
-            ) : (
-              <>
-                <InfoSubtitle>Basic info</InfoSubtitle>
-                <BasicInfoContainer>
-                  <div>
+  useEffect(() => {
+    if (rightPanelRef.current) {
+      rightPanelRef.current.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [game.id]);
+
+  return (
+    <>
+      <Overlay open={!!game} onClick={onClose} />
+      <DialogArrow position="left" onClick={onPrev}>
+        <FaArrowLeft />
+      </DialogArrow>
+      <DialogArrow position="right" onClick={onNext}>
+        <FaArrowRight />
+      </DialogArrow>
+
+      <Dialog open={!!game}>
+        <HeaderRow>
+          <ModalTitle>{game.name}</ModalTitle>
+          <CloseButton onClick={onClose} aria-label="Close modal">
+            ×
+          </CloseButton>
+        </HeaderRow>
+        <Content>
+          <Left>
+            <img src={game.image} alt={game.name} />
+          </Left>
+          <Right ref={rightPanelRef}>
+            <img src={game.image} alt={game.name} />
+            <ExtraInfo>
+              {loading ? (
+                <Loader />
+              ) : (
+                <>
+                  <InfoSubtitle>Basic info</InfoSubtitle>
+                  <BasicInfoContainer>
                     <div>
-                      <strong>Players:</strong> {game.minPlayers} -{" "}
-                      {game.maxPlayers}
+                      <div>
+                        <strong>Players:</strong> {game.minPlayers} -{" "}
+                        {game.maxPlayers}
+                      </div>
+                      {details?.age && (
+                        <div>
+                          <strong>Suggested Age:</strong> {details.age._text}+
+                        </div>
+                      )}
+                      {details?.playingtime && (
+                        <div>
+                          <strong>Playing Time:</strong>{" "}
+                          {details.playingtime._text} minutes
+                        </div>
+                      )}
+                      {details?.boardgamesubdomain && (
+                        <div>
+                          <strong>Genre: </strong>
+                          {(Array.isArray(details?.boardgamecategory)
+                            ? details?.boardgamecategory
+                            : [details?.boardgamecategory]
+                          ).map((cat, index) => (
+                            <span key={cat?._attributes?.objectid}>
+                              {index !== 0 && ", "}
+                              {cat?._text}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                    {details?.age && (
-                      <div>
-                        <strong>Suggested Age:</strong> {details.age._text}+
-                      </div>
-                    )}
-                    {details?.playingtime && (
-                      <div>
-                        <strong>Playing Time:</strong>{" "}
-                        {details.playingtime._text} minutes
-                      </div>
-                    )}
-                    {details?.boardgamesubdomain && (
-                      <div>
-                        <strong>Genre:</strong>
-                        {(Array.isArray(details?.boardgamecategory)
-                          ? details?.boardgamecategory
-                          : [details?.boardgamecategory]
-                        ).map((cat) => (
-                          <span key={cat?._attributes?.objectid}>
-                            {" - "}
-                            {cat?._text}
-                          </span>
+                    <Rating style={{ color: getRatingColor(game.rating) }}>
+                      {game.rating === "No rating"
+                        ? game.rating
+                        : `${game.rating} / 10`}
+                    </Rating>
+                  </BasicInfoContainer>
+                  <br />
+                  {details?.description && (
+                    <>
+                      <InfoSubtitle>Description</InfoSubtitle>
+                      <Description
+                        dangerouslySetInnerHTML={{
+                          __html: details.description._text,
+                        }}
+                      />
+                    </>
+                  )}
+                  {details?.boardgameexpansion && (
+                    <>
+                      <InfoSubtitle>Expansions</InfoSubtitle>
+                      <ul>
+                        {(Array.isArray(details.boardgameexpansion)
+                          ? details.boardgameexpansion
+                          : [details.boardgameexpansion]
+                        ).map((exp) => (
+                          <li key={exp._attributes?.objectid}>{exp._text}</li>
                         ))}
-                      </div>
-                    )}
-                  </div>
-                  <Rating style={{ color: getRatingColor(game.rating) }}>
-                    {game.rating === "No rating"
-                      ? game.rating
-                      : `${game.rating} / 10`}
-                  </Rating>
-                </BasicInfoContainer>
-                <br />
-                {details?.description && (
-                  <>
-                    <InfoSubtitle>Description</InfoSubtitle>
-                    <Description
-                      dangerouslySetInnerHTML={{
-                        __html: details.description._text,
-                      }}
-                    />
-                  </>
-                )}
-                {details?.boardgameexpansion && (
-                  <>
-                    <InfoSubtitle>Expansions</InfoSubtitle>
-                    <ul>
-                      {(Array.isArray(details.boardgameexpansion)
-                        ? details.boardgameexpansion
-                        : [details.boardgameexpansion]
-                      ).map((exp) => (
-                        <li key={exp._attributes?.objectid}>{exp._text}</li>
-                      ))}
-                    </ul>
-                  </>
-                )}
-                {details?.["poll-summary"] && (
-                  <>
-                    <InfoSubtitle>
-                      {details["poll-summary"]._attributes?.title}
-                    </InfoSubtitle>
-                    <ul>
-                      {details["poll-summary"].result?.map((res) => (
-                        <li key={res._attributes?.name}>
-                          {res._attributes?.value}
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                )}
-              </>
-            )}
-          </ExtraInfo>
-        </Right>
-      </Content>
-    </Dialog>
-  </>
-);
+                      </ul>
+                    </>
+                  )}
+                  {details?.["poll-summary"] && (
+                    <>
+                      <InfoSubtitle>
+                        {details["poll-summary"]._attributes?.title}
+                      </InfoSubtitle>
+                      <ul>
+                        {details["poll-summary"].result?.map((res) => (
+                          <li key={res._attributes?.name}>
+                            {res._attributes?.value}
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+                </>
+              )}
+            </ExtraInfo>
+          </Right>
+        </Content>
+      </Dialog>
+    </>
+  );
+};
