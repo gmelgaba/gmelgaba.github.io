@@ -45,8 +45,8 @@ const Overlay = styled.div<{ open: boolean }>`
 
 const Dialog = styled.div<{ open: boolean }>`
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 10%;
+  left: 10%;
   opacity: ${(props) => (props.open ? 1 : 0)};
   background-color: white;
   padding: 40px 24px;
@@ -58,10 +58,6 @@ const Dialog = styled.div<{ open: boolean }>`
   transition: opacity 0.25s ease, transform 0.25s ease;
   border-radius: 12px;
   animation: ${fadeSlideIn} 0.3s ease;
-
-  ${resolutions.tabletAndGreater} {
-    transform: translate(-50%, -50%) scale(${(props) => (props.open ? 1 : 0.9)});
-  }
 
   ${resolutions.mobile} {
     margin-top: 0;
