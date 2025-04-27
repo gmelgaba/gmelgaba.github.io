@@ -45,24 +45,30 @@ const Overlay = styled.div<{ open: boolean }>`
 
 const Dialog = styled.div<{ open: boolean }>`
   position: fixed;
-  top: 3dvh;
-  left: 0;
-  right: 0;
+  top: 50%;
+  left: 50%;
   opacity: ${(props) => (props.open ? 1 : 0)};
   background-color: white;
-  padding: 50px;
+  padding: 40px 24px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 2000;
   max-width: 1300px;
-  width: 75vw;
+  width: 80%;
   overflow: hidden;
   transition: opacity 0.25s ease, transform 0.25s ease;
   border-radius: 12px;
   animation: ${fadeSlideIn} 0.3s ease;
 
+  ${resolutions.tabletAndGreater} {
+    transform: translate(-50%, -50%) scale(${(props) => (props.open ? 1 : 0.9)});
+  }
+
   ${resolutions.mobile} {
     margin-top: 0;
     height: 80vh;
+    top: 3dvh;
+    left: 2dvh;
+    right: 0;
   }
 `;
 
@@ -86,6 +92,7 @@ const DialogArrow = styled.button<{ position: "left" | "right" }>`
 
   svg {
     color: ${({ theme }) => theme.primaryColor};
+    position: fixed;
   }
 
   ${resolutions.mobile} {
