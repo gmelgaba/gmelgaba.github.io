@@ -412,8 +412,8 @@ Please change the parent <Route path="${E}"> to <Route path="${E==="/"?"*":`${E}
   z-index: 2000;
 `,vx=F.div`
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 10%;
+  left: 10%;
   opacity: ${a=>a.open?1:0};
   background-color: white;
   padding: 40px 24px;
@@ -425,10 +425,6 @@ Please change the parent <Route path="${E}"> to <Route path="${E==="/"?"*":`${E}
   transition: opacity 0.25s ease, transform 0.25s ease;
   border-radius: 12px;
   animation: ${I0} 0.3s ease;
-
-  ${le.tabletAndGreater} {
-    transform: translate(-50%, -50%) scale(${a=>a.open?1:.9});
-  }
 
   ${le.mobile} {
     margin-top: 0;
