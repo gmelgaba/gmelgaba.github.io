@@ -26,7 +26,7 @@ const EasterEgg: React.FC = () => {
     console.log("                \\/'      `-.----' \\    ");
     console.log("                 /          \\      \\   ");
     console.log("              Do The Bartman!            ");
-    console.log("https://www.youtube.com/watch?v=xc8foK41qmo&t=80s");
+    console.log("https://www.youtube.com/watch?v=Q7ycjcQHoaw&t=183s");
   }, []);
 
   return null;

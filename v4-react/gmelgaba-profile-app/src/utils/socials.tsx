@@ -28,7 +28,7 @@ const socialLinks = [
     label: "Spotify",
   },
   {
-    url: "https://www.youtube.com/@gmelgaba/shorts",
+    url: "https://www.youtube.com/@GonzaDIY/shorts",
     icon: <FaYoutube />,
     label: "YouTube",
   },

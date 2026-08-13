@@ -7,11 +7,24 @@ import { useEffect, useRef, useState } from "react";
 import { BggXmlCollection } from "../interfaces/BggGame";
 import { Game } from "../interfaces/Game";
 import axios from "axios";
-import mockResponse from "../utils/mockResponse.xml?raw";
 import { xml2js } from "xml-js";
 
+// const GAME_DETAILS_URL = (id: string) =>
+//   `https://corsproxy.io/?https://boardgamegeek.com/xmlapi/boardgame/${id}`;
+
+const COLLECTION_URL = (username: string) =>
+  `https://boardgamegeek.com/xmlapi2/collection?username=${username}&own=1`;
+
 const GAME_DETAILS_URL = (id: string) =>
-  `https://corsproxy.io/?https://boardgamegeek.com/xmlapi/boardgame/${id}`;
+  `https://boardgamegeek.com/xmlapi2/thing?id=${id}&stats=1`;
+
+// TODO: move this one to an env var.
+const token = "eacd46f5-b7a8-48a8-ab4f-4492b464ca26";
+const api = axios.create({
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
 
 const MAX_RETRIES = 3;
 const RETRY_DELAY_MS = 1000;
@@ -27,7 +40,7 @@ export function useBoardGameData(username?: string) {
   const [detailsReady, setDetailsReady] = useState(false);
   const gameDetailsCache = useRef<Record<string, BggXmlGameDetails>>({});
 
-  const collectionUrl = `www.boardgamegeek.com/xmlapi/collection/${username}?own=1`;
+  const collectionUrl = `https://www.boardgamegeek.com/xmlapi/collection/${username}?own=1`;
 
   const fetchAllGameDetails = async (gamesToFetch: Game[]) => {
     await Promise.allSettled(
@@ -70,10 +83,8 @@ export function useBoardGameData(username?: string) {
 
   const fetchCollection = async (retryAttempt = 0): Promise<void> => {
     try {
-      // API got deprecated. grabbing basic data from mock object
-      // const response = await axios.get(collectionUrl);
-      // const rawData = response.data;
-      const rawData = mockResponse;
+      const response = await api.get(COLLECTION_URL(username!));
+      const rawData = response.data;
 
       // Detect BGG "please try again" message
       if (typeof rawData === "string" && rawData.includes("<message>")) {
@@ -101,8 +112,8 @@ export function useBoardGameData(username?: string) {
           image:
             game.image?._text ??
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7KOdTJozEijfI8EIMywZoVREYn4ff9J04Wg&s",
-          minPlayers: parseInt(game.stats?._attributes?.minplayers ?? "", 10),
-          maxPlayers: parseInt(game.stats?._attributes?.maxplayers ?? "", 10),
+          minPlayers: parseInt(game.stats?._attributes?.minplayers ?? "1", 10),
+          maxPlayers: parseInt(game.stats?._attributes?.maxplayers ?? "10", 10),
           rating:
             game.stats?.rating?.average?._attributes?.value !== undefined
               ? parseFloat(game.stats.rating.average._attributes.value).toFixed(
@@ -111,6 +122,8 @@ export function useBoardGameData(username?: string) {
               : "No rating",
         }),
       );
+
+      console.log("Formatted games:", formattedGames);
 
       setGames(formattedGames);
       await fetchAllGameDetails(formattedGames);
